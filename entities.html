@@ -91,45 +91,33 @@
                     <p>
                         <a class="toc" href="#defining">Defining an entity</a><br/>
                         <a class="toc" href="#using">Using the entity with php</a><br/>
+                        <a class="toc" href="#attributes">Adding attributes</a><br/>
+                        <a class="toc" href="#addingIndex">Adding indexes</a><br/>
                         <a class="toc" href="#delimiting">Delimiting an entity</a><br/>
                         <a class="toc" href="#inmemory">In Memory replication with MySQL</a><br/>
-                        <a class="toc" href="attributes">Adding attributes</a><br/>
-                        <a class="toc" href="references">Adding references</a><br/>
-                        <a class="toc" href="coloctors">Adding collectors</a><br/>
-                        <a class="toc" href="addingIndex">Adding indexes</a>
-
                     </p>
                 </div>
-
-
-
-
             </div>
         </div>
     </section>
 
-    <!-- Entity Section -->
-    <section id="entity">
+
+    <!-- Defining Entities Section -->
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Entities</h2>
+                    <h1 id="defining">Defining Entities</h1>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                       <h3 id="defining">Defining an entity</h3>
                         <p>
-                        An entity always represents on table in the database. This will result in a generated class that
-                        provides functionality for loading and storing the entity in the database table defined
-
-
-                        Sample of Entity:
-                        </p>
-
-
+                            An entity always represents on table in the database. This will result in a generated class that
+                            provides functionality for loading and storing the entity in the database table defined
+                            Sample of Entity:
 <pre class="prettyprint lang-xml">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;entityList&gt;
@@ -193,10 +181,28 @@
                                 <td>target path where to put generated classes</td>
                             </tr>
                         </table>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <h3 id="using">Using the entity with php</h3>
+
+    <!-- Using Entity Section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="using">Using the entity with php</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
                         <p>An object can be instantiated with the classname respectively the construct classname.
-                        Static methods allow to find or delete entities by primary key.</p>
+                            Static methods allow to find or delete entities by primary key.</p>
 <pre class="prettyprint">
     // create new instance, set value and save
     $artist = new Artist();
@@ -223,12 +229,163 @@
     // deleting an entity by primary key
     Artist::deleteEntityByPrimaryKey(4);
 </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Adding attributes Section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="attributes">Adding attributes</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                        <h3>Available attributes for attribute</h3>
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td>Required</td>
+                                <td>default</td>
+                                <td>allowed values</td>
+                                <td>description</td>
+                            </tr>
+                            <tr>
+                                <td>name</td>
+                                <td>yes</td>
+                                <td></td>
+                                <td>allowed php variable names</td>
+                                <td>Name of the attribute that is generated</td>
+                            </tr>
+                            <tr>
+                                <td>type</td>
+                                <td>yes</td>
+                                <td></td>
+                                <td><code>bool|int|float|string|DateTime</code></td>
+                                <td>defines the php type to use for the attribute</td>
+                            </tr>
+                            <tr>
+                                <td>dbName</td>
+                                <td>no</td>
+                                <td>name of the attribute</td>
+                                <td>allowed database column names</td>
+                                <td>name of the column in the database</td>
+                            </tr>
+                            <tr>
+                                <td>dbType</td>
+                                <td>yes</td>
+                                <td></td>
+                                <td><code>INT, VARCHAR, BLOB</code> etc.</td>
+                                <td>database type for the column to use</td>
+                            </tr>
+                            <tr>
+                                <td>transient</td>
+                                <td>no</td>
+                                <td>false</td>
+                                <td><code>true|false</code></td>
+                                <td>allows to define attributes that are not stored in the database</td>
+                            </tr>
+                            <tr>
+                                <td>primaryKey</td>
+                                <td>no</td>
+                                <td>false</td>
+                                <td><code>true|false</code></td>
+                                <td>allows to define a primarykey</td>
+                            </tr>
+                            <tr>
+                                <td>defaultValue</td>
+                                <td>no</td>
+                                <td>null</td>
+                                <td>valid php code : 'abc', 123 or <code>Factory::newDateTime()</code> </td>
+                                <td>the default value to use for the attribute</td>
+                            </tr>
+                            <tr>
+                                <td>required</td>
+                                <td>no</td>
+                                <td>false</td>
+                                <td><code>true|false</code></td>
+                                <td>creates a not null constraint for the table</td>
+                            </tr>
+                            <tr>
+                                <td>autoValue</td>
+                                <td>required for primary key columns</td>
+                                <td></td>
+                                <td>uuid|autoincrement</td>
+                                <td>defines how the primary key column is set</td>
+                            </tr>
+                        </table>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Adding index Section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="addingIndex">Adding indexes</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+<pre class="prettyprint">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;entityList&gt;
+        &lt;entity name="ArtistEntity" namespace="siestaphp\tests\functional\index\gen" targetPath="gen/"&gt;
+
+            &lt;attribute name="string" type="string" dbName="DB_String" dbType="VARCHAR(100)"/&gt;
+            &lt;attribute name="string2" type="string" dbType="VARCHAR(100)"/&gt;
+
+            &lt;index name="uniqueIndex" unique="true" type="btree"&gt;
+                &lt;indexPart columnName="DB_String" sortOrder="ASC" length="10"/&gt;
+                &lt;indexPart columnName="string2" sortOrder="ASC" length=""/&gt;
+            &lt;/index&gt;
+
+            &lt;index name="nonUniqueIndex" unique="false" type="hash"&gt;
+                &lt;indexPart columnName="string2" sortOrder="ASC" length="20"/&gt;
+            &lt;/index&gt;
+        &lt;/entity&gt;
+    &lt;/entityList&gt;
+</pre>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
-                        <h3 id="delimiting">Delimiting an entity</h3>
+    <!-- Delimiting Section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="delimiting">Delimiting an entity</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
                         <p>Sometimes it is useful to archive changes that have been made to an entity. Siesta allows
-                        to automatically generate an archive table which will store changes over time.
+                            to automatically generate an archive table which will store changes over time.
                             Use the <code>attribute delimit="true"</code> to enable the feature
                             for a specific table.
                         </p>
@@ -243,7 +400,7 @@
     +-------+--------------+------+-----+---------+-------+
 </pre>
 
-<p>Therefore siesta allows to create a second delimiter table:</p>
+                        <p>Therefore siesta allows to create a second delimiter table:</p>
 
 <pre class="prettyprint">
     mysql> show columns from Artist_delimit;
@@ -296,7 +453,7 @@
     $hammer->save();
 
 </pre>
-<p>This will result in the following table contents.</p>
+                        <p>This will result in the following table contents.</p>
 
 
 <pre class="prettyprint">
@@ -322,11 +479,27 @@
                             id from the artist table.
 
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-                        <h3 id="inmemory">In Memory replication with MySQL</h3>
+    <!-- In memory replication -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="inmemory">In Memory replication with MySQL</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
                         <p>MySQL allows to create tables with the <a href="https://dev.mysql.com/doc/refman/5.5/en/memory-storage-engine.html">Memory engine.</a>
-                        The Memory engine is stored in the memory rather than on harddisk. Siesta allows to replicate a table with the memory engine. The same
+                            The Memory engine is stored in the memory rather than on harddisk. Siesta allows to replicate a table with the memory engine. The same
                             table will be present with configured engine and with the memory engine.
                         </p>
 <pre class="prettyprint">
@@ -360,65 +533,11 @@
         SELECT * FROM `Book_MEMORY` WHERE `id` = P_id;
     END
 </pre>
-
-
-                        <h3 id="attributes">Adding attributes</h3>
-
-                        <h3 id="references">Adding references</h3>
-
-                        <h3 id="coloctors">Adding collectors</h3>
-
-                        <h3 id="addingIndex">Adding indexes</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-    <!-- Stored Procedure Section -->
-    <section id="storedProcedure">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Stored Procedures</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                        <p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Stored Procedure Section -->
-    <section id="console">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Console Commands</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                        <p>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
 
 
     <!-- Footer -->
