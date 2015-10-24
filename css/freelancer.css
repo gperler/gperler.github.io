@@ -12,6 +12,11 @@ p {
     font-size: 20px;
 }
 
+table, td {
+    border: 1px solid #2c3e50;
+    padding: 4px;
+}
+
 p.small {
     font-size: 16px;
 }
@@ -86,6 +91,10 @@ header {
     text-align: center;
     color: #fff;
     background: #18bc9c;
+}
+
+.toc {
+    color: #ffffff !important;
 }
 
 header .container {

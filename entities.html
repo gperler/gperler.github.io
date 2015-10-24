@@ -56,19 +56,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#overview">Overview</a>
+                        <a href="/index.html">Overview</a>
                     </li>
                     <li class="page-scroll">
                         <a href="/entities.html">Entities</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/relationships.html">Relationships</a>
+                        <a href="/index.html">Relationships</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/console.html">Stored Procedures</a>
+                        <a href="/index.html">Stored Procedures</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/driver.html">Driver</a>
+                        <a href="/index.html">Driver</a>
                     </li>
                 </ul>
             </div>
@@ -77,76 +77,36 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">Siesta PHP</span>
-                        <hr class="star-light">
-                        <span class="skills">Stored procedure based object relational mapper for php</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section id="overview">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Overview</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                        <p>
-                            Siesta is an object relational mapper based on stored procedures for PHP.<br>
-                            There are many good orm for php available. So why write a new one?
-                            <ul>
-                                <li>First of all : it is fun</li>
-                                <li>Stored procedures are fast, that is why every interaction with the database is done via Stored procedures</li>
-                            </ul>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Installation Section -->
+    <!-- TOC Section -->
     <section class="success">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Installation</h2>
+                    <br/><br/><h2>Entities</h2>
                     <hr class="star-light">
                 </div>
             </div>
             <div class="row">
-                <div class="chapter">
-                    <p>Installation with composer</p>
-<pre class="prettyprint">
-composer require gm314/siesta
-</pre>
-                    <p>Create configuration file with</p>
-<pre class="prettyprint">
-vendor/bin/siesta init
-</pre>
-                    <p>git@github.com:gperler/siesta.git<br>
-                        <a href="https://github.com/gperler/siesta">https://github.com/gperler/siesta</a>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p>
+                        <a class="toc" href="#defining">Defining an entity</a><br/>
+                        <a class="toc" href="#using">Using the entity with php</a><br/>
+                        <a class="toc" href="#delimiting">Delimiting an entity</a><br/>
+                        <a class="toc" href="#inmemory">In Memory replication with MySQL</a><br/>
+                        <a class="toc" href="attributes">Adding attributes</a><br/>
+                        <a class="toc" href="references">Adding references</a><br/>
+                        <a class="toc" href="coloctors">Adding collectors</a><br/>
+                        <a class="toc" href="addingIndex">Adding indexes</a>
+
                     </p>
-
-
                 </div>
+
+
+
+
             </div>
         </div>
     </section>
-
 
     <!-- Entity Section -->
     <section id="entity">
@@ -160,7 +120,7 @@ vendor/bin/siesta init
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                       <h3>Defining an entity</h3>
+                       <h3 id="defining">Defining an entity</h3>
                         <p>
                         An entity always represents on table in the database. This will result in a generated class that
                         provides functionality for loading and storing the entity in the database table defined
@@ -168,6 +128,21 @@ vendor/bin/siesta init
 
                         Sample of Entity:
                         </p>
+
+
+<pre class="prettyprint lang-xml">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;entityList&gt;
+    &lt;entity name="Artist" namespace="siestaphp\tests\gen" targetPath="gen/"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="bool" type="bool" dbType="SMALLINT"/&gt;
+        &lt;attribute name="int" type="int" dbType="INT"/&gt;
+        &lt;attribute name="float" type="float" dbType="FLOAT"/&gt;
+        &lt;attribute name="string" type="string" dbType="VARCHAR(100)"/&gt;
+    &lt;/entity&gt;
+&lt;/entityList&gt;
+</pre>
+                        <h3>Available attributes for table</h3>
                         <table>
                             <tr>
                                 <td>Name</td>
@@ -219,30 +194,181 @@ vendor/bin/siesta init
                             </tr>
                         </table>
 
-<pre class="prettyprint lang-xml">
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;entityList&gt;
-    &lt;entity name="Artist" namespace="siestaphp\tests\functional\delimit\gen" targetPath="gen/"&gt;
-        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
-        &lt;attribute name="bool" type="bool" dbType="SMALLINT"/&gt;
-        &lt;attribute name="int" type="int" dbType="INT"/&gt;
-        &lt;attribute name="float" type="float" dbType="FLOAT"/&gt;
-        &lt;attribute name="string" type="string" dbType="VARCHAR(100)"/&gt;
-    &lt;/entity&gt;
-&lt;/entityList&gt;
+                        <h3 id="using">Using the entity with php</h3>
+                        <p>An object can be instantiated with the classname respectively the construct classname.
+                        Static methods allow to find or delete entities by primary key.</p>
+<pre class="prettyprint">
+    // create new instance, set value and save
+    $artist = new Artist();
+    $artist->setName("Kruder &amp; Dorfmeister");
+    $artist->save();
+    <br/>
+    // you can also initialize the Artist from an HttpRequest
+    $artist->initializeFromHttpRequest($request);
+
+    // you can initialize the object from a json object
+    $artist->fromJSON($jsonString);
+
+    // you can also transform the object to json
+    $jsonString = $artist->toJSON();
+
+
+    // you can also initialize an object from an array or transfer it to an array
+    $artist->fromArray($arrayData);
+    $arrayData = $artist->toArray();
+
+    // finding an entity by primary key
+    $artist2 = Artist::getEntityByPrimaryKey(4);
+
+    // deleting an entity by primary key
+    Artist::deleteEntityByPrimaryKey(4);
 </pre>
 
-                        <h3>Delimiting an entity</h3>
 
-                        <h3>In Memory replication with MySQL</h3>
 
-                        <h3>Adding attributes</h3>
+                        <h3 id="delimiting">Delimiting an entity</h3>
+                        <p>Sometimes it is useful to archive changes that have been made to an entity. Siesta allows
+                        to automatically generate an archive table which will store changes over time.
+                            Use the <code>attribute delimit="true"</code> to enable the feature
+                            for a specific table.
+                        </p>
+<pre class="prettyprint">
+    mysql> show columns from Artist;
+    +-------+--------------+------+-----+---------+-------+
+    | Field | Type         | Null | Key | Default | Extra |
+    +-------+--------------+------+-----+---------+-------+
+    | id    | int(11)      | NO   | PRI | NULL    |       |
+    | name  | varchar(100) | YES  |     | NULL    |       |
+    | city  | varchar(100) | YES  |     | NULL    |       |
+    +-------+--------------+------+-----+---------+-------+
+</pre>
 
-                        <h3>Adding references</h3>
+<p>Therefore siesta allows to create a second delimiter table:</p>
 
-                        <h3>Adding collectors</h3>
+<pre class="prettyprint">
+    mysql> show columns from Artist_delimit;
+    +-------------+--------------+------+-----+---------+-------+
+    | Field       | Type         | Null | Key | Default | Extra |
+    +-------------+--------------+------+-----+---------+-------+
+    | _delimit_id | varchar(36)  | NO   | PRI |         |       |
+    | _validFrom  | datetime     | YES  |     | NULL    |       |
+    | _validUntil | datetime     | YES  |     | NULL    |       |
+    | _changedBy  | varchar(36)  | YES  |     | NULL    |       |
+    | id          | int(11)      | NO   |     | NULL    |       |
+    | name        | varchar(100) | YES  |     | NULL    |       |
+    | city        | varchar(100) | YES  |     | NULL    |       |
+    +-------------+--------------+------+-----+---------+-------+
+</pre>
+                        <p>
+                            The delimter table contains the same columns like the original table (id, name, city).
 
-                        <h3>Adding indexes</h3>
+                            Furhtermore it comes with a proper _delimit_id, _validFrom, _validUntil and _changedBy column.<br><br>
+                            The following example shows how they are used
+                        </p>
+<pre class="prettyprint">
+    mysql> select * from artist;
+    +----+-----------+--------+
+    | id | name      | city   |
+    +----+-----------+--------+
+    |  1 | MC Hammer | London |
+    +----+-----------+--------+
+
+    mysql> select * from artist_delimit;
+    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+    | _delimit_id                          | _validFrom          | _validUntil         | _changedBy | id | name      | city   |
+    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+    | 68f04490-7a70-11e5-ab5f-03b47f5f5ebb | 1988-10-24 18:58:12 | NULL                | NULL       |  1 | MC Hammer | London |
+    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+</pre>
+                        <p>
+                            When the artist is initially created the delimiting table contains the entire record with a _validFrom data
+                            and null for the _validUntil field, which indicates that this is the currently valid record. Let's rename
+                            the artist to 'Hammer' and see what is happening. </p>
+
+<pre class="prettyprint">
+    // finding an entity by primary key
+    $hammer = Artist::getEntityByPrimaryKey(1);
+
+    // rename
+    $hammer->setName("Hammer");
+
+    // save again
+    $hammer->save();
+
+</pre>
+<p>This will result in the following table contents.</p>
+
+
+<pre class="prettyprint">
+    mysql> select * from artist;
+    +----+-----------+--------+
+    | id | name      | city   |
+    +----+-----------+--------+
+    |  1 | MC Hammer | London |
+    +----+-----------+--------+
+
+    mysql> select * from artist_delimit;
+    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+    | _delimit_id                          | _validFrom          | _validUntil         | _changedBy | id | name      | city   |
+    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+    | 68f04490-7a70-11e5-ab5f-03b47f5f5ebb | 1988-10-24 18:58:12 | 1992-10-24 18:58:12 | NULL       |  1 | MC Hammer | London |
+    | 68f09bd4-7a70-11e5-ab5f-03b47f5f5ebb | 1992-10-24 18:58:12 | NULL                | NULL       |  1 | Hammer    | NY     |
+    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+</pre>
+                        <p>
+                            The delimiting table contains 2 rows. The first one still shows the name 'MC Hammer' but with a VALID_UNTIL date
+                            set. The second entry shows the new name 'Hammer' with a VALID_FROM date and NULL for the VALID_UNTIL (which
+                            indicates this is the currently active record). Both entries refer to the same id 1 refering to the
+                            id from the artist table.
+
+                        </p>
+
+
+                        <h3 id="inmemory">In Memory replication with MySQL</h3>
+                        <p>MySQL allows to create tables with the <a href="https://dev.mysql.com/doc/refman/5.5/en/memory-storage-engine.html">Memory engine.</a>
+                        The Memory engine is stored in the memory rather than on harddisk. Siesta allows to replicate a table with the memory engine. The same
+                            table will be present with configured engine and with the memory engine.
+                        </p>
+<pre class="prettyprint">
+    mysql> show tables from SIESTA_TEST;
+    +-----------------------+
+    | Tables_in_siesta_test |
+    +-----------------------+
+    | Book                  |
+    | Book_MEMORY           |
+    +-----------------------+
+</pre>
+                        <p>
+                            Every save operation will result in INSERT or UPDATE statement for both tables. However SELECT statement are working on the memory table.
+                            The following shows the insert procedure which is invoked on <code>$book->save();</code> It updates both the memory table as well as the persistence
+                            table.
+
+                        </p>
+<pre class="prettyprint">
+    # stored procedure to Insert a book
+    CREATE PROCEDURE `Book_I` (IN P_id VARCHAR(36),IN P_title VARCHAR(100),IN P_price FLOAT)
+    MODIFIES SQL DATA SQL SECURITY INVOKER
+    BEGIN
+        INSERT INTO `Book` ( `id`,`title`,`price` ) VALUES ( P_id,P_title,P_price );
+        INSERT INTO `Book_MEMORY` ( `id`,`title`,`price` ) VALUES ( P_id,P_title,P_price );
+    END
+
+    #stored procedure to find by primary key
+    CREATE PROCEDURE `Book_FBPK`(IN P_id VARCHAR(36))
+    READS SQL DATA SQL SECURITY INVOKER
+    BEGIN
+        SELECT * FROM `Book_MEMORY` WHERE `id` = P_id;
+    END
+</pre>
+
+
+                        <h3 id="attributes">Adding attributes</h3>
+
+                        <h3 id="references">Adding references</h3>
+
+                        <h3 id="coloctors">Adding collectors</h3>
+
+                        <h3 id="addingIndex">Adding indexes</h3>
                     </div>
                 </div>
             </div>

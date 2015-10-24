@@ -29,7 +29,6 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <![endif]-->
 
 </head>
@@ -57,16 +56,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#installation">Installation</a>
+                        <a href="/index.html">Overview</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#entity">Entities</a>
+                        <a href="/entities.html">Entities</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#storedProcedure">Stored Procedures</a>
+                        <a href="/index.html">Relationships</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#console">Console Commands</a>
+                        <a href="/index.html">Stored Procedures</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/index.html">Driver</a>
                     </li>
                 </ul>
             </div>
@@ -91,11 +93,11 @@
         </div>
     </header>
 
-    <section>
+    <section id="overview">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Synposis</h2>
+                    <h2>Overview</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -117,7 +119,7 @@
     </section>
 
     <!-- Installation Section -->
-    <section class="success" id="installation">
+    <section class="success">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -131,122 +133,15 @@
 <pre class="prettyprint">
 composer require gm314/siesta
 </pre>
-                    <p>Create Configuration file with</p>
+                    <p>Create configuration file with</p>
 <pre class="prettyprint">
 vendor/bin/siesta init
 </pre>
-<pre class="prettyprint lang-xml">
-&lt;entity&gt;
-
-&lt;/entity&gt;
-</pre>
-
-<pre class="prettyprint lang-java">
-class abc extends udsj implements alsjkd {
-}
-</pre>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <p>git@github.com:gperler/siesta.git<br>
+                        <a href="https://github.com/gperler/siesta">https://github.com/gperler/siesta</a>
+                    </p>
 
 
-    <!-- Entity Section -->
-    <section id="entity">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Entities</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                       <h3>Defining an entity</h3>
-                        <p>
-                        An entity always represents on table in the database. This will result in a generated class that
-                        provides functionality for loading and storing the entity in the database table defined
-
-
-                        Sample of Entity:
-                        </p>
-                        <table>
-                            <tr>
-                                <td>Name</td>
-                                <td>Required</td>
-                                <td>default</td>
-                                <td>description</td>
-                            </tr>
-                            <tr>
-                                <td>name</td>
-                                <td>yes</td>
-                                <td></td>
-                                <td>Name of the class that is generated</td>
-                            </tr>
-                            <tr>
-                                <td>namespace</td>
-                                <td>no</td>
-                                <td></td>
-                                <td>Namespace of the class to generate</td>
-                            </tr>
-                            <tr>
-                                <td>constructClass</td>
-                                <td>no</td>
-                                <td>name of the class</td>
-                                <td>Name of the class to instantiate</td>
-                            </tr>
-                            <tr>
-                                <td>constructNamespace</td>
-                                <td>no</td>
-                                <td>namespace of the class to generate</td>
-                                <td>Namespace of the class to instantiate</td>
-                            </tr>
-                            <tr>
-                                <td>table</td>
-                                <td>no</td>
-                                <td>name of the class</td>
-                                <td>Name of the database table</td>
-                            </tr>
-                            <tr>
-                                <td>delimit</td>
-                                <td>no</td>
-                                <td>false</td>
-                                <td>Allows to track history of the table</td>
-                            </tr>
-                            <tr>
-                                <td>targetPath</td>
-                                <td>no</td>
-                                <td>.</td>
-                                <td>target path where to put generated classes</td>
-                            </tr>
-                        </table>
-
-<pre class="prettyprint lang-xml">
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;entityList&gt;
-    &lt;entity name="Artist" namespace="siestaphp\tests\functional\delimit\gen" targetPath="gen/"&gt;
-        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
-        &lt;attribute name="bool" type="bool" dbType="SMALLINT"/&gt;
-        &lt;attribute name="int" type="int" dbType="INT"/&gt;
-        &lt;attribute name="float" type="float" dbType="FLOAT"/&gt;
-        &lt;attribute name="string" type="string" dbType="VARCHAR(100)"/&gt;
-    &lt;/entity&gt;
-&lt;/entityList&gt;
-</pre>
-
-                        <h3>Delimiting an entity</h3>
-
-                        <h3>In Memory replication with MySQL</h3>
-
-                        <h3>Adding attributes</h3>
-
-                        <h3>Adding references</h3>
-
-                        <h3>Adding collectors</h3>
-
-                        <h3>Adding indexes</h3>
-                    </div>
                 </div>
             </div>
         </div>
@@ -305,31 +200,19 @@ class abc extends udsj implements alsjkd {
                 <div class="row">
                     <div class="footer-col col-md-4">
                         <h3>Location</h3>
-                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                        <p>Berlin</p>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>Around the Web</h3>
                         <ul class="list-inline">
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                                <a href="https://github.com/gperler/siesta" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
                             </li>
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        <h3>About Siesta PHP</h3>
+                        <p>Freelance is a free to use, open source PHP ORM.</p>
                     </div>
                 </div>
             </div>
@@ -338,7 +221,7 @@ class abc extends udsj implements alsjkd {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2014
+                        Copyright &copy; Siesta PHP
                     </div>
                 </div>
             </div>
@@ -350,230 +233,6 @@ class abc extends udsj implements alsjkd {
         <a class="btn btn-primary" href="#page-top">
             <i class="fa fa-chevron-up"></i>
         </a>
-    </div>
-
-    <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Project Title</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/cabin.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Project Title</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Project Title</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/circus.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Project Title</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Project Title</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/safe.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>Project Title</h2>
-                            <hr class="star-primary">
-                            <img src="img/portfolio/submarine.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- jQuery -->
