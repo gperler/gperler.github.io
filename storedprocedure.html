@@ -119,7 +119,7 @@
                             The logic is written in SQL with additional commands like <code>IF</code> or <code>ELSE</code> and can
                             define variables and temporary tables. The advantage of stored procedures: They are precompiled by the
                             database so they are really fast compared to ad hoc sql. Furthermore they are really close to the data.
-                            So instead of select all data and processing it in php which requires all data being send to php, the logic
+                            So instead of selecting all data and processing it in php which requires all data being send to php, the selection logic
                             can be build within a stored procedure and only the relevant data is passed back to php.<br>
                             However creating stored procedures and invoking them is not easy and requires a lot of action by the programmer. Siesta tries
                             to offer an infrastructure that allows to easily create and invoke stored procedures by php.<br>
@@ -145,27 +145,30 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>A common use case is the define finder methods for finding a specific object. Therefore a stored procedure section
-                        can be added to entity. The following example shows a very simple stored procedure. First a parameter city is defined.
-                        It has a php and a database Type. The spName will be the name of the parameter visible in the stored procedure body.
-                        You can see this within the &lt;sql&gt; element. The WHERE clause uses the P_CITY parameter. Furthermore for the table
+                        <p>
+                            A common use case is to define finder methods for finding a specific object. Therefore a stored procedure section
+                            can be added to entity. The following example shows a very simple stored procedure. First a parameter city is defined.
+                            It has a php and a database type. The <code>spName</code> will be the name of the parameter visible in the stored procedure body.
+                            You can see this within the &lt;sql&gt; element. The WHERE clause uses the P_CITY parameter. Furthermore for the table
                             name a placeholder <code>!TABLE!</code> can be used. The stored procedure itself defines if the procedure modifies
                             table or not. Since a SELECT does not modify tables, the modify attribute is set to false. You can also define the
                             resultType. In this case we want a single object. (resultType="single").
                         </p>
+
                         <pre class="prettyprint">
     &lt;storedProcedure name="getFirstArtistByCity" modifies="false" resultType="single"&gt;
         &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT * FROM !TABLE! WHERE CITY = P_CITY LIMIT 1;
         &lt;/sql&gt;
-    &lt;/storedProcedure&gt;
-                        </pre>
-                        <p>Siesta will add the following method to the class in which the stored procedure is defined. The parameter defined
-                        in the &lt;parameter&gt; element is visible as parameter in the method. The logic inside the function will invoke
+    &lt;/storedProcedure&gt;</pre>
+
+                        <p>
+                            Siesta will add the following method to the class in which the stored procedure is defined. The parameter defined
+                            in the &lt;parameter&gt; element is visible as parameter in the method. The logic inside the function will invoke
                             the generated stored procedure and return a single object.
                         </p>
-<pre class="prettyprint">
+                        <pre class="prettyprint">
     /**
      * @param string $city
      *
@@ -173,8 +176,7 @@
      *
      * @param string $connectionName
      */
-    public static function getFirstArtistByCity($city, $connectionName = null)
-</pre>
+    public static function getFirstArtistByCity($city, $connectionName = null)</pre>
 
                     </div>
                 </div>
@@ -195,20 +197,24 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>In other cases you do not return a list of objects rather a single one. You just have to change the resultType to "list".
+                        <p>
+                            In other cases you want to return a list of objects rather a single one. You just have to change the resultType to "list".
                         </p>
-<pre class="prettyprint">
+
+                        <pre class="prettyprint">
     &lt;storedProcedure name="getArtistByCity" modifies="false" resultType="list"&gt;
         &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT * FROM !TABLE! WHERE CITY = P_CITY;
         &lt;/sql&gt;
-    &lt;/storedProcedure&gt;
-</pre>
-                        <p>Siesta will generate the following static method into the entity class. The method will invoke the generated stored
+    &lt;/storedProcedure&gt;</pre>
+
+                        <p>
+                            Siesta will generate the following static method into the entity class. The method will invoke the generated stored
                             procedure and return a list of Artist objects.
                         </p>
-<pre class="prettyprint">
+                        
+                        <pre class="prettyprint">
     /**
      * @param string $city
      *
@@ -216,8 +222,7 @@
      *
      * @param string $connectionName
      */
-    public static function getArtistByCity($city, $connectionName = null)
-</pre>
+    public static function getArtistByCity($city, $connectionName = null)</pre>
 
                     </div>
                 </div>
@@ -238,20 +243,24 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>The third use case supported by siesta is the executing of SQL that shall not retun objects. Therefore you
-                            can define the resultType as resultSet. This will return a ResultSet object.
+                        <p>
+                            The third use case supported by siesta is the executing of SQL that does not return objects. Therefore you
+                            can define the <code>resultType</code> as resultSet. This will return a ResultSet object.
                         </p>
+
 <pre class="prettyprint">
     &lt;storedProcedure name="countArtistByCity" modifies="false" resultType="resultSet"&gt;
         &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT COUNT(ID) FROM !TABLE! WHERE CITY = P_CITY;
         &lt;/sql&gt;
-    &lt;/storedProcedure&gt;
-</pre>
-                        <p>Siesta will generate the following static method into the entity class. The method will invoke the generated stored
+    &lt;/storedProcedure&gt;</pre>
+
+                        <p>
+                            Siesta will generate the following static method into the entity class. The method will invoke the generated stored
                             procedure and return a ResultSet object.
                         </p>
+
 <pre class="prettyprint">
     /**
      * @param string $city
@@ -260,11 +269,12 @@
      *
      * @param string $connectionName
      */
-    public static function countArtistByCity($city, $connectionName = null)
-</pre>
-                        <p>ResultSet are an abstraction of the database result. It allows to iterate with <code>hasNext()</code>
-                        method and access the data including casting <code>getIntegerValue("COLUMN_NAME")</code> See <a href="/driver.html#resultSet">driver section</a> for details
-                            on ResultSet.
+    public static function countArtistByCity($city, $connectionName = null)</pre>
+
+                        <p>
+                            ResultSet are an abstraction of the database result. It allows to iterate with <code>hasNext()</code>
+                            method and access the data including casting like <code>getIntegerValue("COLUMN_NAME")</code>
+                            See <a href="/driver.html#resultSet">driver section</a> for details on ResultSet.
                         </p>
 
 <pre class="prettyprint">
@@ -272,8 +282,7 @@
     while ($countArtistResult->hasNext()) {
         $count = $countArtistResult->getIntegerValue("COUNT(ID)");
     }
-    $countArtistResult->close();
-</pre>
+    $countArtistResult->close();</pre>
 
                     </div>
                 </div>
@@ -294,11 +303,13 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>As explained in <a href="/index.html#inmemory">Entity replication</a> siesta allows to generate every table twice. Once
-                            as memory engine and once as persisted table. To make sure that this logic also works with custom defined stored procedures
-                            you set the attribute <code>modifies="true|false"</code>. This way siesta knows if the provided sql should process only
-                            on the memory table or on both. Therefore you also use the tableplace holder <code>!TABLE!</code>. In case of modifying
-                            stored procedures, that provided statement is executed twice. Once on the memory table and once on the persisted table
+                        <p>
+                            As explained in <a href="/index.html#inmemory">Entity replication</a> siesta allows to generate every table twice. Once
+                            with the memory engine and once with the configured engine. To make sure that this logic also works with custom defined
+                            stored procedures you set the attribute <code>modifies="true|false"</code>. This way siesta knows if the provided sql
+                            should process only on the memory table or on both. Therefore you also use the tableplace holder <code>!TABLE!</code>.
+                            In case of modifying stored procedures, the provided statement is executed twice.
+                            Once on the memory table and once on the persisted table.
                         </p>
                     </div>
                 </div>
