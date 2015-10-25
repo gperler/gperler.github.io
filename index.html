@@ -243,7 +243,7 @@ vendor/bin/siesta init
     </section>
 
 
-    <!-- Stored Procedure Section -->
+    <!-- Console Commands -->
     <section id="console">
         <div class="container">
             <div class="row">
@@ -255,9 +255,97 @@ vendor/bin/siesta init
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>
 
+                        <h4>Init</h4>
+                        <p>
+                            First you shoud use <code>vendor/bin/siesta init</code> to create a config file. It will ask you about the connection
+                            details.
+                        </p><br>
+                        <h4>Generate</h4>
+                        <p>
+                            The command <code>vendor/bin/siesta generate</code> allows to generate the classes, tables and stored procedures for your entity files.
+                            Per default it will search in the current working directory for all files that end with .entity.xml. If you
+                            set an option on the command line, it will overwrite the configured value in the siesta.config.json. Available options are:
                         </p>
+                        <table class="attributeTable">
+                            <tr>
+                                <td><b>Option</b></td>
+                                <td><b>Default</b></td>
+                                <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                                <td>--configFile</td>
+                                <td></td>
+                                <td>you can specify a config file to use. If not supplied siesta will search for the first siesta.config.json file it finds</td>
+                            </tr>
+                            <tr>
+                                <td>--dropUnusedTables</td>
+                                <td>false</td>
+                                <td>add this option to have siesta drop tables that are not defined anymore</td>
+                            </tr>
+                            <tr>
+                                <td>--baseDir</td>
+                                <td>current working directory</td>
+                                <td>define where siesta should look for entity files and where to store generated classes</td>
+                            </tr>
+                            <tr>
+                                <td>--connectionName</td>
+                                <td>will use the connection that has the default flag set to true </td>
+                                <td>If you have configured several connections in the siesta.config.json file, you can select a connection name here</td>
+                            </tr>
+                            <tr>
+                                <td>--entityFileSuffix</td>
+                                <td>.entity.xml </td>
+                                <td>siesta will search for files in the baseDir that end with the given entity file suffix.</td>
+                            </tr>
+                            <tr>
+                                <td>--migrationMethod</td>
+                                <td>direct</td>
+                                <td>With this option you define if tables are altered directly (direct) or if the ALTER statement are written to a file</td>
+                            </tr>
+                            <tr>
+                                <td>--migrationTargetPath</td>
+                                <td>.</td>
+                                <td>Define where the migrations scripts should be stored to.</td>
+                            </tr>
+                        </table><br>
+                        <h4>Reverse Engineering </h4>
+                        <p>
+                            The command <code>vendor/bin/siesta reverse</code> will create entity files for the schema found in the database. You have
+                            the following options.
+                        </p>
+                        <table class="attributeTable">
+                            <tr>
+                                <td><b>Option</b></td>
+                                <td><b>Default</b></td>
+                                <td><b>Description</b></td>
+                            </tr>
+                            <tr>
+                                <td>--configFile</td>
+                                <td></td>
+                                <td>you can specify a config file to use. If not supplied siesta will search for the first siesta.config.json file it finds</td>
+                            </tr>
+                            <tr>
+                                <td>--connectionName</td>
+                                <td>will use the connection that has the default flag set to true </td>
+                                <td>If you have configured several connections in the siesta.config.json file, you can select a connection name here</td>
+                            </tr>
+                            <tr>
+                                <td>--entityFileSuffix</td>
+                                <td>.entity.xml </td>
+                                <td>siesta will name the generated xml files {TableName}{entityFileSuffix}</td>
+                            </tr>
+                            <tr>
+                                <td>--targetPath</td>
+                                <td>reverse</td>
+                                <td>define where you want to store the generated xml files</td>
+                            </tr>
+                            <tr>
+                                <td>--targetNamespace</td>
+                                <td>""</td>
+                                <td>Define which namespace should be used</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
