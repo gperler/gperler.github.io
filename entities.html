@@ -497,8 +497,22 @@
                             The delimiting table contains 2 rows. The first one still shows the name 'MC Hammer' but with a VALID_UNTIL date
                             set. The second entry shows the new name 'Hammer' with a VALID_FROM date and NULL for the VALID_UNTIL (which
                             indicates this is the currently active record). Both entries refer to the same id 1 refering to the
-                            id from the artist table.
+                            id from the artist table. <br><br>
+                            If you want to find the entity that was valid at a given point of time you can use a static method thas
+                            has been generated. It will accept the primary key(s) and a DateTime object and return an Artist, if
+                            at that point in time an artist has been valid.
                         </p>
+                        <pre class="prettyprint">
+    /**
+     * @param DateTime $validAt
+     * @param int $id
+     * @param string $connectionName
+     *
+     * @return Artist
+     */
+    public static function getEntityByPrimaryKeyAtTime(DateTime $validAt, $id, $connectionName = null)</pre>
+
+
                     </div>
                 </div>
             </div>
