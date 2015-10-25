@@ -114,12 +114,14 @@
                         <p>
                             The ConnectionFactory allows access maintained connections in the siesta.config.json file.
                         </p>
+
                         <pre class="prettyprint">
 // accessing the default connection
 $defaultConnection = ConnectionFactory::getConnection();
 
 // accessing a connection by name
 $customConnection = ConnectionFactory::getConnection("custom");</pre>
+
                     </div>
                 </div>
             </div>
@@ -142,6 +144,7 @@ $customConnection = ConnectionFactory::getConnection("custom");</pre>
                         <p>
                             The connection class abstracts database specific and allows to start transaction and executing queries.
                         </p>
+
                         <pre class="prettyprint">
 $connection = ConnectionFactory::getConnection();
 
@@ -149,14 +152,15 @@ try {
     $connection->startTransaction();
 
     ...
+
     $resultSet = $connection->query("SELECT * FROM ABC");
 
 
     $connection->commit();
 } catch (SQLException $sql) {
     $connection->rollback();
-}
-                        </pre>
+}</pre>
+
                     </div>
                 </div>
             </div>
@@ -179,6 +183,7 @@ try {
                             <a href="/storedprocedure.html#resultSet">Custom stored procedures</a> allow to return ResultSet objects. ResultSet
                             objects allow iterating over the list rows found including type aware access to the data.
                         </p>
+
                         <pre class="prettyprint">
     $resultSet = Artist::getMyCustomList("Parameter1", "parameter2");
 
@@ -186,6 +191,7 @@ try {
     while($resultSet->hasNext()) {
 
         // getter allow to access row data
+        // using the generated <code>const</code> for every column
         $isCool = $resultSet->getBooleanValue(Artist::COLUMN_IS_COOL);
         $numberOfAlbums = $resultSet->getIntegerValue(Artist::COLUMN_NUMBER_OF_ALBUMS);
 

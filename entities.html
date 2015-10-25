@@ -118,7 +118,9 @@
                             An entity always represents on table in the database. This will result in a generated class that
                             provides functionality for loading and storing the entity in the database table defined
                             Sample of Entity:
-<pre class="prettyprint lang-xml">
+                        </p>
+
+                        <pre class="prettyprint lang-xml">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;entityList&gt;
     &lt;entity name="Artist" namespace="siestaphp\tests\gen" targetPath="gen/"&gt;
@@ -128,67 +130,68 @@
         &lt;attribute name="float" type="float" dbType="FLOAT"/&gt;
         &lt;attribute name="string" type="string" dbType="VARCHAR(100)"/&gt;
     &lt;/entity&gt;
-&lt;/entityList&gt;
-</pre>
-                        <h3>Available attributes for table</h3>
-                        <table class="attributeTable">
-                            <tr>
-                                <td><b>Name</b></td>
-                                <td><b>Required</b></td>
-                                <td><b>default</b></td>
-                                <td><b>allowed values</b></td>
-                                <td><b>description</b></td>
-                            </tr>
-                            <tr>
-                                <td>name</td>
-                                <td>yes</td>
-                                <td></td>
-                                <td>valid php class names</td>
-                                <td>Name of the class that is generated</td>
-                            </tr>
-                            <tr>
-                                <td>namespace</td>
-                                <td>no</td>
-                                <td></td>
-                                <td>valid php namespace</td>
-                                <td>Namespace of the class to generate</td>
-                            </tr>
-                            <tr>
-                                <td>constructClass</td>
-                                <td>no</td>
-                                <td>name of the class</td>
-                                <td>valid php class names</td>
-                                <td>Name of the class to instantiate</td>
-                            </tr>
-                            <tr>
-                                <td>constructNamespace</td>
-                                <td>no</td>
-                                <td>namespace of the class to generate</td>
-                                <td>valid php namespace</td>
-                                <td>Namespace of the class to instantiate</td>
-                            </tr>
-                            <tr>
-                                <td>table</td>
-                                <td>no</td>
-                                <td>name of the class</td>
-                                <td>valid database table names</td>
-                                <td>Name of the database table</td>
-                            </tr>
-                            <tr>
-                                <td>delimit</td>
-                                <td>no</td>
-                                <td><code>false</code></td>
-                                <td><code>true|false</code></td>
-                                <td>Allows to track history of the table</td>
-                            </tr>
-                            <tr>
-                                <td>targetPath</td>
-                                <td>no</td>
-                                <td>.</td>
-                                <td>valid path (does not need to exist)</td>
-                                <td>target path where to put generated classes</td>
-                            </tr>
-                        </table>
+&lt;/entityList&gt;</pre>
+
+                        <h3>Available attributes for table element</h3>
+                        <p>
+                            <table class="attributeTable">
+                                <tr>
+                                    <td><b>Name</b></td>
+                                    <td><b>Required</b></td>
+                                    <td><b>default</b></td>
+                                    <td><b>allowed values</b></td>
+                                    <td><b>description</b></td>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>yes</td>
+                                    <td></td>
+                                    <td>valid php class names</td>
+                                    <td>Name of the class that is generated</td>
+                                </tr>
+                                <tr>
+                                    <td>namespace</td>
+                                    <td>no</td>
+                                    <td></td>
+                                    <td>valid php namespace</td>
+                                    <td>Namespace of the class to generate</td>
+                                </tr>
+                                <tr>
+                                    <td>constructClass</td>
+                                    <td>no</td>
+                                    <td>name of the class</td>
+                                    <td>valid php class names</td>
+                                    <td>Name of the class to instantiate</td>
+                                </tr>
+                                <tr>
+                                    <td>constructNamespace</td>
+                                    <td>no</td>
+                                    <td>namespace of the class to generate</td>
+                                    <td>valid php namespace</td>
+                                    <td>Namespace of the class to instantiate</td>
+                                </tr>
+                                <tr>
+                                    <td>table</td>
+                                    <td>no</td>
+                                    <td>name of the class</td>
+                                    <td>valid database table names</td>
+                                    <td>Name of the database table</td>
+                                </tr>
+                                <tr>
+                                    <td>delimit</td>
+                                    <td>no</td>
+                                    <td><code>false</code></td>
+                                    <td><code>true|false</code></td>
+                                    <td>Allows to track history of the table</td>
+                                </tr>
+                                <tr>
+                                    <td>targetPath</td>
+                                    <td>no</td>
+                                    <td>.</td>
+                                    <td>valid path (does not need to exist)</td>
+                                    <td>target path where to put generated classes</td>
+                                </tr>
+                            </table>
                         </p>
                     </div>
                 </div>
@@ -209,9 +212,12 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>An object can be instantiated with the classname respectively the construct classname.
-                            Static methods allow to find or delete entities by primary key.</p>
-<pre class="prettyprint">
+                        <p>
+                            An object can be instantiated with the classname respectively the construct classname.
+                            Static methods allow to find or delete entities by primary key.
+                        </p>
+
+                        <pre class="prettyprint">
     // create new instance, set value and save
     $artist = new Artist();
     $artist->setName("Kruder &amp; Dorfmeister");
@@ -235,8 +241,8 @@
     $artist2 = Artist::getEntityByPrimaryKey(4);
 
     // deleting an entity by primary key
-    Artist::deleteEntityByPrimaryKey(4);
-</pre>
+    Artist::deleteEntityByPrimaryKey(4);</pre>
+
                     </div>
                 </div>
             </div>
@@ -257,7 +263,7 @@
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
                         <p>
-                        <h3>Available attributes for attribute</h3>
+                        <h3>Available attributes for the attribute element</h3>
                         <table class="attributeTable">
                             <tr>
                                 <td>Name</td>
@@ -352,7 +358,11 @@
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
                         <p>
-<pre class="prettyprint">
+                            You can configure indexes within the entity.xml file. Every index needs a name. The unique flag
+                            can be <code>true|false</code> and decides if the index is supposed to be unique.
+                        </p>
+
+                        <pre class="prettyprint">
     &lt;?xml version="1.0" encoding="UTF-8"?&gt;
     &lt;entityList&gt;
         &lt;entity name="ArtistEntity" namespace="siestaphp\tests\functional\index\gen" targetPath="gen/"&gt;
@@ -369,9 +379,8 @@
                 &lt;indexPart columnName="string2" sortOrder="ASC" length="20"/&gt;
             &lt;/index&gt;
         &lt;/entity&gt;
-    &lt;/entityList&gt;
-</pre>
-                        </p>
+    &lt;/entityList&gt;</pre>
+
                     </div>
                 </div>
             </div>
@@ -392,12 +401,14 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>Sometimes it is useful to archive changes that have been made to an entity. Siesta allows
+                        <p>
+                            Sometimes it is useful to archive changes that have been made to an entity. Siesta allows
                             to automatically generate an archive table which will store changes over time.
                             Use the <code>attribute delimit="true"</code> to enable the feature
                             for a specific table.
                         </p>
-<pre class="prettyprint">
+
+                        <pre class="prettyprint">
     mysql> show columns from Artist;
     +-------+--------------+------+-----+---------+-------+
     | Field | Type         | Null | Key | Default | Extra |
@@ -405,12 +416,13 @@
     | id    | int(11)      | NO   | PRI | NULL    |       |
     | name  | varchar(100) | YES  |     | NULL    |       |
     | city  | varchar(100) | YES  |     | NULL    |       |
-    +-------+--------------+------+-----+---------+-------+
-</pre>
+    +-------+--------------+------+-----+---------+-------+</pre>
 
-                        <p>Therefore siesta allows to create a second delimiter table:</p>
+                        <p>
+                            With the delimit flag set to true, Siesta will generate a second table:
+                        </p>
 
-<pre class="prettyprint">
+                        <pre class="prettyprint">
     mysql> show columns from Artist_delimit;
     +-------------+--------------+------+-----+---------+-------+
     | Field       | Type         | Null | Key | Default | Extra |
@@ -422,15 +434,16 @@
     | id          | int(11)      | NO   |     | NULL    |       |
     | name        | varchar(100) | YES  |     | NULL    |       |
     | city        | varchar(100) | YES  |     | NULL    |       |
-    +-------------+--------------+------+-----+---------+-------+
-</pre>
-                        <p>
-                            The delimter table contains the same columns like the original table (id, name, city).
+    +-------------+--------------+------+-----+---------+-------+</pre>
 
-                            Furhtermore it comes with a proper _delimit_id, _validFrom, _validUntil and _changedBy column.<br><br>
+                        <p>
+                            The delimiter table contains the same columns like the original table (id, name, city).
+
+                            Furthermore it comes with a a _delimit_id, _validFrom, _validUntil and _changedBy column.<br><br>
                             The following example shows how they are used
                         </p>
-<pre class="prettyprint">
+
+                        <pre class="prettyprint">
     mysql> select * from artist;
     +----+-----------+--------+
     | id | name      | city   |
@@ -443,14 +456,15 @@
     | _delimit_id | _validFrom          | _validUntil         | _changedBy | id | name      | city   |
     +-------------+---------------------+---------------------+------------+----+-----------+--------+
     | 68f04490    | 1988-10-24 18:58:12 | NULL                | NULL       |  1 | MC Hammer | London |
-    +-------------+---------------------+---------------------+------------+----+-----------+--------+
-</pre>
+    +-------------+---------------------+---------------------+------------+----+-----------+--------+</pre>
+
                         <p>
                             When the artist is initially created the delimiting table contains the entire record with a _validFrom data
                             and null for the _validUntil field, which indicates that this is the currently valid record. Let's rename
-                            the artist to 'Hammer' and see what is happening. </p>
+                            the artist to 'Hammer' and see what is happening.
+                        </p>
 
-<pre class="prettyprint">
+                        <pre class="prettyprint">
     // finding an entity by primary key
     $hammer = Artist::getEntityByPrimaryKey(1);
 
@@ -458,13 +472,13 @@
     $hammer->setName("Hammer");
 
     // save again
-    $hammer->save();
+    $hammer->save();</pre>
 
-</pre>
-                        <p>This will result in the following table contents.</p>
+                        <p>
+                            This will result in the following table contents.
+                        </p>
 
-
-<pre class="prettyprint">
+                        <pre class="prettyprint">
     mysql> select * from artist;
     +----+-----------+--------+
     | id | name      | city   |
@@ -478,14 +492,12 @@
     +-------------+---------------------+---------------------+------------+----+-----------+--------+
     | 68f04490    | 1988-10-24 18:58:12 | 1992-10-24 18:58:12 | NULL       |  1 | MC Hammer | London |
     | 68f09bd4    | 1992-10-24 18:58:12 | NULL                | NULL       |  1 | Hammer    | NY     |
-    +-------------+---------------------+---------------------+------------+----+-----------+--------+
-</pre>
+    +-------------+---------------------+---------------------+------------+----+-----------+--------+</pre>
                         <p>
                             The delimiting table contains 2 rows. The first one still shows the name 'MC Hammer' but with a VALID_UNTIL date
                             set. The second entry shows the new name 'Hammer' with a VALID_FROM date and NULL for the VALID_UNTIL (which
                             indicates this is the currently active record). Both entries refer to the same id 1 refering to the
                             id from the artist table.
-
                         </p>
                     </div>
                 </div>
@@ -506,26 +518,27 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>MySQL allows to create tables with the <a href="https://dev.mysql.com/doc/refman/5.5/en/memory-storage-engine.html">Memory engine.</a>
-                            The Memory engine is stored in the memory rather than on harddisk. Siesta allows to replicate a table with the memory engine. The same
+                        <p>
+                            MySQL allows to create tables with the <a href="https://dev.mysql.com/doc/refman/5.5/en/memory-storage-engine.html">Memory engine.</a>
+                            The Memory engine is stored in the memory rather than on hard disk. Siesta allows to replicate a table with the memory engine. The same
                             table will be present with configured engine and with the memory engine.
                         </p>
-<pre class="prettyprint">
+
+                        <pre class="prettyprint">
     mysql> show tables from SIESTA_TEST;
     +-----------------------+
     | Tables_in_siesta_test |
     +-----------------------+
     | Book                  |
     | Book_MEMORY           |
-    +-----------------------+
-</pre>
-                        <p>
-                            Every save operation will result in INSERT or UPDATE statement for both tables. However SELECT statement are working on the memory table.
-                            The following shows the insert procedure which is invoked on <code>$book->save();</code> It updates both the memory table as well as the persistence
-                            table.
+    +-----------------------+</pre>
 
+                        <p>
+                            Every save operation will result in INSERT/UPDATE statement for both tables. However SELECT statement are working on the memory
+                            table only. The following shows the insert procedure which is invoked on <code>$book->save();</code> It updates both the memory
+                            table as well as the persistence table.
                         </p>
-<pre class="prettyprint">
+                        <pre class="prettyprint">
     # stored procedure to Insert a book
     CREATE PROCEDURE `Book_I` (IN P_id VARCHAR(36),IN P_title VARCHAR(100),IN P_price FLOAT)
     MODIFIES SQL DATA SQL SECURITY INVOKER
@@ -539,8 +552,8 @@
     READS SQL DATA SQL SECURITY INVOKER
     BEGIN
         SELECT * FROM `Book_MEMORY` WHERE `id` = P_id;
-    END
-</pre>
+    END</pre>
+                        
                     </div>
                 </div>
             </div>
