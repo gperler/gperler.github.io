@@ -1,0 +1,18 @@
+&lt;entityList&gt;
+
+    &lt;entity name="Artist" namespace="helloworld" targetPath="helloworld"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+
+        &lt;reference name="label" foreignClass="Label" required="false"/&gt;
+    &lt;/entity&gt;
+
+    &lt;entity name="Label" namespace="helloworld" targetPath="helloworld"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbName="NAME" dbType="VARCHAR(100)"/&gt;
+        &lt;attribute name="city" type="string" dbName="CITY" dbType="VARCHAR(100)"/&gt;
+
+        &lt;collector name="artistList" type="1n" foreignClass="Artist" referenceName="label"/&gt;
+    &lt;/entity&gt;
+
+&lt;/entityList&gt;
