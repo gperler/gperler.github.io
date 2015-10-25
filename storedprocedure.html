@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Siesta PHP - stored procedure based ORM</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+
+    <link href="css/codeformat.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Siesta PHP</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/index.html">Overview</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/entities.html">Entities</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/index.html">Relationships</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/storedprocedure.html">Stored Procedures</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/driver.html">Driver</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- TOC Section -->
+    <section class="success">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <br/><br/><h2>Stored procedures</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p>
+                        <a class="toc" href="#About">About stored procedures</a><br/>
+                        <a class="toc" href="#single">Finding single entities</a><br/>
+                        <a class="toc" href="#list">Finding list of entities</a><br/>
+                        <a class="toc" href="#resultSet">Non object result types</a><br/>
+                        <a class="toc" href="#replication">Stored procedures and replication</a><br/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About stored procedures -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="defining">About stored procedures</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            Stored procedure are functions that are executed in the database directly. Like other functions they
+                            have parameters to pass data into the stored procedure and they return data that can be read from php.
+                            The logic is written in SQL with additional commands like <code>IF</code> or <code>ELSE</code> and can
+                            define variables and temporary tables. The advantage of stored procedures: They are precompiled by the
+                            database so they are really fast compared to ad hoc sql. Furthermore they are really close to the data.
+                            So instead of select all data and processing it in php which requires all data being send to php, the logic
+                            can be build within a stored procedure and only the relevant data is passed back to php.<br>
+                            However creating stored procedures and invoking them is not easy and requires a lot of action by the programmer. Siesta tries
+                            to offer an infrastructure that allows to easily create and invoke stored procedures by php.<br>
+
+                            <a href="https://dev.mysql.com/doc/refman/5.0/en/create-procedure.html">Creating stored proecedures with mysql</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Finding single entities -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="single">Finding single entities</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>A common use case is the define finder methods for finding a specific object. Therefore a stored procedure section
+                        can be added to entity. The following example shows a very simple stored procedure. First a parameter city is defined.
+                        It has a php and a database Type. The spName will be the name of the parameter visible in the stored procedure body.
+                        You can see this within the &lt;sql&gt; element. The WHERE clause uses the P_CITY parameter. Furthermore for the table
+                            name a placeholder <code>!TABLE!</code> can be used. The stored procedure itself defines if the procedure modifies
+                            table or not. Since a SELECT does not modify tables, the modify attribute is set to false. You can also define the
+                            resultType. In this case we want a single object. (resultType="single").
+                        </p>
+<pre class="prettyprint">
+    &lt;storedProcedure name="getFirstArtistByCity" modifies="false" resultType="single"&gt;
+        &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;sql&gt;
+            SELECT * FROM !TABLE! WHERE CITY = P_CITY LIMIT 1;
+        &lt;/sql&gt;
+    &lt;/storedProcedure&gt;
+</pre>
+                        <p>Siesta will add the following method to the class in which the stored procedure is defined. The parameter defined
+                        in the &lt;parameter&gt; element is visible as parameter in the method. The logic inside the function will invoke
+                            the generated stored procedure and return a single object.
+                        </p>
+<pre class="prettyprint">
+    /**
+     * @param string $city
+     *
+     * @return Artist
+     *
+     * @param string $connectionName
+     */
+    public static function getFirstArtistByCity($city, $connectionName = null)
+</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Finding list of entities -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="list">Finding list of entities</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>In other cases you do not return a list of objects rather a single one. You just have to change the resultType to "list".
+                        </p>
+<pre class="prettyprint">
+    &lt;storedProcedure name="getArtistByCity" modifies="false" resultType="list"&gt;
+        &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;sql&gt;
+            SELECT * FROM !TABLE! WHERE CITY = P_CITY;
+        &lt;/sql&gt;
+    &lt;/storedProcedure&gt;
+</pre>
+                        <p>Siesta will generate the following static method into the entity class. The method will invoke the generated stored
+                            procedure and return a list of Artist objects.
+                        </p>
+<pre class="prettyprint">
+    /**
+     * @param string $city
+     *
+     * @return Artist[]
+     *
+     * @param string $connectionName
+     */
+    public static function getArtistByCity($city, $connectionName = null)
+</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Non object result types -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="resultSet">Non object result types</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>The third use case supported by siesta is the executing of SQL that shall not retun objects. Therefore you
+                            can define the resultType as resultSet. This will return a ResultSet object.
+                        </p>
+<pre class="prettyprint">
+    &lt;storedProcedure name="countArtistByCity" modifies="false" resultType="resultSet"&gt;
+        &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;sql&gt;
+            SELECT COUNT(ID) FROM !TABLE! WHERE CITY = P_CITY;
+        &lt;/sql&gt;
+    &lt;/storedProcedure&gt;
+</pre>
+                        <p>Siesta will generate the following static method into the entity class. The method will invoke the generated stored
+                            procedure and return a ResultSet object.
+                        </p>
+<pre class="prettyprint">
+    /**
+     * @param string $city
+     *
+     * @return ResultSet
+     *
+     * @param string $connectionName
+     */
+    public static function countArtistByCity($city, $connectionName = null)
+</pre>
+                        <p>ResultSet are an abstraction of the database result. It allows to iterate with <code>hasNext()</code>
+                        method and access the data including casting <code>getIntegerValue("COLUMN_NAME")</code> See <a href="/driver.html">driver section</a> for details
+                            on ResultSet.
+                        </p>
+
+<pre class="prettyprint">
+    $countArtistResult = Artist::countArtistByCity("Vienna");
+    while ($countArtistResult->hasNext()) {
+        $count = $countArtistResult->getIntegerValue("COUNT(ID)");
+    }
+    $countArtistResult->close();
+</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Stored procedures and replication -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="replication">Stored procedures and replication</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>As explained in <a href="/index.html#inmemory">Entity replication</a> siesta allows to generate every table twice. Once
+                            as memory engine and once as persisted table. To make sure that this logic also works with custom defined stored procedures
+                            you set the attribute <code>modifies="true|false"</code>. This way siesta knows if the provided sql should process only
+                            on the memory table or on both. Therefore you also use the tableplace holder <code>!TABLE!</code>. In case of modifying
+                            stored procedures, that provided statement is executed twice. Once on the memory table and once on the persisted table
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>Berlin</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://github.com/gperler/siesta" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About Siesta PHP</h3>
+                        <p>Freelance is a free to use, open source PHP ORM.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Siesta PHP
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>

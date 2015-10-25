@@ -77,81 +77,22 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
-                    <div class="intro-text">
-                        <span class="name">Siesta PHP</span>
-                        <hr class="star-light">
-                        <span class="skills">Stored procedure based object relational mapper for php</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section id="overview">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Overview</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                        <p>
-                            Siesta is an object relational mapper for php build for performant database access. It allows to
-                            define objects and there mapping to tables in a database. Objects can be intialized with http request data
-                            or with json data. That allows to handle JavaScript objects in the browser, send them to the backend, parse the data,
-                            manipulate the data and then persist it. Currently only drivers for for MySQL are available.<br><br>
-
-                            The following design principles have been used:<br><br>
-
-                            <b>Code Generation</b><br>
-                            Instead of writing a large generic engine with tons of code, the needed code for persistency operations
-                            is generated from descriptions. Therefore the needed persistency footprint is very small, hence fast.<br><br>
-
-                            <b>Stored Procedures insted of ad-hoc SQL</b><br>
-                            Siesta relies to 100% on Stored Procedures. The generator creates all needed stored procedures directly in the database.
-                            In contrast to classic ad hoc sql the stored procedures are precompiled in the database which increases performance.
-                            Furthermore custom stored procedures can be defined.<br><br>
-
-                            <b>Extensibility</b><br>
-                            Code generation approaches tend to limit programmers ability to change behaviour. Therefore an
-                            import design principle is to allow for extensibilty at every given point.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Installation Section -->
+    <!-- TOC Section -->
     <section class="success">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Installation</h2>
+                    <br/><br/><h2>Driver</h2>
                     <hr class="star-light">
                 </div>
             </div>
             <div class="row">
-                <div class="chapter">
-                    <p>Installation with composer</p>
-<pre class="prettyprint">
-composer require gm314/siesta
-</pre>
-                    <p>Create configuration file with</p>
-<pre class="prettyprint">
-vendor/bin/siesta init
-</pre>
-                    <p>SSH Clone URL : git@github.com:gperler/siesta.git<br>
-                        Github repository <a class="toc" href="https://github.com/gperler/siesta">https://github.com/gperler/siesta</a>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p>
+                        <a class="toc" href="#factory">Using ConnectionFactory</a><br/>
+                        <a class="toc" href="#connection">Using Connection</a><br/>
+                        <a class="toc" href="#resultSet">Using ResultSet</a><br/>
+
                     </p>
                 </div>
             </div>
@@ -159,72 +100,18 @@ vendor/bin/siesta init
     </section>
 
 
-    <!-- Hello world  -->
+    <!-- Using ConnectionFactory Section -->
     <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Hello World</h2>
+                    <h1 id="defining">Using ConnectionFactory</h1>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>
-                            The following XML describes 2 entities. One named <i>Artist</i> and one named <i>Label</i>. Both entities have
-                            simple attributes with the given php and database types. Furthermore one relation is defined. The Artist &lt;reference&gt; element
-                            describes a relationship to the Label class. The Label class has a &lt;collector&gt; element that describes the foreign class
-                            and the name of the reference.
-                        </p>
-<pre class="prettyprint">
-    &lt;entityList&gt;
-
-        &lt;entity name="Artist" namespace="helloworld" targetPath="helloworld"&gt;
-            &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-            &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
-
-            &lt;reference name="label" foreignClass="Label" required="false"/&gt;
-        &lt;/entity&gt;
-
-        &lt;entity name="Label" namespace="helloworld" targetPath="helloworld"&gt;
-            &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-            &lt;attribute name="name" type="string" dbName="NAME" dbType="VARCHAR(100)"/&gt;
-            &lt;attribute name="city" type="string" dbName="CITY" dbType="VARCHAR(100)"/&gt;
-
-            &lt;collector name="artistList" type="1n" foreignClass="Artist" referenceName="label"/&gt;
-        &lt;/entity&gt;
-
-    &lt;/entityList&gt;
-</pre>
-
-                        <p>
-                            The example is available in the distribution. Just run the command</p>
-<pre class="prettyprint">
-    vendor/bin/siesta init
-    vendor/bin/siesta generate --entityFileSuffix .hello.xml
-</pre>
-                        <p>
-                            to generate the classes. The generator will search for xml files with the suffix <i>entity.xml</i> in the current
-                            working directory. Adding the --entiyFileSuffix option allows to search for other files.<br><br>
-
-                            This will generate 2 php classes and stored procedures in the database to have persistence methods. The following code
-                            shows how the classes can be used. First an Artist and Label object are instantiated. Then the relation between both
-                            is established by <code>$label->addToArtistList($artist);</code>. The save method can be invoked with <code>true</code> that
-                            will result in a cascading save. That means that both objects will be stored.
-                        </p>
-<pre class="prettyprint">
-    $artist = new Artist();
-    $artist->setName("Jamie Woon");
-
-    $label = new Label();
-    $label->setName("PMR");
-    $label->setCity("London");
-    $label->addToArtistList($artist);
-
-    // save with cascade. will store both label and artist
-    $label->save(true);
-</pre>
 
                     </div>
                 </div>
@@ -232,31 +119,43 @@ vendor/bin/siesta init
         </div>
     </section>
 
-
-    <!-- Stored Procedure Section -->
-    <section id="console">
+    <!-- Using Connection Section -->
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Console Commands</h2>
+                    <h1 id="connection">Using Connection</h1>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
-                        <p>
 
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Using ResultSet Section -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 id="resultset">Using ResultSet</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
 
-
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="text-center">
