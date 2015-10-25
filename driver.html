@@ -92,7 +92,6 @@
                         <a class="toc" href="#factory">Using ConnectionFactory</a><br/>
                         <a class="toc" href="#connection">Using Connection</a><br/>
                         <a class="toc" href="#resultSet">Using ResultSet</a><br/>
-
                     </p>
                 </div>
             </div>
@@ -101,37 +100,63 @@
 
 
     <!-- Using ConnectionFactory Section -->
-    <section>
+    <section id="factory">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="defining">Using ConnectionFactory</h1>
+                    <h1>Using ConnectionFactory</h1>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
+                        <p>
+                            The ConnectionFactory allows access maintained connections in the siesta.config.json file.
+                        </p>
+                        <pre class="prettyprint">
+// accessing the default connection
+$defaultConnection = ConnectionFactory::getConnection();
 
+// accessing a connection by name
+$customConnection = ConnectionFactory::getConnection("custom");</pre>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- Using Connection Section -->
-    <section>
+    <section id="connection">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="connection">Using Connection</h1>
+                    <h1>Using Connection</h1>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
+                        <p>
+                            The connection class abstracts database specific and allows to start transaction and executing queries.
+                        </p>
+                        <pre class="prettyprint">
+$connection = ConnectionFactory::getConnection();
 
+try {
+    $connection->startTransaction();
+
+    ...
+    $resultSet = $connection->query("SELECT * FROM ABC");
+
+
+    $connection->commit();
+} catch (SQLException $sql) {
+    $connection->rollback();
+}
+                        </pre>
                     </div>
                 </div>
             </div>
@@ -139,23 +164,44 @@
     </section>
 
     <!-- Using ResultSet Section -->
-    <section>
+    <section id="resultSet">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="resultset">Using ResultSet</h1>
+                    <h1>Using ResultSet</h1>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
+                        <p>
+                            <a href="/storedprocedure.html#resultSet">Custom stored procedures</a> allow to return ResultSet objects. ResultSet
+                            objects allow iterating over the list rows found including type aware access to the data.
+                        </p>
+                        <pre class="prettyprint">
+    $resultSet = Artist::getMyCustomList("Parameter1", "parameter2");
+
+    // hasNext() method will tell if there is another row available.
+    while($resultSet->hasNext()) {
+        // getter allow to access
+        $resultSet->getBooleanValue(Artist::IS_COOL);
+        $resultSet->getIntegerValue(Artist::NUMBER_OF_ALBUMS);
+        $resultSet->getFloatValue(Artist::COLUMN_PAY);
+        $resultSet->getStringValue(Artist::COLUMN_NAME);
+        $resultSet->getDateTime(Artist::COLUMN_DOB);
+
+    }
+    // mandatory(!!!) with storeprocedures
+    $resultSet->close();</pre>
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+
 
     <!-- Footer -->
     <footer class="text-center">

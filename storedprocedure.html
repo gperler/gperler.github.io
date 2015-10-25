@@ -102,11 +102,11 @@
 
 
     <!-- About stored procedures -->
-    <section>
+    <section id="About">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="defining">About stored procedures</h1>
+                    <h1>About stored procedures</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -134,11 +134,11 @@
 
 
     <!-- Finding single entities -->
-    <section>
+    <section id="single">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="single">Finding single entities</h1>
+                    <h1>Finding single entities</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -153,14 +153,14 @@
                             table or not. Since a SELECT does not modify tables, the modify attribute is set to false. You can also define the
                             resultType. In this case we want a single object. (resultType="single").
                         </p>
-<pre class="prettyprint">
+                        <pre class="prettyprint">
     &lt;storedProcedure name="getFirstArtistByCity" modifies="false" resultType="single"&gt;
         &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT * FROM !TABLE! WHERE CITY = P_CITY LIMIT 1;
         &lt;/sql&gt;
     &lt;/storedProcedure&gt;
-</pre>
+                        </pre>
                         <p>Siesta will add the following method to the class in which the stored procedure is defined. The parameter defined
                         in the &lt;parameter&gt; element is visible as parameter in the method. The logic inside the function will invoke
                             the generated stored procedure and return a single object.
@@ -184,11 +184,11 @@
 
 
     <!-- Finding list of entities -->
-    <section>
+    <section id="list">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="list">Finding list of entities</h1>
+                    <h1>Finding list of entities</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -227,11 +227,11 @@
 
 
     <!-- Non object result types -->
-    <section>
+    <section id="resultSet">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="resultSet">Non object result types</h1>
+                    <h1>Non object result types</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -263,7 +263,7 @@
     public static function countArtistByCity($city, $connectionName = null)
 </pre>
                         <p>ResultSet are an abstraction of the database result. It allows to iterate with <code>hasNext()</code>
-                        method and access the data including casting <code>getIntegerValue("COLUMN_NAME")</code> See <a href="/driver.html">driver section</a> for details
+                        method and access the data including casting <code>getIntegerValue("COLUMN_NAME")</code> See <a href="/driver.html#resultSet">driver section</a> for details
                             on ResultSet.
                         </p>
 
@@ -283,11 +283,11 @@
 
 
     <!-- Stored procedures and replication -->
-    <section>
+    <section id="replication">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 id="replication">Stored procedures and replication</h1>
+                    <h1>Stored procedures and replication</h1>
                     <hr class="star-primary">
                 </div>
             </div>
