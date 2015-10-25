@@ -12,7 +12,7 @@ p {
     font-size: 20px;
 }
 
-table, td {
+.attributeTable, .attributeTable td  {
     border: 1px solid #2c3e50;
     padding: 4px;
 }

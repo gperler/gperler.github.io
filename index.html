@@ -110,7 +110,7 @@
                             or with json data. That allows to handle JavaScript objects in the browser, send them to the backend, parse the data,
                             manipulate the data and then persist it. Currently only drivers for for MySQL are available.<br><br>
 
-                            The following design principles have been used:<br><br>
+                            Important features:<br><br>
 
                             <b>Code Generation</b><br>
                             Instead of writing a large generic engine with tons of code, the needed code for persistency operations
@@ -123,7 +123,17 @@
 
                             <b>Extensibility</b><br>
                             Code generation approaches tend to limit programmers ability to change behaviour. Therefore an
-                            import design principle is to allow for extensibilty at every given point.
+                            import design principle is to allow for extensibilty at every given point.<br><br>
+
+                            <b>In Memory replication</b><br>
+                            Siesta for MySQL allows to replicate tables with a memory engine. That means the table exist twice once with the
+                            defined engine and one with the memory engine. All modifying operations are executed on both tables. Read operations
+                            are only performed on the memory table.<br><br>
+
+                            <b>Delimiting Tables / Record History</b><br>
+                            Sometimes it is important to track changes to objects. Therefore Siesta allows to generate a second history table.
+                            Every time the a record is changed, the changes will be stored to the history table with a valid from and valid until
+                            entry.
                         </p>
                     </div>
                 </div>

@@ -131,53 +131,61 @@
 &lt;/entityList&gt;
 </pre>
                         <h3>Available attributes for table</h3>
-                        <table>
+                        <table class="attributeTable">
                             <tr>
-                                <td>Name</td>
-                                <td>Required</td>
-                                <td>default</td>
-                                <td>description</td>
+                                <td><b>Name</b></td>
+                                <td><b>Required</b></td>
+                                <td><b>default</b></td>
+                                <td><b>allowed values</b></td>
+                                <td><b>description</b></td>
                             </tr>
                             <tr>
                                 <td>name</td>
                                 <td>yes</td>
                                 <td></td>
+                                <td>valid php class names</td>
                                 <td>Name of the class that is generated</td>
                             </tr>
                             <tr>
                                 <td>namespace</td>
                                 <td>no</td>
                                 <td></td>
+                                <td>valid php namespace</td>
                                 <td>Namespace of the class to generate</td>
                             </tr>
                             <tr>
                                 <td>constructClass</td>
                                 <td>no</td>
                                 <td>name of the class</td>
+                                <td>valid php class names</td>
                                 <td>Name of the class to instantiate</td>
                             </tr>
                             <tr>
                                 <td>constructNamespace</td>
                                 <td>no</td>
                                 <td>namespace of the class to generate</td>
+                                <td>valid php namespace</td>
                                 <td>Namespace of the class to instantiate</td>
                             </tr>
                             <tr>
                                 <td>table</td>
                                 <td>no</td>
                                 <td>name of the class</td>
+                                <td>valid database table names</td>
                                 <td>Name of the database table</td>
                             </tr>
                             <tr>
                                 <td>delimit</td>
                                 <td>no</td>
-                                <td>false</td>
+                                <td><code>false</code></td>
+                                <td><code>true|false</code></td>
                                 <td>Allows to track history of the table</td>
                             </tr>
                             <tr>
                                 <td>targetPath</td>
                                 <td>no</td>
                                 <td>.</td>
+                                <td>valid path (does not need to exist)</td>
                                 <td>target path where to put generated classes</td>
                             </tr>
                         </table>
@@ -250,7 +258,7 @@
                     <div class="chapter">
                         <p>
                         <h3>Available attributes for attribute</h3>
-                        <table>
+                        <table class="attributeTable">
                             <tr>
                                 <td>Name</td>
                                 <td>Required</td>
@@ -431,11 +439,11 @@
     +----+-----------+--------+
 
     mysql> select * from artist_delimit;
-    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
-    | _delimit_id                          | _validFrom          | _validUntil         | _changedBy | id | name      | city   |
-    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
-    | 68f04490-7a70-11e5-ab5f-03b47f5f5ebb | 1988-10-24 18:58:12 | NULL                | NULL       |  1 | MC Hammer | London |
-    +--------------------------------------+---------------------+---------------------+------------+----+-----------+--------+
+    +-------------+---------------------+---------------------+------------+----+-----------+--------+
+    | _delimit_id | _validFrom          | _validUntil         | _changedBy | id | name      | city   |
+    +-------------+---------------------+---------------------+------------+----+-----------+--------+
+    | 68f04490    | 1988-10-24 18:58:12 | NULL                | NULL       |  1 | MC Hammer | London |
+    +-------------+---------------------+---------------------+------------+----+-----------+--------+
 </pre>
                         <p>
                             When the artist is initially created the delimiting table contains the entire record with a _validFrom data

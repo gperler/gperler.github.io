@@ -184,12 +184,15 @@ try {
 
     // hasNext() method will tell if there is another row available.
     while($resultSet->hasNext()) {
-        // getter allow to access
-        $resultSet->getBooleanValue(Artist::IS_COOL);
-        $resultSet->getIntegerValue(Artist::NUMBER_OF_ALBUMS);
-        $resultSet->getFloatValue(Artist::COLUMN_PAY);
-        $resultSet->getStringValue(Artist::COLUMN_NAME);
-        $resultSet->getDateTime(Artist::COLUMN_DOB);
+
+        // getter allow to access row data
+        $isCool = $resultSet->getBooleanValue(Artist::COLUMN_IS_COOL);
+        $numberOfAlbums = $resultSet->getIntegerValue(Artist::COLUMN_NUMBER_OF_ALBUMS);
+
+        // you can also use name of a column directly
+        $custom = $resultSet->getFloatValue("custom_column_name");
+        $artistName = $resultSet->getStringValue(Artist::COLUMN_NAME);
+        $dob = $resultSet->getDateTime(Artist::COLUMN_DOB);
 
     }
     // mandatory(!!!) with storeprocedures
