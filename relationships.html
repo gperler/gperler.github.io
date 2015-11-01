@@ -82,16 +82,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <br/><br/><h2>Driver</h2>
+                    <br/><br/><h2>Stored procedures</h2>
                     <hr class="star-light">
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <p>
-                        <a class="toc" href="#factory">Using ConnectionFactory</a><br/>
-                        <a class="toc" href="#connection">Using Connection</a><br/>
-                        <a class="toc" href="#resultSet">Using ResultSet</a><br/>
+                        <a class="toc" href="#references">References</a><br/>
+                        <a class="toc" href="#bidrectional">Bidirectional References</a><br/>
+                        <a class="toc" href="#1ncollector">1-N Collector</a><br/>
+                        <a class="toc" href="#nmcollector">N-M Collector</a><br/>
                     </p>
                 </div>
             </div>
@@ -99,12 +100,12 @@
     </section>
 
 
-    <!-- Using ConnectionFactory Section -->
-    <section id="factory">
+    <!-- About stored procedures -->
+    <section id="references">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1>Using ConnectionFactory</h1>
+                    <h1>References</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -112,105 +113,60 @@
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
                         <p>
-                            The ConnectionFactory allows access maintained connections in the siesta.config.json file.
+                           References allow to define foreign key constraints. They must have a name. The foreign class
+                            defines which Entity is referenced. Siesta will automatically add a column for every primary
+                            key that the referenced table has.
                         </p>
+                         <pre class="prettyprint">
+    &lt;entity name="ArtistEntity" namespace="siestaphp\tests\functional\reference\gen" targetPath="gen"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
 
-                        <pre class="prettyprint">
-// accessing the default connection
-$defaultConnection = ConnectionFactory::getConnection();
+        &lt;reference name="label" foreignClass="LabelEntity" required="false"/&gt;
+    &lt;/entity&gt;
 
-// accessing a connection by name
-$customConnection = ConnectionFactory::getConnection("custom");</pre>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Using Connection Section -->
-    <section id="connection">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h1>Using Connection</h1>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
+    &lt;entity name="LabelEntity" namespace="siestaphp\tests\functional\reference\gen" targetPath="gen"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;attribute name="city" type="string" dbType="VARCHAR(100)"/&gt;
+    &lt;/entity&gt;</pre>
                         <p>
-                            The connection class abstracts database specific and allows to start transaction and executing queries.
+                            The relationship will generate these methods into the ArtistEntity. <code>getLabel</code> allows
+                            to retrieve the referenced object. A reload from the database can be enforced by the <code>$forceReload</code>
+                            parameter.<br><br>
+                            For every Primary Key column in the referenced table a getter and setter for the corresponding
+                            foreign key column will be created. In this case the LabelEntity class only uses one primary key column.
                         </p>
-
                         <pre class="prettyprint">
-$connection = ConnectionFactory::getConnection();
+    /**
+     * @param bool $forceReload
+     *
+     * @return LabelEntity
+     */
+    public function getLabel($forceReload = false) { ... }
 
-try {
-    $connection->startTransaction();
-
-    ...
-
-    $resultSet = $connection->query("SELECT * FROM ABC");
+    /**
+     * @return int
+     */
+    public function getLabelId() { ... }
 
 
-    $connection->commit();
-} catch (SQLException $sql) {
-    $connection->rollback();
-}</pre>
+    /**
+     * @param LabelEntity $object
+     */
+    public function setLabel($object) { ... }
 
+    /**
+     * @param int $id
+     */
+    public function setLabelId($id) { ... }
+
+                        </pre>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Using ResultSet Section -->
-    <section id="resultSet">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h1>Using ResultSet</h1>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                        <p>
-                            <a href="/storedprocedure.html#resultSet">Custom stored procedures</a> allow to return ResultSet objects. ResultSet
-                            objects allow iterating over the list rows found including type aware access to the data.
-                        </p>
-
-                        <pre class="prettyprint">
-    $resultSet = Artist::getMyCustomList("Parameter1", "parameter2");
-
-    // hasNext() method will tell if there is another row available.
-    while($resultSet->hasNext()) {
-
-        // getter allow to access row data
-        // using the generated <code>const</code> for every column
-        $isCool = $resultSet->getBooleanValue(Artist::COLUMN_IS_COOL);
-        $numberOfAlbums = $resultSet->getIntegerValue(Artist::COLUMN_NUMBER_OF_ALBUMS);
-
-        // you can also use name of a column directly
-        $custom = $resultSet->getFloatValue("custom_column_name");
-        $artistName = $resultSet->getStringValue(Artist::COLUMN_NAME);
-        $dob = $resultSet->getDateTime(Artist::COLUMN_DOB);
-
-    }
-    // mandatory(!!!) with storeprocedures
-    $resultSet->close();</pre>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
 
     <!-- Footer -->
     <footer class="text-center">
