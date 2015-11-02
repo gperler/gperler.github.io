@@ -133,6 +133,7 @@
 &lt;/entityList&gt;</pre>
 
                         <h3>Available attributes for table element</h3>
+
                         <p>
                             <table class="attributeTable">
                                 <tr>
@@ -263,6 +264,78 @@
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
                         <p>
+                           For every attribute defined in the XML there will be a member in the class and a column
+                            in the table. An entity can have several primary key columns. The following methods will
+                            be generated for every attribute.
+                        </p>
+                        <pre class="prettyprint">
+    /**
+     * @return string
+     */
+    public function getName() { ... }
+
+    /**
+     * @param string $value
+     *
+     * @return void
+     */
+    public function setName($value) { ... }
+</pre>
+                        <p>
+                            Getters for primary key attributes have additional flags to trigger the generation of IDs.
+                            If <code>$generateKey</code> is set to true, you can force the generation of a new Id.
+                        </p>
+                        <pre class="prettyprint">
+    /**
+     * @param bool $generateKey
+     * @param string $connectionName
+     *
+     * @return int
+     */
+    public function getId($generateKey = false, $connectionName = null)
+</pre>
+                        <h3>phptype JSON</h3>
+                        <p>
+                            Siesta allows to define the type <code>json</code>. Therefore an array will be created to store
+                            any information in. When the attribute is saved the content will be persisted as a json
+                            string. You should use a database type that fits the desired length (TEXT e.g.)
+                        </p>
+                        <pre class="prettyprint">
+    &lt;entity name="Album" namespace="siestaphp\tests\functional\jsonattribute\gen" targetPath="gen"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="attributeList" <b>type="json"</b> dbType="TEXT"/&gt;
+    &lt;/entity&gt;</pre>
+                        <p>
+                            The following method are generated for a json phptype attribute.
+                            See the functional test
+                            <a target="_blank" href="https://github.com/gperler/siesta/blob/master/tests/functional/JSONAttributeTest.php">tests/functional/JSONAttributeTest.php</a>
+                        </p>
+                        <pre class="prettyprint">
+   /**
+     * @return null|array
+     */
+    public function getAttributeList() { ... }
+
+    /**
+     * @return string
+     */
+    public function getAttributeListJSON() { ... }
+
+    /**
+     * @param string $key ;
+     *
+     * @return mixed
+     */
+    public function getFromAttributeList($key) { ... }
+
+    /**
+     * @param string $key  ;
+     * @param mixed $value ;
+     *
+     * @return void
+     */
+    public function addToAttributeList($key, $value) { ... }</pre>
+
                         <h3>Available attributes for the attribute element</h3>
                         <table class="attributeTable">
                             <tr>
@@ -283,7 +356,7 @@
                                 <td>type</td>
                                 <td>yes</td>
                                 <td></td>
-                                <td><code>bool|int|float|string|DateTime</code></td>
+                                <td><code>bool|int|float|string|DateTime|json</code></td>
                                 <td>defines the php type to use for the attribute</td>
                             </tr>
                             <tr>
@@ -337,7 +410,7 @@
                             </tr>
                         </table>
 
-                        </p>
+
                     </div>
                 </div>
             </div>
