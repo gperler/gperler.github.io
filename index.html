@@ -223,9 +223,14 @@ vendor/bin/siesta init
 &lt;?php
     namespace test;
 
+    use siestaphp\Config;
+
+
     require_once 'vendor/autoload.php';
     require_once ('helloworld/Artist.php');
     require_once ('helloworld/Label.php');
+
+    Config::getInstance();
 
     use helloworld\Artist;
     use helloworld\Label;
@@ -405,7 +410,7 @@ vendor/bin/siesta init
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>About Siesta PHP</h3>
-                        <p>Freelance is a free to use, open source PHP ORM.</p>
+                        <p>Siesta is a free to use, open source PHP ORM.</p>
                     </div>
                 </div>
             </div>
