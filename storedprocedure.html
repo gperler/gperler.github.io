@@ -30,7 +30,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-81131542-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <body id="page-top" class="index">
@@ -46,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Siesta PHP</a>
+                <a class="navbar-brand" href="#page-top">Siesta</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,19 +65,22 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/index.html">Overview</a>
+                        <a href="index.html">Overview</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/entities.html">Entities</a>
+                        <a href="entities.html">Entities</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/relationships.html">Relationships</a>
+                        <a href="relationships.html">Relationships</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/storedprocedure.html">Stored Procedures</a>
+                        <a href="storedprocedure.html">Stored Procedures</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/driver.html">Driver</a>
+                        <a href="driver.html">Driver</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="generator.html">Custom Generator</a>
                     </li>
                 </ul>
             </div>
@@ -93,6 +105,7 @@
                         <a class="toc" href="#single">Finding single entities</a><br/>
                         <a class="toc" href="#list">Finding list of entities</a><br/>
                         <a class="toc" href="#resultSet">Non object result types</a><br/>
+                        <a class="toc" href="#noResult">No result type</a><br/>
                         <a class="toc" href="#replication">Stored procedures and replication</a><br/>
                     </p>
                 </div>
@@ -124,6 +137,14 @@
                             However creating stored procedures and invoking them is not easy and requires a lot of action by the programmer. Siesta tries
                             to offer an infrastructure that allows to easily create and invoke stored procedures by php.<br>
 
+                            <ul>
+                                <li>Stored Procedures are defined in the entity xml where they "belong to"</li>
+                                <li>A method will be generated into the service class of the entity</li>
+                                <li>All parameters are escaped</li>
+                                <li>Return types can be an entity, a list of entity, a ResultSet or none</li>
+                            </ul>
+
+                            Every stored procedures defined in the xml will have a method in the generated Service class.<br>
                             <a href="https://dev.mysql.com/doc/refman/5.0/en/create-procedure.html">Creating stored proecedures with mysql</a>
                         </p>
                     </div>
@@ -147,8 +168,10 @@
                     <div class="chapter">
                         <p>
                             A common use case is to define finder methods for finding a specific object. Therefore a stored procedure section
-                            can be added to entity. The following example shows a very simple stored procedure. First a parameter city is defined.
-                            It has a php and a database type. The <code>spName</code> will be the name of the parameter visible in the stored procedure body.
+                            can be added to entity. The following example shows a very simple stored procedure. <br><br>
+                            First a parameter city is defined. It has a <code>name</code> a php <code>type</code> and a database type <code>dbType</code>.
+                            The <code>spName</code> will be the name of the parameter visible in the stored procedure body.
+                            <br><br>
                             You can see this within the &lt;sql&gt; element. The WHERE clause uses the P_CITY parameter. Furthermore for the table
                             name a placeholder <code>!TABLE!</code> can be used. The stored procedure itself defines if the procedure modifies
                             table or not. Since a SELECT does not modify tables, the modify attribute is set to false. You can also define the
@@ -156,8 +179,8 @@
                         </p>
 
                         <pre class="prettyprint">
-    &lt;storedProcedure name="getFirstArtistByCity" modifies="false" resultType="single"&gt;
-        &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
+    &lt;storedProcedure name="getFirstArtistByCity" modifies="false" <b>resultType="single"</b>&gt;
+        &lt;parameter name="city" type="string" spName="P_CITY" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT * FROM !TABLE! WHERE CITY = P_CITY LIMIT 1;
         &lt;/sql&gt;
@@ -171,12 +194,11 @@
                         <pre class="prettyprint">
     /**
      * @param string $city
+     * @param string $connectionName
      *
      * @return Artist
-     *
-     * @param string $connectionName
      */
-    public static function getFirstArtistByCity($city, $connectionName = null)</pre>
+    public function getFirstArtistByCity(string $city = null, string $connectionName = null)</pre>
 
                     </div>
                 </div>
@@ -202,7 +224,7 @@
                         </p>
 
                         <pre class="prettyprint">
-    &lt;storedProcedure name="getArtistByCity" modifies="false" resultType="list"&gt;
+    &lt;storedProcedure name="getArtistByCity" modifies="false" resultType="<b>list</b>"&gt;
         &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT * FROM !TABLE! WHERE CITY = P_CITY;
@@ -217,12 +239,11 @@
                         <pre class="prettyprint">
     /**
      * @param string $city
+     * @param string $connectionName
      *
      * @return Artist[]
-     *
-     * @param string $connectionName
      */
-    public static function getArtistByCity($city, $connectionName = null)</pre>
+    public function getArtistByCity(string $city = null, string $connectionName = null)</pre>
 
                     </div>
                 </div>
@@ -249,7 +270,7 @@
                         </p>
 
 <pre class="prettyprint">
-    &lt;storedProcedure name="countArtistByCity" modifies="false" resultType="resultSet"&gt;
+    &lt;storedProcedure name="countArtistByCity" modifies="false" <b>resultType="resultSet"</b>&gt;
         &lt;parameter name="city" spName="P_CITY" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;sql&gt;
             SELECT COUNT(ID) FROM !TABLE! WHERE CITY = P_CITY;
@@ -257,19 +278,18 @@
     &lt;/storedProcedure&gt;</pre>
 
                         <p>
-                            Siesta will generate the following static method into the entity class. The method will invoke the generated stored
+                            Siesta will generate the following method into the service class. The method will invoke the generated stored
                             procedure and return a ResultSet object.
                         </p>
 
 <pre class="prettyprint">
     /**
      * @param string $city
+     * @param string $connectionName
      *
      * @return ResultSet
-     *
-     * @param string $connectionName
      */
-    public static function countArtistByCity($city, $connectionName = null)</pre>
+    public function countArtistByCity(string $city, string $connectionName = null) : ResultSet</pre>
 
                         <p>
                             ResultSet are an abstraction of the database result. It allows to iterate with <code>hasNext()</code>
@@ -290,6 +310,51 @@
         </div>
     </section>
 
+    <!-- Non object result types -->
+    <section id="noResult">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>No result type</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            If you simply want to perform an update operation use the resultType <code>none</code>.
+                        </p>
+
+                        <pre class="prettyprint">
+    &lt;storedProcedure name="updateSomething" modifies="false" <b>resultType="none"</b>&gt;
+        &lt;parameter name="param" spName="P_STRING_PARAM" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;sql&gt;
+            UPDATE E2ECustomStoredProcedure SET `column1` = P_STRING_PARAM, `column2` = 4;
+        &lt;/sql&gt;
+    &lt;/storedProcedure&gt;</pre>
+
+                        <p>
+                            Siesta will generate the following static method into the entity class. The method will invoke the generated stored
+                            procedure and return a ResultSet object.
+                        </p>
+
+                        <pre class="prettyprint">
+    /**
+     * @param string $param
+     * @param string $connectionName
+     *
+     * @return void
+     */
+    public function updateSomething(string $param, $connectionName = null)</pre>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Stored procedures and replication -->
     <section id="replication">

@@ -30,7 +30,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-81131542-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <body id="page-top" class="index">
@@ -46,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Siesta PHP</a>
+                <a class="navbar-brand" href="#page-top">Siesta</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -69,6 +78,9 @@
                     </li>
                     <li class="page-scroll">
                         <a href="driver.html">Driver</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="generator.html">Custom Generator</a>
                     </li>
                 </ul>
             </div>
@@ -124,9 +136,9 @@
         &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;attribute name="labelId" dbName="fk_label" type="string" dbType="VARCHAR(100)"/&gt;
 
-        &lt;reference name="label" foreignTable="LabelEntity" onDelete="set null" onUpdate="set null"&gt;
+        <b>&lt;reference name="label" foreignTable="LabelEntity" onDelete="set null" onUpdate="set null"&gt;
              &lt;referenceMapping localAttribute="labelId" foreignAttribute="id"&gt;
-        &lt;/reference&gt;
+        &lt;/reference&gt;</b>
     &lt;/entity&gt;
 
     &lt;entity name="Label" namespace="SiestaTest\End2End\Reference\Generated" table="Label"&gt;
@@ -272,16 +284,16 @@
     &lt;entity name="Student" namespace="SiestaTest\End2End\CollectionMany\Generated" table="Student" targetPath="Generated"&gt;
         &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
         &lt;attribute name="name" type="string" dbType="VARCHAR(30)"/&gt;
-        &lt;collectionMany2Many name="examList" foreignTable="Exam"  mappingTable="StudentExam"/&gt;
+        <b>&lt;collectionMany2Many name="examList" foreignTable="Exam"  mappingTable="StudentExam"/&gt;</b>
     &lt;/entity&gt;
 
     &lt;entity name="Exam" namespace="SiestaTest\End2End\CollectionMany\Generated" table="Exam" targetPath="Generated"&gt;
         &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
         &lt;attribute name="name" type="string" dbType="VARCHAR(30)"/&gt;
-        &lt;collectionMany2Many name="studentList" foreignTable="Student" mappingTable="StudentExam"/&gt;
+        <b>&lt;collectionMany2Many name="studentList" foreignTable="Student" mappingTable="StudentExam"/&gt;</b>
     &lt;/entity&gt;
 
-
+    &lt!-- Mapping Entity --&gt
     &lt;entity name="StudentExam" namespace="SiestaTest\End2End\CollectionMany\Generated" table="StudentExam" targetPath="Generated"&gt;
         &lt;attribute name="studentId" dbName="FK_Student" type="int" dbType="INT"/&gt;
         &lt;attribute name="examId" dbName="FK_Exam" type="int" dbType="INT"/&gt;

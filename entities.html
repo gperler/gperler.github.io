@@ -30,7 +30,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-81131542-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 
 <body id="page-top" class="index">
@@ -96,6 +105,7 @@
                         <a class="toc" href="#using">Using the entity with php</a><br/>
                         <a class="toc" href="#attributes">Adding attributes</a><br/>
                         <a class="toc" href="#addingIndex">Adding indexes</a><br/>
+                        <a class="toc" href="#construct">Extending from entities</a><br/>
                         <a class="toc" href="#delimiting">Delimiting an entity</a><br/>
                         <a class="toc" href="#inmemory">In Memory replication with MySQL</a><br/>
                     </p>
@@ -120,13 +130,15 @@
                         <p>
                             An entity always represents on table in the database. This will result in a generated class that
                             provides functionality for loading and storing the entity in the database table defined
-                            Sample of Entity:
+                            Sample of Entity. Database specific information can be defined in the entity-mysql element.
                         </p>
 
                         <pre class="prettyprint lang-xml">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;entityList&gt;
     &lt;entity name="Artist" namespace="siestaphp\tests\gen" targetPath="gen/"&gt;
+        &lt;entity-mysql charset="utf8" collate="utf8_general_ci" engine="MEMORY"/&gt;
+
         &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
         &lt;attribute name="bool" type="bool" dbType="SMALLINT"/&gt;
         &lt;attribute name="int" type="int" dbType="INT"/&gt;
@@ -135,7 +147,7 @@
     &lt;/entity&gt;
 &lt;/entityList&gt;</pre>
 
-                        <h3>Available attributes for table element</h3>
+                        <h3>Available attributes for entity element</h3>
 
                         <p>
                             <table class="attributeTable">
@@ -429,7 +441,8 @@
                     <div class="chapter">
                         <p>
                             You can configure indexes within the entity.xml file. Every index needs a name. The unique flag
-                            can be <code>true|false</code> and decides if the index is supposed to be unique.
+                            can be <code>true|false</code> and decides if the index is supposed to be unique. An index
+                            consists of at least one indexPart which defines on which column the index is to be build.
                         </p>
 
                         <pre class="prettyprint">
@@ -440,10 +453,10 @@
             &lt;attribute name="string" type="string" dbType="VARCHAR(100)"/&gt;
             &lt;attribute name="string2" type="string" dbType="VARCHAR(100)"/&gt;
 
-            &lt;index name="uniqueIndex" unique="true" type="btree"&gt;
+            <b>&lt;index name="uniqueIndex" unique="true" type="btree"&gt;
                 &lt;indexPart attributeName="string" sortOrder="ASC" length="10"/&gt;
                 &lt;indexPart attributeName="string2" sortOrder="ASC" length=""/&gt;
-            &lt;/index&gt;
+            &lt;/index&gt;</b>
 
             &lt;index name="nonUniqueIndex" unique="false" type="hash"&gt;
                 &lt;indexPart attributeName="string2" sortOrder="ASC" length="20"/&gt;
@@ -457,6 +470,68 @@
         </div>
     </section>
 
+    <!-- Delimiting Section -->
+    <section id="construct">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Extending from Entities and Construct Factory</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <h3>Extending from generated classes</h3>
+                        <p>
+                            Typically you want to extend from the generated entity to add your custom coding. To make sure
+                            Siesta instantiates the right class, you can add a constructor element and define the derived class.
+                            Make sure the class extends from the generated entity
+                        </p>
+
+                        <pre class="prettyprint">
+    &lt;entity name="FestivalEntity" namespace="SiestaTest\End2End\Construct\Generated" table="festival_entity" &gt;
+        <b>&lt;constructor className="SiestaTest\End2End\Construct\Entity\Festival"/&gt;</b>
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+    &lt;/entity&gt;</pre>
+                        <p>Your custom class would look like this</p>
+                        <pre class="prettyprint">
+    namespace SiestaTest\End2End\Construct\Entity;
+
+    use SiestaTest\End2End\Construct\Generated\FestivalEntity;
+
+    class Festival extends FestivalEntity {
+
+        public function __construct() {
+            // make sure to invoke parent constructor
+            parent::__construct();
+        }
+}</pre>
+                        <h3>Using a factory to instantiate</h3>
+                        <p>
+                            If you have a central factory in place that does instantiation and or dependency injection you can
+                            define a factory method to invoke to obtain a new instance. This is done with the constructCall attribute.
+                            Furthermore the constructFactoryClassName is needed to include a use statement. Instantiation of new objects
+                            will be done by invoking the defined method.
+                        </p>
+                        <pre class="prettyprint">
+    &lt;entity name="CustomerEntity" namespace="SiestaTest\End2End\Construct\Generated" table="customer" &gt;
+        &lt;constructor className="SiestaTest\End2End\Construct\Entity\Customer"
+                     <b>constructCall="CustomerFactory::newCustomerEntity()"</b>
+                     <b>constructFactoryClassName="SiestaTest\End2End\Construct\Entity\CustomerFactory"/&gt;</b>
+        &lt;attribute name="id1" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+    &lt;/entity&gt;
+</pre>
+                        <p>
+                            <b>Example</b><br>
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Construct/ConstructTest.php" target="_blank">Construct Test</a>,
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Construct/schema/construct1.test.xml" target="_blank">Construct Schema</a>,
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <!-- Delimiting Section -->
@@ -568,9 +643,11 @@
                             indicates this is the currently active record). Both entries refer to the same id 1 refering to the
                             id from the artist table. If you delete the entity the valid until data will be set to the time of deletion<br><br>
                         </p>
-
-
-
+                        <p>
+                            <b>Example</b><br>
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Delimit/DelimitTest.php" target="_blank">Delimit Test</a>,
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Delimit/schema/delimit.test.xml" target="_blank">Delimit Schema</a>,
+                        </p>
                     </div>
                 </div>
             </div>
@@ -626,6 +703,13 @@
         SELECT * FROM `Book_MEMORY` WHERE `id` = P_id;
     END</pre>
 
+                        <p>
+                            Important: As of now TEXT and BLOB column types are not allowed for memory engines in mysql.
+
+                            <br><b>Example</b><br>
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/MySQL/Replication/ReplicationTest.php" target="_blank">Replication Test</a>,
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/MySQL/Replication/schema/replication.test.xml" target="_blank">Replication Schema</a>,
+                        </p>
                     </div>
                 </div>
             </div>

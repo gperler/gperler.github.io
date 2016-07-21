@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Siesta PHP - stored procedure based ORM</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+
+    <link href="css/codeformat.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-81131542-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Siesta</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="index.html">Overview</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="entities.html">Entities</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="relationships.html">Relationships</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="storedprocedure.html">Stored Procedures</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="driver.html">Driver</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="generator.html">Custom Generator</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- TOC Section -->
+    <section class="success">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <br/><br/><h2>Extending Siesta with custom generator</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p>
+                        <a class="toc" href="#codegenerator">Siesta as code generation framework</a><br/>
+                        <a class="toc" href="#generator">Generator</a><br/>
+                        <a class="toc" href="#plugin">Plugins</a><br/>
+                        <a class="toc" href="#change">Changing default behaviour</a><br/>
+                        <a class="toc" href="#validator">Adding validators for your plugins</a><br/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="codegenerator">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Siesta as code generation framework</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            Siesta is actually a code generating framework for entity relationship based scenarios. ORM is a pretty strong
+                            use case for that approach. Siesta is organized in Generator and Plugins. A generator is used to generate
+                            a class and a plugin is used to add member, methods etc. inside a class. Siesta ships with two Generators: one
+                            for the entity and one for the service class. But you could define more generator to generate data transfer objects
+                            or even Javascript classes that represent the entity. <br><br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="generator">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Generator</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                           A Siesta generator is simply a class that implements the Generator Interface. It only has 2 methods. <code>addPlugin</code>
+                           allows to initialize it with the plugins that are configured for the specific generator and a method to perform
+                           the magic (<code>generate</code>). The entity object passed has all the information about the entity that needs to be generated.
+
+                        <pre class="prettyprint">
+    namespace Siesta\Contract;
+
+    interface Generator
+    {
+        public function addPlugin(Plugin $plugin);
+
+        public function generate(Entity $entity, string $baseDir);
+    }</pre>
+                        <p>
+                            Siesta generator are defined in a json file. This defines the implementing class and the plugins to be used.
+                            Furthermore validator can be defined that must pass when reading the xml schema.
+                            (<a href="https://github.com/gperler/siesta/blob/master/src/Siesta/Config/siesta.generator.config.json" target="_blank">Standard Config</a>)
+                            You can also change the behaviour of Siesta itself. If you do not want the <code>toArray()</code>/<code>fromArray()</code> methods generated just copy
+                            the standard configuration modify it and point to it in the siesta configuration. You could also build your own plugins and replace
+                            existing ones.
+
+                        </p>
+
+                        <pre class="prettyprint">
+    {
+      "generatorList": [
+        {
+          "name": "Entity Generator",
+          "className": "Siesta\\Generator\\EntityGenerator",
+          "pluginList": [
+            "Siesta\\GeneratorPlugin\\Entity\\CollectionManyAccess",
+            "Siesta\\GeneratorPlugin\\Entity\\ArePKIdenticalPlugin"
+          ],
+          "config": {
+          },
+          "validatorList": [
+            "Siesta\\Validator\\DefaultDataModelValidator",
+          ]
+        }
+      ]
+    }</pre>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="plugin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Plugin</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            A plugin is the a class that add functionality to a generated class. For example the <code>MemberPlugin</code>
+                            (<a href="https://github.com/gperler/siesta/blob/master/src/Siesta/GeneratorPlugin/Entity/MemberPlugin.php">Code</a>)
+                            will add the members to the generated class. The method <code>getUseClassList</code> is supposed to return an array of strings
+                        with all the classes that are used from the generated code. The <code>getDependantPluginList</code> is not used at the moment.
+                        The <code>getInterfaceList</code> allows to return additional interfaces that the class implements as a result of the plugin.
+                        Inside the <code>generate</code> method the code is placed to add functionality to the class. The code
+                        generator has methods to add methods to the generated class. <br>
+                        Have a look at the <a href="https://github.com/gperler/siesta/blob/master/src/Siesta/GeneratorPlugin/Entity/MemberPlugin.php">MemberPlugin</a>.
+                        </p>
+                        <pre class="prettyprint">
+    /**
+     * @author Gregor Müller
+     */
+    interface Plugin
+    {
+
+        /**
+         * @param Entity $entity
+         *
+         * @return array
+         */
+        public function getUseClassNameList(Entity $entity) : array;
+
+        /**
+         * @return string[]
+         */
+        public function getDependantPluginList() : array;
+
+        /**
+         * @return array
+         */
+        public function getInterfaceList() : array;
+
+        /**
+         * @param Entity $entity
+         * @param CodeGenerator $codeGenerator
+         */
+        public function generate(Entity $entity, CodeGenerator $codeGenerator);
+
+    }</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="change">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Changing default behaviour</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            To change the default behaviour, for example to remove plugins or add plugins, just copy the
+                            siesta.generator.config.json from (vendor/gm314/siesta/src/Siesta/Config) make the modifications
+                            you want and point in the siesta.config.json (the one generated with the init command) to
+                            your generic configuration. A value of null will use the default file in vendor/gm314/siesta/src/Siesta/Config
+
+                        </p>
+                        <pre class="prettyprint">
+   {
+        "connection": [
+            { ... }
+        ],
+        "generator": {
+            "dropUnusedTables": true,
+            "entityFileSuffix": ".entity.xml",
+            "migrationTargetPath": "migration",
+            "tableNamingStrategy": "Siesta\\NamingStrategy\\ToUnderScoreStrategy",
+            "columnNamingStrategy": "Siesta\\NamingStrategy\\ToUnderScoreStrategy",
+            "migrationMethod": "direct",
+            "baseDir": "src",
+            "connectionName": null,
+            <b>"genericGeneratorConfiguration": "config/myGenerator.json"</b>
+        },
+        "reverse": { ... }
+    }
+
+    }</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="validator">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Adding validators for your plugins</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            If your plugin needs validation logic you can add custom validators. A validator must implement one
+                            of the following interfaces.
+
+                        </p>
+                        <pre class="prettyprint">
+    Siesta\Contract\EntityValidator
+    Siesta\Contract\AttributeValidator
+    Siesta\Contract\ReferenceValidator
+    Siesta\Contract\IndexValidator
+    Siesta\Contract\CollectionValidator
+    Siesta\Contract\CollectionManyValidator</pre>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>Berlin</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://github.com/gperler/siesta" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About Siesta PHP</h3>
+                        <p>Siesta is a free to use, open source PHP ORM.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Siesta PHP
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
