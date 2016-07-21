@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Siesta PHP - stored procedure based ORM</title>
+    <title>Siesta - stored procedure based ORM for php7</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Siesta PHP</a>
+                <a class="navbar-brand" href="#page-top">Siesta</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,19 +56,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/index.html">Overview</a>
+                        <a href="index.html">Overview</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/entities.html">Entities</a>
+                        <a href="entities.html">Entities</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/relationships.html">Relationships</a>
+                        <a href="relationships.html">Relationships</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/storedprocedure.html">Stored Procedures</a>
+                        <a href="storedprocedure.html">Stored Procedures</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/driver.html">Driver</a>
+                        <a href="driver.html">Driver</a>
                     </li>
                 </ul>
             </div>
@@ -84,9 +84,9 @@
                 <div class="col-lg-12">
                     <img class="img-responsive" src="img/profile.png" alt="">
                     <div class="intro-text">
-                        <span class="name">Siesta PHP</span>
+                        <span class="name">Siesta</span>
                         <hr class="star-light">
-                        <span class="skills">Stored procedure based object relational mapper for php</span>
+                        <span class="skills">Stored procedure based object relational mapper for php7</span>
                     </div>
                 </div>
             </div>
@@ -128,10 +128,10 @@
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
                         <p>
-                            Siesta is an object relational mapper for php build for performant database access. It allows to
-                            define objects and there mapping to tables in a database. Objects can be intialized with http request data
-                            or with json data. That allows to handle JavaScript objects in the browser, send them to the backend, parse the data,
-                            manipulate the data and then persist it. Currently only drivers for for MySQL are available.<br><br>
+                            Siesta is an object relational mapper for php7 build for performant database access implementing the active record pattern.
+                            Furthermore it allows to define own plugins to generate custom coding into entity or service classes or even generate
+                            additional classes like DTO. The database access is realized with stored procedures for all standard operations. Custom
+                            stored procedure can be defined in xml format. Currently only drivers for for MySQL are available.<br><br>
 
                             Important features:<br><br>
 
@@ -146,7 +146,8 @@
 
                             <b>Extensibility</b><br>
                             Code generation approaches tend to limit programmers ability to change behaviour. Therefore an
-                            import design principle is to allow for extensibilty at every given point.<br><br>
+                            import design principle is to allow for extensibilty at every given point. Own generator plugins can be defined or
+                            existing ones replaced or overwritten.<br><br>
 
                             <b>In Memory replication</b><br>
                             Siesta for MySQL allows to replicate tables with a memory engine. That means the table exist twice once with the
@@ -409,7 +410,7 @@ vendor/bin/siesta init
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Siesta PHP</h3>
+                        <h3>About Siesta</h3>
                         <p>Siesta is a free to use, open source PHP ORM.</p>
                     </div>
                 </div>

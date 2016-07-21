@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /Users/gregor/PhpstormProjects/siesta/src/Siesta/Driver</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/nv.d3.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+  <script src="../js/html5shiv.min.js"></script>
+  <script src="../js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/Users/gregor/PhpstormProjects/siesta/src/Siesta</a></li>
+        <li><a href="index.html">Driver</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#10">MySQLEmptyResult</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLDriver.php.html#13">MySQLDriver</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#24">MySQLConnection</a></td><td class="text-right">51%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#24">MySQLConnection</a></td><td class="text-right">204</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="MySQL/MetaData/MySQLTable.php.html#120"><abbr title="MySQLTable::getPrimaryKeyAttributeList">getPrimaryKeyAttributeList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#32"><abbr title="MySQLEmptyResult::getIntegerValue">getIntegerValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/StoredProcedure/MySQLStoredProcedureBase.php.html#131"><abbr title="MySQLStoredProcedureBase::buildSignatureForAttributeList">buildSignatureForAttributeList</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLStoredProcedureFactory.php.html#160"><abbr title="MySQLStoredProcedureFactory::createDropStatementForProcedureName">createDropStatementForProcedureName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLMultiQueryResultSet.php.html#168"><abbr title="MySQLMultiQueryResultSet::getArray">getArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLMigrationStatementFactory.php.html#90"><abbr title="MySQLMigrationStatementFactory::getDropTableStatement">getDropTableStatement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLMigrationStatementFactory.php.html#65"><abbr title="MySQLMigrationStatementFactory::getModifyPrimaryKeyStatement">getModifyPrimaryKeyStatement</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#57"><abbr title="MySQLEmptyResult::getArray">getArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#52"><abbr title="MySQLEmptyResult::getObject">getObject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#47"><abbr title="MySQLEmptyResult::getDateTime">getDateTime</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#42"><abbr title="MySQLEmptyResult::getStringValue">getStringValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#37"><abbr title="MySQLEmptyResult::getFloatValue">getFloatValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#27"><abbr title="MySQLEmptyResult::getBooleanValue">getBooleanValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#43"><abbr title="MySQLConnection::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#22"><abbr title="MySQLEmptyResult::close">close</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#17"><abbr title="MySQLEmptyResult::getNext">getNext</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLEmptyResult.php.html#12"><abbr title="MySQLEmptyResult::hasNext">hasNext</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLDriver.php.html#37"><abbr title="MySQLDriver::connect">connect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#262"><abbr title="MySQLConnection::rollback">rollback</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#256"><abbr title="MySQLConnection::commit">commit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#250"><abbr title="MySQLConnection::startTransaction">startTransaction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#135"><abbr title="MySQLConnection::multiQuery">multiQuery</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#61"><abbr title="MySQLConnection::connect">connect</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/StoredProcedure/MySQLStoredProcedureBase.php.html#145"><abbr title="MySQLStoredProcedureBase::buildSignatureParameterForAttribute">buildSignatureParameterForAttribute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#202"><abbr title="MySQLConnection::handleQueryError">handleQueryError</abbr></a></td><td class="text-right">27%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#61"><abbr title="MySQLConnection::connect">connect</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#202"><abbr title="MySQLConnection::handleQueryError">handleQueryError</abbr></a></td><td class="text-right">19</td></tr>
+       <tr><td><a href="MySQL/MetaData/MySQLTable.php.html#120"><abbr title="MySQLTable::getPrimaryKeyAttributeList">getPrimaryKeyAttributeList</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="MySQL/MySQLMigrationStatementFactory.php.html#65"><abbr title="MySQLMigrationStatementFactory::getModifyPrimaryKeyStatement">getModifyPrimaryKeyStatement</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="MySQL/MySQLConnection.php.html#135"><abbr title="MySQLConnection::multiQuery">multiQuery</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="MySQL/MySQLMultiQueryResultSet.php.html#168"><abbr title="MySQLMultiQueryResultSet::getArray">getArray</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="MySQL/StoredProcedure/MySQLStoredProcedureBase.php.html#131"><abbr title="MySQLStoredProcedureBase::buildSignatureForAttributeList">buildSignatureForAttributeList</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 4.0.0</a> using <a href="https://secure.php.net/" target="_top">PHP 7.0.4</a> with <a href="https://xdebug.org/">Xdebug 2.4.0RC3</a>, <a href="http://codeception.com">Codeception</a> and <a href="http://phpunit.de/">PHPUnit 5.4.7</a> at Thu Jul 21 16:45:12 CEST 2016.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../js/jquery.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/holder.min.js" type="text/javascript"></script>
+  <script src="../js/d3.min.js" type="text/javascript"></script>
+  <script src="../js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([1,0,0,0,0,0,2,0,2,4,9,14], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([24,0,0,1,0,0,0,0,14,8,0,191], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(key, y, e, graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[83.333333333333,4,"<a href=\"MySQL\/MetaData\/ConstraintRule.php.html#11\">ConstraintRule<\/a>"],[100,13,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#13\">MySQLColumn<\/a>"],[95.454545454545,11,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#13\">MySQLConstraint<\/a>"],[100,3,"<a href=\"MySQL\/MetaData\/MySQLConstraintMapping.php.html#11\">MySQLConstraintMapping<\/a>"],[87.878787878788,14,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#13\">MySQLDatabase<\/a>"],[100,7,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#12\">MySQLIndex<\/a>"],[100,4,"<a href=\"MySQL\/MetaData\/MySQLIndexPart.php.html#11\">MySQLIndexPart<\/a>"],[93.589743589744,31,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#16\">MySQLTable<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/TableDTO.php.html#10\">TableDTO<\/a>"],[51.351351351351,38,"<a href=\"MySQL\/MySQLConnection.php.html#24\">MySQLConnection<\/a>"],[100,3,"<a href=\"MySQL\/MySQLCreateStatementFactory.php.html#12\">MySQLCreateStatementFactory<\/a>"],[50,2,"<a href=\"MySQL\/MySQLDriver.php.html#13\">MySQLDriver<\/a>"],[0,10,"<a href=\"MySQL\/MySQLEmptyResult.php.html#10\">MySQLEmptyResult<\/a>"],[81.132075471698,21,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#19\">MySQLMigrationStatementFactory<\/a>"],[78.048780487805,20,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#12\">MySQLMultiQueryResultSet<\/a>"],[91.666666666667,19,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#12\">MySQLSimpleResultSet<\/a>"],[84.615384615385,12,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#24\">MySQLStoredProcedureFactory<\/a>"],[99.029126213592,40,"<a href=\"MySQL\/MySQLTableCreator.php.html#17\">MySQLTableCreator<\/a>"],[100,12,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#12\">InsertStatement<\/a>"],[100,5,"<a href=\"MySQL\/StoredProcedure\/MySQLCopyToReplicationStoredProcedure.php.html#9\">MySQLCopyToReplicationStoredProcedure<\/a>"],[100,7,"<a href=\"MySQL\/StoredProcedure\/MySQLCustomStoredProcedure.php.html#13\">MySQLCustomStoredProcedure<\/a>"],[98.181818181818,17,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#12\">MySQLDeleteByCollectionManyStoredProcedure<\/a>"],[100,13,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#13\">MySQLDeleteByPKStoredProcedure<\/a>"],[96,7,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByReferenceStoredProcedure.php.html#14\">MySQLDeleteByReferenceStoredProcedure<\/a>"],[97.777777777778,14,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#12\">MySQLDeleteCollectionManyAssignmentStoredProcedure<\/a>"],[100,4,"<a href=\"MySQL\/StoredProcedure\/MySQLInsertStoredProcedure.php.html#12\">MySQLInsertStoredProcedure<\/a>"],[97.777777777778,14,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#12\">MySQLSelectByCollectionManyStoredProcedure<\/a>"],[100,9,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByPKStoredProcedure.php.html#12\">MySQLSelectByPKStoredProcedure<\/a>"],[96,7,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByReferenceStoredProcedure.php.html#13\">MySQLSelectByReferenceStoredProcedure<\/a>"],[78.260869565217,13,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#15\">MySQLStoredProcedureBase<\/a>"],[100,6,"<a href=\"MySQL\/StoredProcedure\/MySQLUpdateStoredProcedure.php.html#12\">MySQLUpdateStoredProcedure<\/a>"],[100,8,"<a href=\"MySQL\/StoredProcedure\/UpdateStatement.php.html#12\">UpdateStatement<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(key, y, e, graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"MySQL\/MetaData\/ConstraintRule.php.html#33\">ConstraintRule::schemaToMySQL<\/a>"],[75,3,"<a href=\"MySQL\/MetaData\/ConstraintRule.php.html#44\">ConstraintRule::mySQLToSchema<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#98\">MySQLColumn::__construct<\/a>"],[100,3,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#106\">MySQLColumn::fromResultSet<\/a>"],[100,2,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#120\">MySQLColumn::getDBType<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#133\">MySQLColumn::getDBName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#141\">MySQLColumn::setDBName<\/a>"],[100,2,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#149\">MySQLColumn::getPHPType<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#161\">MySQLColumn::getIsRequired<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#169\">MySQLColumn::getIsPrimaryKey<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLColumn.php.html#177\">MySQLColumn::getAutoValue<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#56\">MySQLConstraint::__construct<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#65\">MySQLConstraint::fromResultSet<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#76\">MySQLConstraint::addConstraint<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#83\">MySQLConstraint::addUpdateAndDeleteRule<\/a>"],[75,2,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#92\">MySQLConstraint::getName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#101\">MySQLConstraint::getConstraintName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#109\">MySQLConstraint::getForeignTable<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#117\">MySQLConstraint::getOnUpdate<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#125\">MySQLConstraint::getOnDelete<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraint.php.html#133\">MySQLConstraint::getConstraintMappingList<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraintMapping.php.html#31\">MySQLConstraintMapping::fromResultSet<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraintMapping.php.html#40\">MySQLConstraintMapping::getForeignColumn<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLConstraintMapping.php.html#48\">MySQLConstraintMapping::getLocalColumn<\/a>"],[83.333333333333,2,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#38\">MySQLDatabase::__construct<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#51\">MySQLDatabase::refresh<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#60\">MySQLDatabase::getTableList<\/a>"],[75,3,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#70\">MySQLDatabase::getTableByName<\/a>"],[83.333333333333,3,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#83\">MySQLDatabase::readMySQLTable<\/a>"],[100,2,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#99\">MySQLDatabase::getTableDTO<\/a>"],[83.333333333333,2,"<a href=\"MySQL\/MetaData\/MySQLDatabase.php.html#116\">MySQLDatabase::getStoredProcedureList<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#52\">MySQLIndex::__construct<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#60\">MySQLIndex::fromResultSet<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#71\">MySQLIndex::addIndexPart<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#81\">MySQLIndex::getName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#89\">MySQLIndex::getType<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#97\">MySQLIndex::getIsUnique<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndex.php.html#105\">MySQLIndex::getIndexPartList<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndexPart.php.html#31\">MySQLIndexPart::fromResultSet<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndexPart.php.html#40\">MySQLIndexPart::getColumnName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndexPart.php.html#48\">MySQLIndexPart::getSortOrder<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLIndexPart.php.html#56\">MySQLIndexPart::getLength<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#58\">MySQLTable::__construct<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#73\">MySQLTable::getName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#81\">MySQLTable::getColumnList<\/a>"],[100,3,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#91\">MySQLTable::getColumnByName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#104\">MySQLTable::getConstraintList<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#112\">MySQLTable::getIndexList<\/a>"],[0,3,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#120\">MySQLTable::getPrimaryKeyAttributeList<\/a>"],[100,3,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#136\">MySQLTable::getConstraintByName<\/a>"],[100,3,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#151\">MySQLTable::getIndexByName<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#164\">MySQLTable::getDataBaseSpecific<\/a>"],[100,2,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#177\">MySQLTable::extractColumnData<\/a>"],[100,6,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#195\">MySQLTable::extractReferenceData<\/a>"],[100,5,"<a href=\"MySQL\/MetaData\/MySQLTable.php.html#241\">MySQLTable::extractIndexData<\/a>"],[100,1,"<a href=\"MySQL\/MetaData\/TableDTO.php.html#32\">TableDTO::__construct<\/a>"],[0,1,"<a href=\"MySQL\/MySQLConnection.php.html#43\">MySQLConnection::__construct<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#51\">MySQLConnection::getDatabase<\/a>"],[0,5,"<a href=\"MySQL\/MySQLConnection.php.html#61\">MySQLConnection::connect<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#93\">MySQLConnection::useDatabase<\/a>"],[100,3,"<a href=\"MySQL\/MySQLConnection.php.html#110\">MySQLConnection::query<\/a>"],[0,2,"<a href=\"MySQL\/MySQLConnection.php.html#135\">MySQLConnection::multiQuery<\/a>"],[85.714285714286,3,"<a href=\"MySQL\/MySQLConnection.php.html#156\">MySQLConnection::execute<\/a>"],[75,2,"<a href=\"MySQL\/MySQLConnection.php.html#179\">MySQLConnection::executeStoredProcedure<\/a>"],[27.272727272727,6,"<a href=\"MySQL\/MySQLConnection.php.html#202\">MySQLConnection::handleQueryError<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#225\">MySQLConnection::escape<\/a>"],[100,4,"<a href=\"MySQL\/MySQLConnection.php.html#235\">MySQLConnection::getSequence<\/a>"],[0,1,"<a href=\"MySQL\/MySQLConnection.php.html#250\">MySQLConnection::startTransaction<\/a>"],[0,1,"<a href=\"MySQL\/MySQLConnection.php.html#256\">MySQLConnection::commit<\/a>"],[0,1,"<a href=\"MySQL\/MySQLConnection.php.html#262\">MySQLConnection::rollback<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#268\">MySQLConnection::enableForeignKeyChecks<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#273\">MySQLConnection::disableForeignKeyChecks<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#283\">MySQLConnection::getDatabaseMetaData<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#291\">MySQLConnection::getMigrationStatementFactory<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#299\">MySQLConnection::getCreateStatementFactory<\/a>"],[100,1,"<a href=\"MySQL\/MySQLConnection.php.html#307\">MySQLConnection::getStoredProcedureFactory<\/a>"],[100,1,"<a href=\"MySQL\/MySQLCreateStatementFactory.php.html#22\">MySQLCreateStatementFactory::buildSequencer<\/a>"],[100,1,"<a href=\"MySQL\/MySQLCreateStatementFactory.php.html#37\">MySQLCreateStatementFactory::buildCreateTable<\/a>"],[100,1,"<a href=\"MySQL\/MySQLCreateStatementFactory.php.html#50\">MySQLCreateStatementFactory::buildCreateDelimitTable<\/a>"],[100,1,"<a href=\"MySQL\/MySQLDriver.php.html#26\">MySQLDriver::quote<\/a>"],[0,1,"<a href=\"MySQL\/MySQLDriver.php.html#37\">MySQLDriver::connect<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#12\">MySQLEmptyResult::hasNext<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#17\">MySQLEmptyResult::getNext<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#22\">MySQLEmptyResult::close<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#27\">MySQLEmptyResult::getBooleanValue<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#32\">MySQLEmptyResult::getIntegerValue<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#37\">MySQLEmptyResult::getFloatValue<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#42\">MySQLEmptyResult::getStringValue<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#47\">MySQLEmptyResult::getDateTime<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#52\">MySQLEmptyResult::getObject<\/a>"],[0,1,"<a href=\"MySQL\/MySQLEmptyResult.php.html#57\">MySQLEmptyResult::getArray<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#44\">MySQLMigrationStatementFactory::__construct<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#54\">MySQLMigrationStatementFactory::quote<\/a>"],[0,3,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#65\">MySQLMigrationStatementFactory::getModifyPrimaryKeyStatement<\/a>"],[0,1,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#90\">MySQLMigrationStatementFactory::getDropTableStatement<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#101\">MySQLMigrationStatementFactory::createDropColumnStatement<\/a>"],[100,2,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#112\">MySQLMigrationStatementFactory::createAddColumnStatement<\/a>"],[100,2,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#124\">MySQLMigrationStatementFactory::createModifiyColumnStatement<\/a>"],[100,2,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#136\">MySQLMigrationStatementFactory::createAddReferenceStatement<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#162\">MySQLMigrationStatementFactory::createDropConstraintStatement<\/a>"],[100,4,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#175\">MySQLMigrationStatementFactory::createAddIndexStatement<\/a>"],[100,2,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#198\">MySQLMigrationStatementFactory::buildIndexPart<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMigrationStatementFactory.php.html#216\">MySQLMigrationStatementFactory::createDropIndexStatement<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#33\">MySQLMultiQueryResultSet::__construct<\/a>"],[85.714285714286,3,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#42\">MySQLMultiQueryResultSet::hasNext<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#65\">MySQLMultiQueryResultSet::getNext<\/a>"],[100,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#73\">MySQLMultiQueryResultSet::close<\/a>"],[80,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#86\">MySQLMultiQueryResultSet::getBooleanValue<\/a>"],[100,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#101\">MySQLMultiQueryResultSet::getIntegerValue<\/a>"],[75,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#115\">MySQLMultiQueryResultSet::getFloatValue<\/a>"],[100,1,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#129\">MySQLMultiQueryResultSet::getStringValue<\/a>"],[75,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#139\">MySQLMultiQueryResultSet::getDateTime<\/a>"],[75,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#154\">MySQLMultiQueryResultSet::getObject<\/a>"],[0,2,"<a href=\"MySQL\/MySQLMultiQueryResultSet.php.html#168\">MySQLMultiQueryResultSet::getArray<\/a>"],[100,1,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#29\">MySQLSimpleResultSet::__construct<\/a>"],[75,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#37\">MySQLSimpleResultSet::hasNext<\/a>"],[100,1,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#50\">MySQLSimpleResultSet::getNext<\/a>"],[100,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#55\">MySQLSimpleResultSet::close<\/a>"],[100,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#67\">MySQLSimpleResultSet::getBooleanValue<\/a>"],[100,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#82\">MySQLSimpleResultSet::getIntegerValue<\/a>"],[100,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#96\">MySQLSimpleResultSet::getFloatValue<\/a>"],[100,1,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#110\">MySQLSimpleResultSet::getStringValue<\/a>"],[100,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#120\">MySQLSimpleResultSet::getDateTime<\/a>"],[75,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#135\">MySQLSimpleResultSet::getObject<\/a>"],[75,2,"<a href=\"MySQL\/MySQLSimpleResultSet.php.html#149\">MySQLSimpleResultSet::getArray<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#34\">MySQLStoredProcedureFactory::createInsertStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#45\">MySQLStoredProcedureFactory::createUpdateStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#56\">MySQLStoredProcedureFactory::createSelectByPKStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#68\">MySQLStoredProcedureFactory::createSelectByReferenceStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#80\">MySQLStoredProcedureFactory::createSelectByCollectionManyStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#91\">MySQLStoredProcedureFactory::createDeleteByPKStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#103\">MySQLStoredProcedureFactory::createDeleteByReferenceStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#115\">MySQLStoredProcedureFactory::createDeleteByCollectionManyStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#127\">MySQLStoredProcedureFactory::createDeleteCollectionManyAssignmentStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#138\">MySQLStoredProcedureFactory::createCopyToReplicationTableStoredProcedure<\/a>"],[100,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#150\">MySQLStoredProcedureFactory::createCustomStoredProcedure<\/a>"],[0,1,"<a href=\"MySQL\/MySQLStoredProcedureFactory.php.html#160\">MySQLStoredProcedureFactory::createDropStatementForProcedureName<\/a>"],[100,1,"<a href=\"MySQL\/MySQLTableCreator.php.html#69\">MySQLTableCreator::__construct<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#78\">MySQLTableCreator::buildCreateTable<\/a>"],[100,1,"<a href=\"MySQL\/MySQLTableCreator.php.html#98\">MySQLTableCreator::buildCreateTableForTable<\/a>"],[100,1,"<a href=\"MySQL\/MySQLTableCreator.php.html#123\">MySQLTableCreator::buildCreateDelimitTable<\/a>"],[100,5,"<a href=\"MySQL\/MySQLTableCreator.php.html#148\">MySQLTableCreator::buildColumnSQL<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#174\">MySQLTableCreator::buildColumnSQLSnippet<\/a>"],[100,4,"<a href=\"MySQL\/MySQLTableCreator.php.html#185\">MySQLTableCreator::buildPrimaryKey<\/a>"],[100,3,"<a href=\"MySQL\/MySQLTableCreator.php.html#208\">MySQLTableCreator::buildPrimaryKeyForDelimiter<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#224\">MySQLTableCreator::buildIndexList<\/a>"],[100,4,"<a href=\"MySQL\/MySQLTableCreator.php.html#240\">MySQLTableCreator::buildIndex<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#271\">MySQLTableCreator::buildIndexPart<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#287\">MySQLTableCreator::buildForeignConstraintList<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#301\">MySQLTableCreator::buildForeignKeyConstraint<\/a>"],[100,3,"<a href=\"MySQL\/MySQLTableCreator.php.html#331\">MySQLTableCreator::buildEngineDefinition<\/a>"],[100,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#347\">MySQLTableCreator::buildCollateDefinition<\/a>"],[75,2,"<a href=\"MySQL\/MySQLTableCreator.php.html#359\">MySQLTableCreator::buildCharsetDefinition<\/a>"],[100,1,"<a href=\"MySQL\/MySQLTableCreator.php.html#373\">MySQLTableCreator::getDatabaseSpecific<\/a>"],[100,1,"<a href=\"MySQL\/MySQLTableCreator.php.html#384\">MySQLTableCreator::quote<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#42\">InsertStatement::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#56\">InsertStatement::buildInsert<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#64\">InsertStatement::buildSignature<\/a>"],[100,5,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#72\">InsertStatement::buildDelimitInsert<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#104\">InsertStatement::buildStatement<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/InsertStatement.php.html#114\">InsertStatement::extractColumAndValueList<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLCopyToReplicationStoredProcedure.php.html#22\">MySQLCopyToReplicationStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLCopyToReplicationStoredProcedure.php.html#31\">MySQLCopyToReplicationStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLCopyToReplicationStoredProcedure.php.html#48\">MySQLCopyToReplicationStoredProcedure::getCreateProcedureStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLCopyToReplicationStoredProcedure.php.html#60\">MySQLCopyToReplicationStoredProcedure::buildStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLCustomStoredProcedure.php.html#28\">MySQLCustomStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLCustomStoredProcedure.php.html#41\">MySQLCustomStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLCustomStoredProcedure.php.html#58\">MySQLCustomStoredProcedure::buildSignature<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLCustomStoredProcedure.php.html#71\">MySQLCustomStoredProcedure::buildStatement<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLCustomStoredProcedure.php.html#82\">MySQLCustomStoredProcedure::buildStatementForReplication<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#47\">MySQLDeleteByCollectionManyStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#61\">MySQLDeleteByCollectionManyStoredProcedure::buildElements<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#78\">MySQLDeleteByCollectionManyStoredProcedure::buildSignature<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#97\">MySQLDeleteByCollectionManyStoredProcedure::buildStatement<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#110\">MySQLDeleteByCollectionManyStoredProcedure::getJoinCondition<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#127\">MySQLDeleteByCollectionManyStoredProcedure::getWhereCondition<\/a>"],[75,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#152\">MySQLDeleteByCollectionManyStoredProcedure::getCorrespondingColumnForPKAttribute<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#167\">MySQLDeleteByCollectionManyStoredProcedure::buildTableColumn<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#180\">MySQLDeleteByCollectionManyStoredProcedure::buildComparision<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByCollectionManyStoredProcedure.php.html#191\">MySQLDeleteByCollectionManyStoredProcedure::buildParameterName<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#23\">MySQLDeleteByPKStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#32\">MySQLDeleteByPKStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#48\">MySQLDeleteByPKStoredProcedure::getCreateProcedureStatement<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#59\">MySQLDeleteByPKStoredProcedure::buildSignature<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#71\">MySQLDeleteByPKStoredProcedure::buildStatement<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#90\">MySQLDeleteByPKStoredProcedure::buildDeleteSQL<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByPKStoredProcedure.php.html#106\">MySQLDeleteByPKStoredProcedure::buildDelimitDeleteSQL<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByReferenceStoredProcedure.php.html#29\">MySQLDeleteByReferenceStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByReferenceStoredProcedure.php.html#41\">MySQLDeleteByReferenceStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByReferenceStoredProcedure.php.html#57\">MySQLDeleteByReferenceStoredProcedure::buildSignature<\/a>"],[88.888888888889,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteByReferenceStoredProcedure.php.html#71\">MySQLDeleteByReferenceStoredProcedure::buildStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#47\">MySQLDeleteCollectionManyAssignmentStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#62\">MySQLDeleteCollectionManyAssignmentStoredProcedure::buildElements<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#79\">MySQLDeleteCollectionManyAssignmentStoredProcedure::buildSignature<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#98\">MySQLDeleteCollectionManyAssignmentStoredProcedure::buildStatement<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#108\">MySQLDeleteCollectionManyAssignmentStoredProcedure::getWhereCondition<\/a>"],[75,3,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#133\">MySQLDeleteCollectionManyAssignmentStoredProcedure::getCorrespondingColumnForPKAttribute<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#148\">MySQLDeleteCollectionManyAssignmentStoredProcedure::buildTableColumn<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLDeleteCollectionManyAssignmentStoredProcedure.php.html#159\">MySQLDeleteCollectionManyAssignmentStoredProcedure::buildParameterName<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLInsertStoredProcedure.php.html#26\">MySQLInsertStoredProcedure::__construct<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLInsertStoredProcedure.php.html#40\">MySQLInsertStoredProcedure::buildElements<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#47\">MySQLSelectByCollectionManyStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#61\">MySQLSelectByCollectionManyStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#78\">MySQLSelectByCollectionManyStoredProcedure::buildSignature<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#90\">MySQLSelectByCollectionManyStoredProcedure::buildStatement<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#103\">MySQLSelectByCollectionManyStoredProcedure::getJoinCondition<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#120\">MySQLSelectByCollectionManyStoredProcedure::getWhereCondition<\/a>"],[75,3,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#137\">MySQLSelectByCollectionManyStoredProcedure::getCorrespondingColumnForPKAttribute<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#154\">MySQLSelectByCollectionManyStoredProcedure::buildTableColumn<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByCollectionManyStoredProcedure.php.html#167\">MySQLSelectByCollectionManyStoredProcedure::buildComparision<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByPKStoredProcedure.php.html#21\">MySQLSelectByPKStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByPKStoredProcedure.php.html#31\">MySQLSelectByPKStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByPKStoredProcedure.php.html#47\">MySQLSelectByPKStoredProcedure::getCreateProcedureStatement<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByPKStoredProcedure.php.html#59\">MySQLSelectByPKStoredProcedure::buildSignature<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByPKStoredProcedure.php.html#71\">MySQLSelectByPKStoredProcedure::buildStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByReferenceStoredProcedure.php.html#28\">MySQLSelectByReferenceStoredProcedure::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByReferenceStoredProcedure.php.html#40\">MySQLSelectByReferenceStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByReferenceStoredProcedure.php.html#56\">MySQLSelectByReferenceStoredProcedure::buildSignature<\/a>"],[88.888888888889,3,"<a href=\"MySQL\/StoredProcedure\/MySQLSelectByReferenceStoredProcedure.php.html#70\">MySQLSelectByReferenceStoredProcedure::buildStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#88\">MySQLStoredProcedureBase::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#97\">MySQLStoredProcedureBase::determineTableNames<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#107\">MySQLStoredProcedureBase::getCreateProcedureStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#121\">MySQLStoredProcedureBase::getDropProcedureStatement<\/a>"],[0,2,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#131\">MySQLStoredProcedureBase::buildSignatureForAttributeList<\/a>"],[0,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#145\">MySQLStoredProcedureBase::buildSignatureParameterForAttribute<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#156\">MySQLStoredProcedureBase::buildSignatureParameter<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#166\">MySQLStoredProcedureBase::buildSignatureFromList<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#176\">MySQLStoredProcedureBase::buildWhereAndSnippet<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#186\">MySQLStoredProcedureBase::buildWherePart<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLStoredProcedureBase.php.html#197\">MySQLStoredProcedureBase::quote<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/MySQLUpdateStoredProcedure.php.html#31\">MySQLUpdateStoredProcedure::__construct<\/a>"],[100,3,"<a href=\"MySQL\/StoredProcedure\/MySQLUpdateStoredProcedure.php.html#44\">MySQLUpdateStoredProcedure::buildElements<\/a>"],[100,2,"<a href=\"MySQL\/StoredProcedure\/MySQLUpdateStoredProcedure.php.html#69\">MySQLUpdateStoredProcedure::getCreateProcedureStatement<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/UpdateStatement.php.html#47\">UpdateStatement::__construct<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/UpdateStatement.php.html#59\">UpdateStatement::buildSignature<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/UpdateStatement.php.html#69\">UpdateStatement::buildUpdate<\/a>"],[100,1,"<a href=\"MySQL\/StoredProcedure\/UpdateStatement.php.html#79\">UpdateStatement::buildDelimitUpdate<\/a>"],[100,4,"<a href=\"MySQL\/StoredProcedure\/UpdateStatement.php.html#90\">UpdateStatement::extractColumAndValueList<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

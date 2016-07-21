@@ -1,0 +1,25 @@
+&lt;entity name="Student" namespace="SiestaTest\End2End\CollectionMany\Generated" table="Student" targetPath="Generated"&gt;
+    &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+    &lt;attribute name="name" type="string" dbType="VARCHAR(30)"/&gt;
+    &lt;collectionMany2Many name="examList" foreignTable="Exam"  mappingTable="StudentExam"/&gt;
+&lt;/entity&gt;
+
+&lt;entity name="Exam" namespace="SiestaTest\End2End\CollectionMany\Generated" table="Exam" targetPath="Generated"&gt;
+    &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+    &lt;attribute name="name" type="string" dbType="VARCHAR(30)"/&gt;
+    &lt;collectionMany2Many name="studentList" foreignTable="Student" mappingTable="StudentExam"/&gt;
+&lt;/entity&gt;
+
+
+&lt;entity name="StudentExam" namespace="SiestaTest\End2End\CollectionMany\Generated" table="StudentExam" targetPath="Generated"&gt;
+    &lt;attribute name="studentId" dbName="FK_Student" type="int" dbType="INT"/&gt;
+    &lt;attribute name="examId" dbName="FK_Exam" type="int" dbType="INT"/&gt;
+
+    &lt;reference name="StudentReference" foreignTable="Student" onDelete="cascade"&gt;
+        &lt;referenceMapping localAttribute="studentId" foreignAttribute="id"/&gt;
+    &lt;/reference&gt;
+
+    &lt;reference name="ExamReference" foreignTable="Exam" onDelete="cascade"&gt;
+        &lt;referenceMapping localAttribute="examId" foreignAttribute="id" /&gt;
+    &lt;/reference&gt;
+&lt;/entity&gt;

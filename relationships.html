@@ -56,19 +56,19 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/index.html">Overview</a>
+                        <a href="index.html">Overview</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/entities.html">Entities</a>
+                        <a href="entities.html">Entities</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/relationships.html">Relationships</a>
+                        <a href="relationships.html">Relationships</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/storedprocedure.html">Stored Procedures</a>
+                        <a href="storedprocedure.html">Stored Procedures</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="/driver.html">Driver</a>
+                        <a href="driver.html">Driver</a>
                     </li>
                 </ul>
             </div>
@@ -89,10 +89,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <p>
-                        <a class="toc" href="#references">References</a><br/>
-                        <a class="toc" href="#bidrectional">Bidirectional References</a><br/>
-                        <a class="toc" href="#1ncollector">1-N Collector</a><br/>
-                        <a class="toc" href="#nmcollector">N-M Collector</a><br/>
+                        <a class="toc" href="#references">References (n:1)</a><br/>
+                        <a class="toc" href="#1ncollector">Collector (1:n)</a><br/>
+                        <a class="toc" href="#nmcollector">Many 2 Many Collector (n:m)</a><br/>
                     </p>
                 </div>
             </div>
@@ -105,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1>References</h1>
+                    <h1>References (n:1)</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -114,18 +113,23 @@
                     <div class="chapter">
                         <p>
                            References allow to define foreign key constraints. They must have a name. The foreign class
-                            defines which Entity is referenced. Siesta will automatically add a column for every primary
-                            key that the referenced table has.
+                           defines which Entity is referenced. onDelete and onUpdate can define the constraint behaviour.
+                           The referenceMapping element allows to map a local attribute (labelId) against a foreign attribute(id)
+                           <br><br>
+
                         </p>
                          <pre class="prettyprint">
-    &lt;entity name="ArtistEntity" namespace="siestaphp\tests\functional\reference\gen" targetPath="gen"&gt;
+    &lt;entity name="Artist" namespace="SiestaTest\End2End\Reference\Generated" table="Artist"&gt;
         &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
         &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;attribute name="labelId" dbName="fk_label" type="string" dbType="VARCHAR(100)"/&gt;
 
-        &lt;reference name="label" foreignClass="LabelEntity" required="false"/&gt;
+        &lt;reference name="label" foreignTable="LabelEntity" onDelete="set null" onUpdate="set null"&gt;
+             &lt;referenceMapping localAttribute="labelId" foreignAttribute="id"&gt;
+        &lt;/reference&gt;
     &lt;/entity&gt;
 
-    &lt;entity name="LabelEntity" namespace="siestaphp\tests\functional\reference\gen" targetPath="gen"&gt;
+    &lt;entity name="Label" namespace="SiestaTest\End2End\Reference\Generated" table="Label"&gt;
         &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
         &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
         &lt;attribute name="city" type="string" dbType="VARCHAR(100)"/&gt;
@@ -134,99 +138,28 @@
                             The relationship will generate these methods into the ArtistEntity. <code>getLabel</code> allows
                             to retrieve the referenced object. A reload from the database can be enforced by the <code>$forceReload</code>
                             parameter.<br><br>
-                            For every Primary Key column in the referenced table a getter and setter for the corresponding
-                            foreign key column will be created. In this case the LabelEntity class only uses one primary key column.
+
                         </p>
                         <pre class="prettyprint">
     /**
      * @param bool $forceReload
      *
-     * @return LabelEntity
+     * @return Label|null
      */
-    public function getLabel($forceReload = false) { ... }
+    public function getLabel(bool $forceReload = false) { ... }
 
     /**
-     * @return int
+     * @param Label $entity
+     *
+     * @return void
      */
-    public function getLabelId() { ... }
-
-
-    /**
-     * @param LabelEntity $object
-     */
-    public function setLabel($object) { ... }
-
-    /**
-     * @param int $id
-     */
-    public function setLabelId($id) { ... }
+    public function setLabel(Label $entity = null) { ... }
 
                         </pre>
                         <p>
                             <b>Example:</b><br/>
-                            <a href="https://github.com/gperler/siesta/blob/master/tests/functional/ReferenceTest.php" target="_blank">tests/functional/ReferenceTest.php</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- About stored procedures -->
-    <section id="bidrectional">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h1>Bidirectional references</h1>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="chapter">
-                        <p>
-                            You can also define bidirectional 1:1 references by adding a relationName attribute to the
-                            reference element.
-                        </p>
-                         <pre class="prettyprint">
-    &lt;entity name="Customer" namespace="siestaphp\tests\functional\bidirectional\gen" table="CUSTOMER" targetPath="gen"&gt;
-        &lt;attribute name="id" type="int" dbName="ID" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-        &lt;attribute name="name" type="string" dbName="D_STRING" dbType="VARCHAR(100)"/&gt;
-        &lt;attribute name="dob" type="DateTime" dbName="D_DATETIME" dbType="DATETIME"/&gt;
-
-        &lt;reference name="address" foreignClass="Address" relationName="_customer_address_"/&gt;
-    &lt;/entity&gt;
-
-    &lt;entity name="Address" namespace="siestaphp\tests\functional\bidirectional\gen" table="Address" targetPath="gen"&gt;
-        &lt;attribute name="id" type="int" dbName="ID" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-        &lt;attribute name="street" type="string" dbName="STREET" dbType="VARCHAR(100)"/&gt;
-        &lt;attribute name="city" type="string" dbName="CITY" dbType="VARCHAR(100)"/&gt;
-        &lt;reference name="customer" foreignClass="Customer" relationName="_customer_address_"/&gt;
-    &lt;/entity&gt;</pre>
-                        <p>
-                            Siesta will set the foreign keys accordingly. You only need to disalbe the foreign key
-                            checks from the database before persisting
-                        </p>
-                        <pre class="prettyprint">
-   $customer = new Customer();
-    $customer->setName("Columbo");
-
-    $address = new Address();
-    $address->setCity("Berlin");
-
-    $customer->setAddress($address);
-
-    // disable the foreign key checks before storing
-    $connection = ConnectionFactory::getInstance()->getConnection();
-    $connection->disableForeignKeyChecks();
-    $customer->save(true);
-    $connection->enableForeignKeyChecks();
-
-                        </pre>
-                        <p>
-                            <b>Example:</b><br/>
-                            <a href="https://github.com/gperler/siesta/blob/master/tests/functional/BidirectionalTest.php" target="_blank">tests/functional/BidirectionalTest.php</a>
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Reference/ReferenceTest.php" target="_blank">Reference Test</a>,
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Reference/schema/reference.test.xml" target="_blank">Reference Schema Sample</a>
                         </p>
                     </div>
                 </div>
@@ -240,7 +173,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1>1-N Collector</h1>
+                    <h1>Collector (1:n)</h1>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -249,89 +182,66 @@
                     <div class="chapter">
                         <p>
                             A One to Many Collector will collect all entities that reference the own entity. The following
-                            example shows that the ArtistEntity references 0 or 1 LabelEntity objects. The label entity
-                            defines a collector with the name artistList that collects ArtistEntity objects. It defines
+                            example shows that the CartItem references 0 or 1 Cartobjects. The Cart
+                            defines a collector with the name cartItem that collects CartItem objects. It defines
                             its foreign class and the name of the reference.
 
                         </p>
                          <pre class="prettyprint">
-    &lt;entity name="ArtistEntity" namespace="siestaphp\tests\functional\collector1n\gen" table="ARTIST" targetPath="gen/"&gt;
-        &lt;attribute name="id" type="int" dbName="ID" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-        &lt;attribute name="name" type="string" dbName="D_STRING" dbType="VARCHAR(100)"/&gt;
-        &lt;attribute name="dob" type="DateTime" dbName="D_DATETIME" dbType="DATETIME"/&gt;
+    &lt;entity name="Cart" namespace="SiestaTest\End2End\Collection\Generated" table="Cart" targetPath="Generated"&gt;
 
-        &lt;reference name="label" foreignClass="LabelEntity" required="false"/&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+
+        &lt;collection name="cartItem" foreignTable="CartItem" foreignReferenceName="cart"/&gt;
+
     &lt;/entity&gt;
 
-    &lt;entity name="LabelEntity" namespace="siestaphp\tests\functional\collector1n\gen" table="LABEL" targetPath="gen"&gt;
-        &lt;attribute name="id" type="int" dbName="ID" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-        &lt;attribute name="name" type="string" dbName="NAME" dbType="VARCHAR(100)"/&gt;
-        &lt;attribute name="city" type="string" dbName="CITY" dbType="VARCHAR(100)"/&gt;
+    &lt;entity name="CartItem" namespace="SiestaTest\End2End\Collection\Generated" table="CartItem" targetPath="Generated"&gt;
 
-        &lt;collector name="artistList" type="1n" foreignClass="ArtistEntity" referenceName="label"/&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+
+        &lt;attribute name="cartId" dbName="fk_cart" type="int" dbType="INT"/&gt;
+
+        &lt;reference name="cart" foreignTable="Cart" onDelete="set null" onUpdate="set null"&gt;
+            &lt;referenceMapping localAttribute="cartId" foreignAttribute="id"/&gt;
+        &lt;/reference&gt;
     &lt;/entity&gt;</pre>
                         <p>
-                            The following methods will be generated in the LabelEntity class. They allow to collect
-                            all Artist, that reference the LabelObject. Furthermore all ArtistEntiy Object referencing
-                            this label can be deleted or a ArtistEntity object can be added to the list.
+                            The following methods will be generated in the Cart class. They allow to collect
+                            all CartItem, that reference the Cart. Furthermore all CartItem Object referencing
+                            this Cart can be deleted or a CartItem object can be added to the list.
                         </p>
                         <pre class="prettyprint">
     /**
      * @param bool $forceReload
      * @param string $connectionName
      *
-     * @return ArtistEntity[]
+     * @return CartItem[]
      */
-    public function getArtistList($forceReload = false, $connectionName = null) { ... }
+    public function getCartItem(bool $forceReload = false, string $connectionName = null) : array { ... }
 
     /**
-     * @return void
-     */
-    public function deleteAllArtistList() { ... }
-
-    /**
-     * @param ArtistEntity $object
-     *
-     * @return void
-     */
-    public function addToArtistList(ArtistEntity $object) { ... }
-
-                        </pre>
-                        <p>
-                            <b>Example:</b><br/>
-                           <a href="https://github.com/gperler/siesta/blob/master/tests/functional/CollectorTest.php" target="_blank">tests/functional/CollectorTest.php</a>
-                        </p>
-                        <h3>Using Filter for collectors</h3>
-                        <p>
-                            A collector can define filters. They allow to only collect those entities that match the
-                            filter. The following filter will check that the name of the referenced object matches
-                            the a certain name. The filter defines parameter that will be available when executing the
-                            query.
-                        </p>
-                        <pre class="prettyprint">
-    &lt;collector name="artistList" type="1n" foreignClass="ArtistEntity" referenceName="label"&gt;
-        &lt;filter name="ByName" filter="name LIKE P_NAME"&gt;
-            &lt;parameter name="name" spName="P_NAME" type="string" dbType="VARCHAR(100)"/&gt;
-        &lt;/filter&gt;
-    &lt;/collector&gt;</pre>
-                        <p>
-                            The following method will be generated in the LabelEntity class. It accepts the defined
-                            parameter in the method and will executed the generated stored procedure.
-                        </p>
-                        <pre class="prettyprint">
-    /**
-     * @param string $name
      * @param string $connectionName
      *
-     * @return ArtistEntity[]
+     * @return void
      */
-    public function getArtistListFilterByName($name, $connectionName = null) { ... }
+    public function deleteAllCartItem(string $connectionName = null) { ... }
+
+    /**
+     * @param CartItem $entity
+     *
+     * @return void
+     */
+    public function addToCartItem(CartItem $entity) { ... }
+
                         </pre>
                         <p>
                             <b>Example:</b><br/>
-                            <a href="https://github.com/gperler/siesta/blob/master/tests/functional/CollectorFilterTest.php">
-                                tests/functional/CollectorFilterTest.php
-                            </a>
+                           <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Collection/CollectionTest.php" target="_blank">Collection test</a>,
+                           <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/Collection/schema/collection.test.xml" target="_blank">Collection Schema sample</a>,
+
                         </p>
                     </div>
                 </div>
@@ -339,6 +249,111 @@
         </div>
     </section>
 
+
+    <section id="nmcollector">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Many 2 Many Collector (n:m)</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                            The following example shows a many 2 many relationships. A Student can participate in 0..n exams and an Exam
+                            can have 0..n students. Therefore the 2 entities student and exam are defined. Furthermore a mapping table is needed (StudentExam)
+                            The mapping table references both entities and both Student and Exam define a collectionMany2Many element that
+                            defines the name of the many 2 many collection the foreign table and the mapping table.
+
+                        </p>
+                        <pre class="prettyprint">
+    &lt;entity name="Student" namespace="SiestaTest\End2End\CollectionMany\Generated" table="Student" targetPath="Generated"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(30)"/&gt;
+        &lt;collectionMany2Many name="examList" foreignTable="Exam"  mappingTable="StudentExam"/&gt;
+    &lt;/entity&gt;
+
+    &lt;entity name="Exam" namespace="SiestaTest\End2End\CollectionMany\Generated" table="Exam" targetPath="Generated"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(30)"/&gt;
+        &lt;collectionMany2Many name="studentList" foreignTable="Student" mappingTable="StudentExam"/&gt;
+    &lt;/entity&gt;
+
+
+    &lt;entity name="StudentExam" namespace="SiestaTest\End2End\CollectionMany\Generated" table="StudentExam" targetPath="Generated"&gt;
+        &lt;attribute name="studentId" dbName="FK_Student" type="int" dbType="INT"/&gt;
+        &lt;attribute name="examId" dbName="FK_Exam" type="int" dbType="INT"/&gt;
+
+        &lt;reference name="StudentReference" foreignTable="Student" onDelete="cascade"&gt;
+            &lt;referenceMapping localAttribute="studentId" foreignAttribute="id"/&gt;
+        &lt;/reference&gt;
+
+        &lt;reference name="ExamReference" foreignTable="Exam" onDelete="cascade"&gt;
+            &lt;referenceMapping localAttribute="examId" foreignAttribute="id" /&gt;
+        &lt;/reference&gt;
+    &lt;/entity&gt;</pre>
+                        <p>
+                            The following methods will be generated into the Student class. getExamList will return all exmas a student participates in.
+                            The method addToExamList allows to add an additional exam.<br>
+
+                            The method deleteFromExamList allows to either delete all mapping entires i.e. all exam participations or just a specific one.
+                            If you do not pass a examId ($id) all exam participations will be deleted. If you pass an examId only the participation
+                            of this exam will be deleted.<br>
+
+                            The method deleteAssignedExam() allows to either delete all exams or just a specific one. Same here if you do not pass
+                            an examId ($id) all assigned exams will be deleted and if you pass a specific examId only this assigned exam will be deleted.
+
+                        </p>
+                        <pre class="prettyprint">
+    /**
+     * @param bool $forceReload
+     * @param string $connectionName
+     *
+     * @return Exam[]
+     */
+    public function getExamList(bool $forceReload = false, string $connectionName = null) : array { ... }
+
+
+    /**
+     * @param Exam $entity
+     *
+     * @return void
+     */
+    public function addToExamList(Exam $entity) { ... }
+
+
+    /**
+     * @param int $id
+     * @param string $connectionName
+     *
+     * @return void
+     */
+    public function deleteFromExamList(int $id = null, string $connectionName = null) { ... }
+
+
+    /**
+     * @param int $id
+     * @param string $connectionName
+     *
+     * @return void
+     */
+    public function deleteAssignedExam(int $id = null, string $connectionName = null)
+
+
+                        </pre>
+                        <p>
+                            <b>Example:</b><br/>
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/CollectionMany/CollectionManyTest.php" target="_blank">Collection Many 2 Many test</a>,
+                            <a href="https://github.com/gperler/siesta/blob/master/tests/End2End/CollectionMany/schema/collection.many.test.xml" target="_blank">Collection Schema sample</a>,
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="text-center">
