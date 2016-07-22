@@ -1,5 +1,23 @@
-&lt;entity name="CustomerEntity" namespace="SiestaTest\End2End\Construct\Generated" table="customer" &gt;
-    &lt;constructor className="SiestaTest\End2End\Construct\Entity\Customer" constructCall="CustomerFactory::newCustomerEntity()" constructFactoryClassName="SiestaTest\End2End\Construct\Entity\CustomerFactory"/&gt;
-    &lt;attribute name="id1" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
-&lt;/entity&gt;
+&lt;entityList&gt;
+
+    &lt;entity name="Customer" namespace="Siesta\HelloWorld" table="Customer"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="firstName" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;attribute name="lastName" type="string" dbType="VARCHAR(100)"/&gt;
+
+        &lt;collection name="addressList" foreignTable="Address" foreignReferenceName="customer"/&gt;
+    &lt;/entity&gt;
+
+    &lt;entity name="Address" namespace="Siesta\HelloWorld" table="Address"&gt;
+        &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+        &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;attribute name="customerId" dbName="fk_customer" type="int" dbType="INT"/&gt;
+
+        &lt;reference name="customer" foreignTable="Customer" onDelete="cascade" onUpdate="cascade"&gt;
+            &lt;referenceMapping localAttribute="customerId" foreignAttribute="id"/&gt;
+        &lt;/reference&gt;
+    &lt;/entity&gt;
+
+&lt;/entityList&gt;
+
 

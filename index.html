@@ -121,7 +121,7 @@
                             <a href="#overview">Overview</a><br/>
                             <a href="#Installation">Installation</a><br/>
                             <a href="#hello">Hello World</a><br/>
-                            <a href="#console">Console commands</a><br/>
+                            <a href="#configuration">Console commands &amp; Configuration</a><br/>
                         </p>
                     </div>
                 </div>
@@ -221,70 +221,72 @@ vendor/bin/siesta init
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
                         <p>
-                            The example is available in the distribution. Just run the commands to generate the classes. They will be created in
-                            the folder <i>helloworld</i> folder.
-                        </p>
-                        <pre class="prettyprint">
-    vendor/bin/siesta init
-    vendor/bin/siesta generate --entityFileSuffix .hello.xml</pre>
-                        <p>
-                            The following code shows how the classes can be used. First Artist and Label object are instantiated.
-                            Then the relation between both is established by <code>$label->addToArtistList($artist);</code>. The save
-                            method can be invoked with <code>true</code> that will result in a cascading save. That means that both objects
-                            will be stored.
-                        </p>
-                        <pre class="prettyprint">
-&lt;?php
-    namespace test;
-
-    use siestaphp\Config;
-
-
-    require_once 'vendor/autoload.php';
-    require_once ('helloworld/Artist.php');
-    require_once ('helloworld/Label.php');
-
-    Config::getInstance();
-
-    use helloworld\Artist;
-    use helloworld\Label;
-
-    $artist = new Artist();
-    $artist->setName("Jamie Woon");
-
-    $label = new Label();
-    $label->setName("PMR");
-    $label->setCity("London");
-    $label->addToArtistList($artist);
-
-    // save with cascade. will store both label and artist
-    $label->save(true);</pre>
-
-                        <p>
-                            The XML used describes 2 entities. One named <i>Artist</i> and one named <i>Label</i>. Both entities have
-                            simple attributes with the given php and database types. Furthermore one relation is defined. The Artist &lt;reference&gt; element
-                            describes a relationship to the Label class. The Label class has a &lt;collector&gt; element that describes the foreign class
-                            and the name of the reference. The XML can be found in vendor/gm314/siesta/HelloWorld.hello.xml.
+                            (1) After having installed Siesta run <code>vendor/bin/siesta init</code> on the command line. It will ask you for
+                            database connection details and generate an initial configuration file. <br><br>
+                            (2) Copy the following xml into a file called <code>hello.entity.xml</code>. And place it somewhere in your
+                            project directory. The suffix .entity.xml is important, because Siesta will by default look for all files that
+                            end with .entity.xml. You can change this in the config file.
                         </p>
                         <pre class="prettyprint">
     &lt;entityList&gt;
 
-        &lt;entity name="Artist" namespace="helloworld" targetPath="helloworld"&gt;
-            &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-            &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+        &lt;entity name="Customer" namespace="Siesta\HelloWorld" table="Customer"&gt;
+            &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+            &lt;attribute name="firstName" type="string" dbType="VARCHAR(100)"/&gt;
+            &lt;attribute name="lastName" type="string" dbType="VARCHAR(100)"/&gt;
 
-            &lt;reference name="label" foreignClass="Label" required="false"/&gt;
+            &lt;collection name="addressList" foreignTable="Address" foreignReferenceName="customer"/&gt;
         &lt;/entity&gt;
 
-        &lt;entity name="Label" namespace="helloworld" targetPath="helloworld"&gt;
-            &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" autoValue="autoincrement"/&gt;
-            &lt;attribute name="name" type="string" dbName="NAME" dbType="VARCHAR(100)"/&gt;
-            &lt;attribute name="city" type="string" dbName="CITY" dbType="VARCHAR(100)"/&gt;
+        &lt;entity name="Address" namespace="Siesta\HelloWorld" table="Address"&gt;
+            &lt;attribute name="id" type="int" dbType="INT" primaryKey="true" required="true" autoValue="autoincrement"/&gt;
+            &lt;attribute name="name" type="string" dbType="VARCHAR(100)"/&gt;
+            &lt;attribute name="customerId" dbName="fk_customer" type="int" dbType="INT"/&gt;
 
-            &lt;collector name="artistList" type="1n" foreignClass="Artist" referenceName="label"/&gt;
+            &lt;reference name="customer" foreignTable="Customer" onDelete="cascade" onUpdate="cascade"&gt;
+                &lt;referenceMapping localAttribute="customerId" foreignAttribute="id"/&gt;
+            &lt;/reference&gt;
         &lt;/entity&gt;
 
     &lt;/entityList&gt;</pre>
+                        <p>
+                            (3) Run <code>vendor/bin/siesta gen</code> on the command line. This will generate 4 files in the
+                        folder src/Siesta/HelloWorld. See configuration below to change this.
+                            <ul>
+                                <li>Customer.php this class represents the customer table with functionality like save delete</li>
+                                <li>CustomerService.php this class contains management like find by primary keys</li>
+                                <li>Address.php same like Customer for Address entity</li>
+                                <li>AddressService.php same like CustomerService for Address entity</li>
+                            </ul>
+                            Below you can find an example usage of the classes.
+                        </p>
+                        <pre class="prettyprint">
+&lt;?php
+
+namespace test;
+
+use Siesta\Config\Config;
+use Siesta\HelloWorld\Address;
+use Siesta\HelloWorld\Customer;
+
+require_once 'vendor/autoload.php';
+
+// will load database configuration
+Config::getInstance();
+
+// create a new Address
+$address = new Address();
+$address->setName("London Residence");
+
+// create a new Customer
+$customer = new Customer();
+$customer->setLastName("Woon");
+$customer->setFirstName("Jamie");
+$customer->addToAddressList($address);
+
+// true enables the cascading save. The customer including the address will be saved.
+$customer->save(true);</pre>
+
                     </div>
                 </div>
             </div>
@@ -292,12 +294,11 @@ vendor/bin/siesta init
     </section>
 
 
-    <!-- Console Commands -->
-    <section id="console">
+    <section id="configuration">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Console Commands</h2>
+                    <h2>Console Commands &amp; Configuration</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -305,103 +306,153 @@ vendor/bin/siesta init
                 <div class="col-lg-12 text-center">
                     <div class="chapter">
 
-                        <h4>Init</h4>
+                        <h4>Init and the config file</h4>
                         <p>
-                            First you shoud use <code>vendor/bin/siesta init</code> to create a config file. It will ask you about the connection
-                            details.
-                        </p><br>
-                        <h4>Generate</h4>
-                        <p>
-                            The command <code>vendor/bin/siesta generate</code> allows to generate the classes, tables and stored procedures for your entity files.
-                            Per default it will search in the current working directory for all files that end with .entity.xml. If you
-                            set an option on the command line, it will overwrite the configured value in the siesta.config.json. Available options are:
+                            First you should use <code>vendor/bin/siesta init</code> to create a config file. The command will aks for your database
+                            connection data and test the connection. It will create a file called <code>siesta.config.json</code>. If no other
+                            config file is specified Siesta will always search for this file.<br><br>
+
+                            The config file generated consist of 3 parts. Connection, Generator and Reverse.
                         </p>
-                        <table class="attributeTable">
-                            <tr>
-                                <td><b>Option</b></td>
-                                <td><b>Default</b></td>
-                                <td><b>Description</b></td>
-                            </tr>
-                            <tr>
-                                <td>--configFile</td>
-                                <td></td>
-                                <td>you can specify a config file to use. If not supplied siesta will search for the first siesta.config.json file it finds</td>
-                            </tr>
-                            <tr>
-                                <td>--dropUnusedTables</td>
-                                <td>false</td>
-                                <td>add this option to have siesta drop tables that are not defined anymore</td>
-                            </tr>
-                            <tr>
-                                <td>--baseDir</td>
-                                <td>current working directory</td>
-                                <td>define where siesta should look for entity files and where to store generated classes</td>
-                            </tr>
-                            <tr>
-                                <td>--connectionName</td>
-                                <td>will use the connection that has the default flag set to true </td>
-                                <td>If you have configured several connections in the siesta.config.json file, you can select a connection name here</td>
-                            </tr>
-                            <tr>
-                                <td>--entityFileSuffix</td>
-                                <td>.entity.xml </td>
-                                <td>siesta will search for files in the baseDir that end with the given entity file suffix.</td>
-                            </tr>
-                            <tr>
-                                <td>--migrationMethod</td>
-                                <td>direct</td>
-                                <td>With this option you define if tables are altered directly (direct) or if the ALTER statement are written to a file</td>
-                            </tr>
-                            <tr>
-                                <td>--migrationTargetPath</td>
-                                <td>.</td>
-                                <td>Define where the migrations scripts should be stored to.</td>
-                            </tr>
-                        </table><br>
-                        <h4>Reverse Engineering </h4>
+                        <pre class="prettyprint">
+    {
+        "connection": [
+            { ... }
+        ],
+        "generator": {
+           ...
+        },
+        "reverse": {
+          ...
+        }
+    }
+                            </pre>
+                        <h4>Connection</h4>
                         <p>
-                            The command <code>vendor/bin/siesta reverse</code> will create entity files for the schema found in the database. You have
-                            the following options.
+                            Most values are self explanatory. Currently there is only a MySQL driver. The driver value points to the
+                            driver class implementing the <code>Siesta\Database\Driver</code> interface. In the <code>postConnectStatementList</code> you
+                            can place several statements that are executed after connection. You can even define several connections.
+                            The database access methods provide an optional parameter called <code>$connectionName</code> If supplied you can
+                            tell Siesta to use the specific connection. If the parameter is not set, Siesta will use the default configuration.
+
                         </p>
-                        <table class="attributeTable">
-                            <tr>
-                                <td><b>Option</b></td>
-                                <td><b>Default</b></td>
-                                <td><b>Description</b></td>
-                            </tr>
-                            <tr>
-                                <td>--configFile</td>
-                                <td></td>
-                                <td>you can specify a config file to use. If not supplied siesta will search for the first siesta.config.json file it finds</td>
-                            </tr>
-                            <tr>
-                                <td>--connectionName</td>
-                                <td>will use the connection that has the default flag set to true </td>
-                                <td>If you have configured several connections in the siesta.config.json file, you can select a connection name here</td>
-                            </tr>
-                            <tr>
-                                <td>--entityFileSuffix</td>
-                                <td>.entity.xml </td>
-                                <td>siesta will name the generated xml files {TableName}{entityFileSuffix}</td>
-                            </tr>
-                            <tr>
-                                <td>--targetPath</td>
-                                <td>reverse</td>
-                                <td>define where you want to store the generated xml files</td>
-                            </tr>
-                            <tr>
-                                <td>--targetNamespace</td>
-                                <td>""</td>
-                                <td>Define which namespace should be used</td>
-                            </tr>
-                        </table>
+                        <pre class="prettyprint">
+    {
+            "name": "default",
+            "driver": "Siesta\\Driver\\MySQL\\MySQLDriver",
+            "host": "127.0.0.1",
+            "port": 3306,
+            "database": "siesta2",
+            "user": "root",
+            "password": "",
+            "charSet": "utf8",
+            "isDefault": null,
+            "postConnectStatementList": []
+    }</pre>
+                        <h4>Generate and Generate Config</h4>
+                        <p>
+                            The command <code>vendor/bin/siesta gen --configFile myConfig.json</code> will scan the current working
+                            directory for entity xml files and generate the PHP classes and perform database migrations. The parameter
+                            --configFile is optional. If not supplied, Siesta will search for a file called siesta.config.json.<br><br>
+
+
+                            The generator part describes how the generator works. <code>dropUnusedTables</code> tells siesta if not used
+                            tables should be deleted or not.<br><br>
+
+                            The <code>entityFileSuffix</code> tells Siesta for which entity files it
+                            should look. By default it will scan your entire project directory and use all files that match the suffix.
+                            <br><br>
+
+                            The <code>migrationMethod</code> <code>direct</code> will update the database when running the command.
+                            You can also specify the value <code>sql</code> which will put alter statements into a file in the
+                            <code>migrationTargetPath</code> directory.<br><br>
+
+                            If you do not specify table name or dbName for columns the configures strategies <code>tableNamingStrategy</code>
+                            and <code>columnNamingStrategy</code> will be used to determine the names. A strategy is simply a class that
+                            implements the <code>Siesta\NamingStrategy\NamingStrategy</code> interface. You can implement your own strategy.
+                            Just place the class name in the configuration file and make sure your strategy is autoloaded.
+                            Available strategies are
+                        <ul>
+                            <li>Siesta\NamingStrategy\NoTransformStrategy</li>
+                            <li>Siesta\NamingStrategy\ToCamelCaseStrategy</li>
+                            <li>Siesta\NamingStrategy\ToClassCamelCaseStrategy (will uppercase the first character)</li>
+                            <li>TSiesta\NamingStrategy\ToUnderScoreStrategy</li>
+                        </ul><br>
+
+                        The <code>baseDir</code> will tell Siesta where to put generated classes. By default paths
+                        are deriverd psr-0 compliant from the provivide namespace. Example. If the baseDir is "src"
+                        and the namespace is Siesta\HelloWord the class will be stored in src/Siesta/HelloWorld directory.
+                        When specifying a <code>targetPath</code> in the entity xml, the targetDirector will be
+                        baseDir/targetPath.<br><br>
+
+                        You can supply a specific <code>connectionName</code> for the generator. If none is supplied the default
+                        connection will be used for generating/migrating<br><br>
+
+                        The <code>genericGeneratorConfiguration</code> allows you to totally change the way that Siesta is
+                        generating entities and Service class. If you want to add your own code generator plugins or
+                        remove mehtods that you don't like or just enhance them, you can copy the default configuration,
+                        adapt the generators and have it your style. See the <a href="generator.html">Generator</a> section for
+                        more details.
+
+
+                        </p>
+                        <pre class="prettyprint">
+    {
+        "dropUnusedTables": true,
+        "entityFileSuffix": ".entity.xml",
+        "migrationMethod": "direct",
+        "migrationTargetPath": "migration",
+        "tableNamingStrategy": "Siesta\\NamingStrategy\\ToUnderScoreStrategy",
+        "columnNamingStrategy": "Siesta\\NamingStrategy\\ToUnderScoreStrategy",
+        "baseDir": "src",
+        "connectionName": null,
+        "genericGeneratorConfiguration": null
+    }</pre>
+                        <h4>Reverse engineer Command &amp; Configuration</h4>
+                        <p>
+                            The console command <code>vendor/bin/siesta gen --configFile myConfig.json</code> will reverse engineer
+                            an existing database schema and create XML files. The --configFile parameter is optional.
+                            <br><br>
+                            The third reverse section in the config file describes how an existing schema is reverse engineered.
+                            The <code>targetPath</code> specifies where the xml should be stored. You can either place all information in one file
+                            (<code>singleFile</code> true) or create an XML file for every table. Therefore Siesta either uses the <code>targetFile</code> option or
+                            the <code>entityFileSuffix</code>.<br><br>
+
+                            <code>classNamingStrategy</code> and <code>attributeNamingStrategy</code> determine how Classes and
+                            attributes should be called based on the name of the table and the column.
+
+                            Available strategies are.
+                            <ul>
+                                <li>Siesta\NamingStrategy\NoTransformStrategy</li>
+                                <li>Siesta\NamingStrategy\ToCamelCaseStrategy</li>
+                                <li>Siesta\NamingStrategy\ToClassCamelCaseStrategy (will uppercase the first character)</li>
+                                <li>TSiesta\NamingStrategy\ToUnderScoreStrategy</li>
+                            </ul>
+                            You can also create your own strategy by creating a class that implements the
+                            <code>Siesta\NamingStrategy\NamingStrategy</code> interface.<br><br>
+
+                            <code>defaultNamespace</code> allows you to specifiy which namespace should be used in the entity xml
+                            files. The <code>connectionName</code> allows to use a specific connection defined in the connection
+                            section.
+
+                        </p>
+                        <pre class="prettyprint">
+    {
+        "targetPath": "\/reverse",
+        "singleFile": true,
+        "targetFile": "Reverse.xml",
+        "entityFileSuffix": ".entity.xml",
+        "classNamingStrategy": "Siesta\\NamingStrategy\\ToClassCamelCaseStrategy",
+        "attributeNamingStrategy": "Siesta\\NamingStrategy\\ToCamelCaseStrategy",
+        "defaultNamespace": null,
+        "connectionName": null
+    }</pre>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
 
 
 
