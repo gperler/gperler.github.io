@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Siesta.html">\Siesta</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">2157</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1102149808"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1102149808" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1217900127"></a>
+                                <a href="../namespaces/Siesta.html" style="margin-left: 30px; padding-left: 0">Siesta</a>
+            </div>
+            <div id="namespace-1217900127" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1553546312"></a>
+                                <a href="../namespaces/Siesta.CodeGenerator.html" style="margin-left: 30px; padding-left: 0">CodeGenerator</a>
+            </div>
+            <div id="namespace-1553546312" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.CodeGenerator.CodeGenerator.html">CodeGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.CodeGenerator.MethodParameter.html">MethodParameter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.CodeGenerator.MethodReturnType.html">MethodReturnType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-608673539"></a>
+                                <a href="../namespaces/Siesta.Config.html" style="margin-left: 30px; padding-left: 0">Config</a>
+            </div>
+            <div id="namespace-608673539" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Config.Config.html">Config</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.GenericConfigLoader.html">GenericConfigLoader</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.GenericGeneratorConfig.html">GenericGeneratorConfig</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.MainGeneratorConfig.html">MainGeneratorConfig</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.ReverseConfig.html">ReverseConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1100670452"></a>
+                                <a href="../namespaces/Siesta.Console.html" style="margin-left: 30px; padding-left: 0">Console</a>
+            </div>
+            <div id="namespace-1100670452" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Console.GeneratorCommand.html">GeneratorCommand</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Console.InitCommand.html">InitCommand</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Console.ReverseCommand.html">ReverseCommand</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-776883303"></a>
+                                <a href="../namespaces/Siesta.Contract.html" style="margin-left: 30px; padding-left: 0">Contract</a>
+            </div>
+            <div id="namespace-776883303" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.ArraySerializable.html">ArraySerializable</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.AttributeValidator.html">AttributeValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.CollectionManyValidator.html">CollectionManyValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.CollectionValidator.html">CollectionValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.CycleDetector.html">CycleDetector</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.DataModelValidator.html">DataModelValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.EntityValidator.html">EntityValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.Generator.html">Generator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.IndexValidator.html">IndexValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.ORMEntity.html">ORMEntity</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.Plugin.html">Plugin</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.ReferenceValidator.html">ReferenceValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.StoredProcedureValidator.html">StoredProcedureValidator</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1530881378"></a>
+                                <a href="../namespaces/Siesta.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
+            </div>
+            <div id="namespace-1530881378" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-183470117"></a>
+                                <a href="../namespaces/Siesta.Database.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-183470117" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.CannotBeNullException.html">CannotBeNullException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.ConnectException.html">ConnectException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.ForeignKeyConstraintFailedException.html">ForeignKeyConstraintFailedException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.SQLException.html">SQLException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.TableAlreadyExistsException.html">TableAlreadyExistsException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.TableDoesNotExistException.html">TableDoesNotExistException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.UniqueConstraintViolationException.html">UniqueConstraintViolationException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-910557559"></a>
+                                <a href="../namespaces/Siesta.Database.MetaData.html" style="margin-left: 30px; padding-left: 0">MetaData</a>
+            </div>
+            <div id="namespace-910557559" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.ColumnMetaData.html">ColumnMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.ConstraintMappingMetaData.html">ConstraintMappingMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.ConstraintMetaData.html">ConstraintMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.DatabaseMetaData.html">DatabaseMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.IndexMetaData.html">IndexMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.IndexPartMetaData.html">IndexPartMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.TableMetaData.html">TableMetaData</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.Connection.html">Connection</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.CreateStatementFactory.html">CreateStatementFactory</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.Driver.html">Driver</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MigrationStatementFactory.html">MigrationStatementFactory</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.ResultSet.html">ResultSet</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.StoredProcedureDefinition.html">StoredProcedureDefinition</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.StoredProcedureFactory.html">StoredProcedureFactory</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Database.ConnectionData.html">ConnectionData</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.ConnectionFactory.html">ConnectionFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Escaper.html">Escaper</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.NameMapping.html">NameMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.StoredProcedureNaming.html">StoredProcedureNaming</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1971868181"></a>
+                                <a href="../namespaces/Siesta.Driver.html" style="margin-left: 30px; padding-left: 0">Driver</a>
+            </div>
+            <div id="namespace-1971868181" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1507741200"></a>
+                                <a href="../namespaces/Siesta.Driver.MySQL.html" style="margin-left: 30px; padding-left: 0">MySQL</a>
+            </div>
+            <div id="namespace-1507741200" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-526459352"></a>
+                                <a href="../namespaces/Siesta.Driver.MySQL.MetaData.html" style="margin-left: 30px; padding-left: 0">MetaData</a>
+            </div>
+            <div id="namespace-526459352" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.ConstraintRule.html">ConstraintRule</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLColumn.html">MySQLColumn</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLConstraint.html">MySQLConstraint</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLConstraintMapping.html">MySQLConstraintMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLDatabase.html">MySQLDatabase</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLIndex.html">MySQLIndex</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLIndexPart.html">MySQLIndexPart</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLTable.html">MySQLTable</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.TableDTO.html">TableDTO</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1953228256"></a>
+                                <a href="../namespaces/Siesta.Driver.MySQL.StoredProcedure.html" style="margin-left: 30px; padding-left: 0">StoredProcedure</a>
+            </div>
+            <div id="namespace-1953228256" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.InsertStatement.html">InsertStatement</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLCopyToReplicationStoredProcedure.html">MySQLCopyToReplicationStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLCustomStoredProcedure.html">MySQLCustomStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteByCollectionManyStoredProcedure.html">MySQLDeleteByCollectionManyStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteByPKStoredProcedure.html">MySQLDeleteByPKStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteByReferenceStoredProcedure.html">MySQLDeleteByReferenceStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteCollectionManyAssignmentStoredProcedure.html">MySQLDeleteCollectionManyAssignmentStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLInsertStoredProcedure.html">MySQLInsertStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLSelectByCollectionManyStoredProcedure.html">MySQLSelectByCollectionManyStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLSelectByPKStoredProcedure.html">MySQLSelectByPKStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLSelectByReferenceStoredProcedure.html">MySQLSelectByReferenceStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLStoredProcedureBase.html">MySQLStoredProcedureBase</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLUpdateStoredProcedure.html">MySQLUpdateStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.UpdateStatement.html">UpdateStatement</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLConnection.html">MySQLConnection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLCreateStatementFactory.html">MySQLCreateStatementFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLDriver.html">MySQLDriver</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLEmptyResult.html">MySQLEmptyResult</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLMigrationStatementFactory.html">MySQLMigrationStatementFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLMultiQueryResultSet.html">MySQLMultiQueryResultSet</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLSimpleResultSet.html">MySQLSimpleResultSet</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLStoredProcedureFactory.html">MySQLStoredProcedureFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLTableCreator.html">MySQLTableCreator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1249333733"></a>
+                                <a href="../namespaces/Siesta.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1249333733" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Exception.SiestaException.html">SiestaException</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Exception.InvalidConfigurationException.html">InvalidConfigurationException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Exception.XMLNotValidException.html">XMLNotValidException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-156477405"></a>
+                                <a href="../namespaces/Siesta.Generator.html" style="margin-left: 30px; padding-left: 0">Generator</a>
+            </div>
+            <div id="namespace-156477405" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Generator.EntityGenerator.html">EntityGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Generator.GenericGenerator.html">GenericGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Generator.MainGenerator.html">MainGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Generator.ServiceGenerator.html">ServiceGenerator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-551205834"></a>
+                                <a href="../namespaces/Siesta.GeneratorPlugin.html" style="margin-left: 30px; padding-left: 0">GeneratorPlugin</a>
+            </div>
+            <div id="namespace-551205834" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-767922750"></a>
+                                <a href="../namespaces/Siesta.GeneratorPlugin.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-767922750" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ArePKIdenticalPlugin.html">ArePKIdenticalPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.CollectionManyAccess.html">CollectionManyAccess</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.CollectorGetterSetter.html">CollectorGetterSetter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ConstantPlugin.html">ConstantPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ConstructorPlugin.html">ConstructorPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.DeletePlugin.html">DeletePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.JSONConverterPlugin.html">JSONConverterPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.MemberPlugin.html">MemberPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ReferenceGetterSetter.html">ReferenceGetterSetter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.SavePlugin.html">SavePlugin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1308704222"></a>
+                                <a href="../namespaces/Siesta.GeneratorPlugin.ServiceClass.html" style="margin-left: 30px; padding-left: 0">ServiceClass</a>
+            </div>
+            <div id="namespace-1308704222" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.BatchSavePlugin.html">BatchSavePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.CollectionAccessPlugin.html">CollectionAccessPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.DeleteEntityByIdPlugin.html">DeleteEntityByIdPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.ExecuteStoredProcedurePlugin.html">ExecuteStoredProcedurePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.ForeignCollectionManyPlugin.html">ForeignCollectionManyPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.GetEntityByIdPlugin.html">GetEntityByIdPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.NewInstancePlugin.html">NewInstancePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.SingletonPlugin.html">SingletonPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.StoredProcedurePlugin.html">StoredProcedurePlugin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.BasePlugin.html">BasePlugin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1929462749"></a>
+                                <a href="../namespaces/Siesta.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-1929462749" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Logger.EchoLogger.html">EchoLogger</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Logger.NullLogger.html">NullLogger</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Logger.SymphonyConsoleLogger.html">SymphonyConsoleLogger</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1418914240"></a>
+                                <a href="../namespaces/Siesta.Main.html" style="margin-left: 30px; padding-left: 0">Main</a>
+            </div>
+            <div id="namespace-1418914240" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Main.Reverse.html">Reverse</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Main.Siesta.html">Siesta</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-291418557"></a>
+                                <a href="../namespaces/Siesta.Migration.html" style="margin-left: 30px; padding-left: 0">Migration</a>
+            </div>
+            <div id="namespace-291418557" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Migration.AttributeListMigrator.html">AttributeListMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.DatabaseMigrator.html">DatabaseMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.IndexListMigrator.html">IndexListMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.Migrator.html">Migrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.ReferenceListMigrator.html">ReferenceListMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.StoredProcedureMigrator.html">StoredProcedureMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.TableMigrator.html">TableMigrator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1201624281"></a>
+                                <a href="../namespaces/Siesta.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-1201624281" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Model.Attribute.html">Attribute</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.CollectionMany.html">CollectionMany</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Constructor.html">Constructor</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.DataModel.html">DataModel</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.DBType.html">DBType</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.DelimitAttributeList.html">DelimitAttributeList</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Entity.html">Entity</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Index.html">Index</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.IndexPart.html">IndexPart</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Reference.html">Reference</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.ReferenceMapping.html">ReferenceMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.ServiceClass.html">ServiceClass</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.StoredProcedure.html">StoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.StoredProcedureParameter.html">StoredProcedureParameter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.ValidationLogger.html">ValidationLogger</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.XMLEntityReader.html">XMLEntityReader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-206853925"></a>
+                                <a href="../namespaces/Siesta.NamingStrategy.html" style="margin-left: 30px; padding-left: 0">NamingStrategy</a>
+            </div>
+            <div id="namespace-206853925" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.NamingStrategy.NamingStrategy.html">NamingStrategy</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.NamingStrategyRegistry.html">NamingStrategyRegistry</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.NoTransformStrategy.html">NoTransformStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.ToCamelCaseStrategy.html">ToCamelCaseStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.ToClassCamelCaseStrategy.html">ToClassCamelCaseStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.ToUnderScoreStrategy.html">ToUnderScoreStrategy</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1132088487"></a>
+                                <a href="../namespaces/Siesta.Sequencer.html" style="margin-left: 30px; padding-left: 0">Sequencer</a>
+            </div>
+            <div id="namespace-1132088487" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Sequencer.Sequencer.html">Sequencer</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Sequencer.AutoincrementSequencer.html">AutoincrementSequencer</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Sequencer.SequencerFactory.html">SequencerFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Sequencer.UUIDSequencer.html">UUIDSequencer</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-824938970"></a>
+                                <a href="../namespaces/Siesta.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-824938970" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Util.ArrayAccessor.html">ArrayAccessor</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.ArrayUtil.html">ArrayUtil</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.ClassUtil.html">ClassUtil</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.DefaultCycleDetector.html">DefaultCycleDetector</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.File.html">File</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.NoCycleDetection.html">NoCycleDetection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.ObjectUtil.html">ObjectUtil</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.SiestaDateTime.html">SiestaDateTime</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.StringUtil.html">StringUtil</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-92224190"></a>
+                                <a href="../namespaces/Siesta.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
+            </div>
+            <div id="namespace-92224190" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultCollectionManyValidator.html">DefaultCollectionManyValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultCollectionValidator.html">DefaultCollectionValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultDataModelValidator.html">DefaultDataModelValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultEntityValidator.html">DefaultEntityValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultIndexValidator.html">DefaultIndexValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultReferenceValidator.html">DefaultReferenceValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultStoredProcedureValidator.html">DefaultStoredProcedureValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-858479515"></a>
+                                <a href="../namespaces/Siesta.XML.html" style="margin-left: 30px; padding-left: 0">XML</a>
+            </div>
+            <div id="namespace-858479515" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.XML.XMLAccess.html">XMLAccess</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLAttribute.html">XMLAttribute</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLCollection.html">XMLCollection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLCollectionMany.html">XMLCollectionMany</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLConstructor.html">XMLConstructor</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLDirectoryScanner.html">XMLDirectoryScanner</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLEntity.html">XMLEntity</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLIndex.html">XMLIndex</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLIndexPart.html">XMLIndexPart</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLReader.html">XMLReader</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLReference.html">XMLReference</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLReferenceMapping.html">XMLReferenceMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLServiceClass.html">XMLServiceClass</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLStoredProcedure.html">XMLStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLStoredProcedureParameter.html">XMLStoredProcedureParameter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLWrite.html">XMLWrite</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>NamingStrategy</small>NamingStrategyRegistry.php</h1>
+                    <p><em></em></p>
+                    
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/Siesta.NamingStrategy.NamingStrategyRegistry.html">NamingStrategyRegistry</a></td>
+                            <td><em></em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/NamingStrategy/NamingStrategyRegistry.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Siesta.html">\Siesta</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on July 24th, 2016 at 15:09.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

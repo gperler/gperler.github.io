@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Siesta.html">\Siesta</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">2157</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-742246705"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-742246705" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2075348750"></a>
+                                <a href="../namespaces/Siesta.html" style="margin-left: 30px; padding-left: 0">Siesta</a>
+            </div>
+            <div id="namespace-2075348750" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1938579819"></a>
+                                <a href="../namespaces/Siesta.CodeGenerator.html" style="margin-left: 30px; padding-left: 0">CodeGenerator</a>
+            </div>
+            <div id="namespace-1938579819" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.CodeGenerator.CodeGenerator.html">CodeGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.CodeGenerator.MethodParameter.html">MethodParameter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.CodeGenerator.MethodReturnType.html">MethodReturnType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-608435666"></a>
+                                <a href="../namespaces/Siesta.Config.html" style="margin-left: 30px; padding-left: 0">Config</a>
+            </div>
+            <div id="namespace-608435666" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Config.Config.html">Config</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.GenericConfigLoader.html">GenericConfigLoader</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.GenericGeneratorConfig.html">GenericGeneratorConfig</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.MainGeneratorConfig.html">MainGeneratorConfig</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Config.ReverseConfig.html">ReverseConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1555988028"></a>
+                                <a href="../namespaces/Siesta.Console.html" style="margin-left: 30px; padding-left: 0">Console</a>
+            </div>
+            <div id="namespace-1555988028" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Console.GeneratorCommand.html">GeneratorCommand</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Console.InitCommand.html">InitCommand</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Console.ReverseCommand.html">ReverseCommand</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1790680427"></a>
+                                <a href="../namespaces/Siesta.Contract.html" style="margin-left: 30px; padding-left: 0">Contract</a>
+            </div>
+            <div id="namespace-1790680427" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.ArraySerializable.html">ArraySerializable</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.AttributeValidator.html">AttributeValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.CollectionManyValidator.html">CollectionManyValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.CollectionValidator.html">CollectionValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.CycleDetector.html">CycleDetector</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.DataModelValidator.html">DataModelValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.EntityValidator.html">EntityValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.Generator.html">Generator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.IndexValidator.html">IndexValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.ORMEntity.html">ORMEntity</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.Plugin.html">Plugin</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.ReferenceValidator.html">ReferenceValidator</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Contract.StoredProcedureValidator.html">StoredProcedureValidator</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-914191407"></a>
+                                <a href="../namespaces/Siesta.Database.html" style="margin-left: 30px; padding-left: 0">Database</a>
+            </div>
+            <div id="namespace-914191407" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-967625897"></a>
+                                <a href="../namespaces/Siesta.Database.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-967625897" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.CannotBeNullException.html">CannotBeNullException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.ConnectException.html">ConnectException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.ForeignKeyConstraintFailedException.html">ForeignKeyConstraintFailedException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.SQLException.html">SQLException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.TableAlreadyExistsException.html">TableAlreadyExistsException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.TableDoesNotExistException.html">TableDoesNotExistException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Exception.UniqueConstraintViolationException.html">UniqueConstraintViolationException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1526109937"></a>
+                                <a href="../namespaces/Siesta.Database.MetaData.html" style="margin-left: 30px; padding-left: 0">MetaData</a>
+            </div>
+            <div id="namespace-1526109937" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.ColumnMetaData.html">ColumnMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.ConstraintMappingMetaData.html">ConstraintMappingMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.ConstraintMetaData.html">ConstraintMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.DatabaseMetaData.html">DatabaseMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.IndexMetaData.html">IndexMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.IndexPartMetaData.html">IndexPartMetaData</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MetaData.TableMetaData.html">TableMetaData</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.Connection.html">Connection</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.CreateStatementFactory.html">CreateStatementFactory</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.Driver.html">Driver</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.MigrationStatementFactory.html">MigrationStatementFactory</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.ResultSet.html">ResultSet</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.StoredProcedureDefinition.html">StoredProcedureDefinition</a></li>
+                                                    <li class="interface"><a href="../classes/Siesta.Database.StoredProcedureFactory.html">StoredProcedureFactory</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Database.ConnectionData.html">ConnectionData</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.ConnectionFactory.html">ConnectionFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.Escaper.html">Escaper</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.NameMapping.html">NameMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Database.StoredProcedureNaming.html">StoredProcedureNaming</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1832750466"></a>
+                                <a href="../namespaces/Siesta.Driver.html" style="margin-left: 30px; padding-left: 0">Driver</a>
+            </div>
+            <div id="namespace-1832750466" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-407402489"></a>
+                                <a href="../namespaces/Siesta.Driver.MySQL.html" style="margin-left: 30px; padding-left: 0">MySQL</a>
+            </div>
+            <div id="namespace-407402489" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1560279458"></a>
+                                <a href="../namespaces/Siesta.Driver.MySQL.MetaData.html" style="margin-left: 30px; padding-left: 0">MetaData</a>
+            </div>
+            <div id="namespace-1560279458" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.ConstraintRule.html">ConstraintRule</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLColumn.html">MySQLColumn</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLConstraint.html">MySQLConstraint</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLConstraintMapping.html">MySQLConstraintMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLDatabase.html">MySQLDatabase</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLIndex.html">MySQLIndex</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLIndexPart.html">MySQLIndexPart</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.MySQLTable.html">MySQLTable</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MetaData.TableDTO.html">TableDTO</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1492898946"></a>
+                                <a href="../namespaces/Siesta.Driver.MySQL.StoredProcedure.html" style="margin-left: 30px; padding-left: 0">StoredProcedure</a>
+            </div>
+            <div id="namespace-1492898946" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.InsertStatement.html">InsertStatement</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLCopyToReplicationStoredProcedure.html">MySQLCopyToReplicationStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLCustomStoredProcedure.html">MySQLCustomStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteByCollectionManyStoredProcedure.html">MySQLDeleteByCollectionManyStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteByPKStoredProcedure.html">MySQLDeleteByPKStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteByReferenceStoredProcedure.html">MySQLDeleteByReferenceStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLDeleteCollectionManyAssignmentStoredProcedure.html">MySQLDeleteCollectionManyAssignmentStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLInsertStoredProcedure.html">MySQLInsertStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLSelectByCollectionManyStoredProcedure.html">MySQLSelectByCollectionManyStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLSelectByPKStoredProcedure.html">MySQLSelectByPKStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLSelectByReferenceStoredProcedure.html">MySQLSelectByReferenceStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLStoredProcedureBase.html">MySQLStoredProcedureBase</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.MySQLUpdateStoredProcedure.html">MySQLUpdateStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.StoredProcedure.UpdateStatement.html">UpdateStatement</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLConnection.html">MySQLConnection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLCreateStatementFactory.html">MySQLCreateStatementFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLDriver.html">MySQLDriver</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLEmptyResult.html">MySQLEmptyResult</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLMigrationStatementFactory.html">MySQLMigrationStatementFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLMultiQueryResultSet.html">MySQLMultiQueryResultSet</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLSimpleResultSet.html">MySQLSimpleResultSet</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLStoredProcedureFactory.html">MySQLStoredProcedureFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Driver.MySQL.MySQLTableCreator.html">MySQLTableCreator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1682938477"></a>
+                                <a href="../namespaces/Siesta.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1682938477" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Exception.SiestaException.html">SiestaException</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Exception.InvalidConfigurationException.html">InvalidConfigurationException</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Exception.XMLNotValidException.html">XMLNotValidException</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1736583636"></a>
+                                <a href="../namespaces/Siesta.Generator.html" style="margin-left: 30px; padding-left: 0">Generator</a>
+            </div>
+            <div id="namespace-1736583636" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Generator.EntityGenerator.html">EntityGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Generator.GenericGenerator.html">GenericGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Generator.MainGenerator.html">MainGenerator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Generator.ServiceGenerator.html">ServiceGenerator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-883462939"></a>
+                                <a href="../namespaces/Siesta.GeneratorPlugin.html" style="margin-left: 30px; padding-left: 0">GeneratorPlugin</a>
+            </div>
+            <div id="namespace-883462939" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-712427007"></a>
+                                <a href="../namespaces/Siesta.GeneratorPlugin.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-712427007" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ArePKIdenticalPlugin.html">ArePKIdenticalPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.CollectionManyAccess.html">CollectionManyAccess</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.CollectorGetterSetter.html">CollectorGetterSetter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ConstantPlugin.html">ConstantPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ConstructorPlugin.html">ConstructorPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.DeletePlugin.html">DeletePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.JSONConverterPlugin.html">JSONConverterPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.MemberPlugin.html">MemberPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.ReferenceGetterSetter.html">ReferenceGetterSetter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.Entity.SavePlugin.html">SavePlugin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1727019803"></a>
+                                <a href="../namespaces/Siesta.GeneratorPlugin.ServiceClass.html" style="margin-left: 30px; padding-left: 0">ServiceClass</a>
+            </div>
+            <div id="namespace-1727019803" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.BatchSavePlugin.html">BatchSavePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.CollectionAccessPlugin.html">CollectionAccessPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.DeleteEntityByIdPlugin.html">DeleteEntityByIdPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.ExecuteStoredProcedurePlugin.html">ExecuteStoredProcedurePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.ForeignCollectionManyPlugin.html">ForeignCollectionManyPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.GetEntityByIdPlugin.html">GetEntityByIdPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.NewInstancePlugin.html">NewInstancePlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.SingletonPlugin.html">SingletonPlugin</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.ServiceClass.StoredProcedurePlugin.html">StoredProcedurePlugin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.GeneratorPlugin.BasePlugin.html">BasePlugin</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1111717310"></a>
+                                <a href="../namespaces/Siesta.Logger.html" style="margin-left: 30px; padding-left: 0">Logger</a>
+            </div>
+            <div id="namespace-1111717310" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Logger.EchoLogger.html">EchoLogger</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Logger.NullLogger.html">NullLogger</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Logger.SymphonyConsoleLogger.html">SymphonyConsoleLogger</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2108569319"></a>
+                                <a href="../namespaces/Siesta.Main.html" style="margin-left: 30px; padding-left: 0">Main</a>
+            </div>
+            <div id="namespace-2108569319" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Main.Reverse.html">Reverse</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Main.Siesta.html">Siesta</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-574610631"></a>
+                                <a href="../namespaces/Siesta.Migration.html" style="margin-left: 30px; padding-left: 0">Migration</a>
+            </div>
+            <div id="namespace-574610631" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Migration.AttributeListMigrator.html">AttributeListMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.DatabaseMigrator.html">DatabaseMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.IndexListMigrator.html">IndexListMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.Migrator.html">Migrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.ReferenceListMigrator.html">ReferenceListMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.StoredProcedureMigrator.html">StoredProcedureMigrator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Migration.TableMigrator.html">TableMigrator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-924936464"></a>
+                                <a href="../namespaces/Siesta.Model.html" style="margin-left: 30px; padding-left: 0">Model</a>
+            </div>
+            <div id="namespace-924936464" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Model.Attribute.html">Attribute</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.CollectionMany.html">CollectionMany</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Constructor.html">Constructor</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.DataModel.html">DataModel</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.DBType.html">DBType</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.DelimitAttributeList.html">DelimitAttributeList</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Entity.html">Entity</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Index.html">Index</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.IndexPart.html">IndexPart</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.Reference.html">Reference</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.ReferenceMapping.html">ReferenceMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.ServiceClass.html">ServiceClass</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.StoredProcedure.html">StoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.StoredProcedureParameter.html">StoredProcedureParameter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.ValidationLogger.html">ValidationLogger</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Model.XMLEntityReader.html">XMLEntityReader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1586845779"></a>
+                                <a href="../namespaces/Siesta.NamingStrategy.html" style="margin-left: 30px; padding-left: 0">NamingStrategy</a>
+            </div>
+            <div id="namespace-1586845779" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.NamingStrategy.NamingStrategy.html">NamingStrategy</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.NamingStrategyRegistry.html">NamingStrategyRegistry</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.NoTransformStrategy.html">NoTransformStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.ToCamelCaseStrategy.html">ToCamelCaseStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.ToClassCamelCaseStrategy.html">ToClassCamelCaseStrategy</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.NamingStrategy.ToUnderScoreStrategy.html">ToUnderScoreStrategy</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-906588000"></a>
+                                <a href="../namespaces/Siesta.Sequencer.html" style="margin-left: 30px; padding-left: 0">Sequencer</a>
+            </div>
+            <div id="namespace-906588000" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Siesta.Sequencer.Sequencer.html">Sequencer</a></li>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Sequencer.AutoincrementSequencer.html">AutoincrementSequencer</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Sequencer.SequencerFactory.html">SequencerFactory</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Sequencer.UUIDSequencer.html">UUIDSequencer</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-996148622"></a>
+                                <a href="../namespaces/Siesta.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-996148622" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Util.ArrayAccessor.html">ArrayAccessor</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.ArrayUtil.html">ArrayUtil</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.ClassUtil.html">ClassUtil</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.DefaultCycleDetector.html">DefaultCycleDetector</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.File.html">File</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.NoCycleDetection.html">NoCycleDetection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.ObjectUtil.html">ObjectUtil</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.SiestaDateTime.html">SiestaDateTime</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Util.StringUtil.html">StringUtil</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-280696161"></a>
+                                <a href="../namespaces/Siesta.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
+            </div>
+            <div id="namespace-280696161" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultCollectionManyValidator.html">DefaultCollectionManyValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultCollectionValidator.html">DefaultCollectionValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultDataModelValidator.html">DefaultDataModelValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultEntityValidator.html">DefaultEntityValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultIndexValidator.html">DefaultIndexValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultReferenceValidator.html">DefaultReferenceValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.DefaultStoredProcedureValidator.html">DefaultStoredProcedureValidator</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.Validator.Validator.html">Validator</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-934611288"></a>
+                                <a href="../namespaces/Siesta.XML.html" style="margin-left: 30px; padding-left: 0">XML</a>
+            </div>
+            <div id="namespace-934611288" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Siesta.XML.XMLAccess.html">XMLAccess</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLAttribute.html">XMLAttribute</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLCollection.html">XMLCollection</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLCollectionMany.html">XMLCollectionMany</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLConstructor.html">XMLConstructor</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLDirectoryScanner.html">XMLDirectoryScanner</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLEntity.html">XMLEntity</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLIndex.html">XMLIndex</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLIndexPart.html">XMLIndexPart</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLReader.html">XMLReader</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLReference.html">XMLReference</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLReferenceMapping.html">XMLReferenceMapping</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLServiceClass.html">XMLServiceClass</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLStoredProcedure.html">XMLStoredProcedure</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLStoredProcedureParameter.html">XMLStoredProcedureParameter</a></li>
+                                                    <li class="class"><a href="../classes/Siesta.XML.XMLWrite.html">XMLWrite</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Siesta.Main.html">\Siesta\Main</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Siesta\Main</small>Siesta</h1>
+                    <p><em></em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_setLogger" class="">setLogger()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_addFile" class="">addFile()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_addFileType" class="">addFileType()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_setGenericGeneratorConfig" class="">setGenericGeneratorConfig()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_getConnection" class="">getConnection()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_setConnection" class="">setConnection()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_migrateDirect" class="">migrateDirect()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_migrateToFile" class="">migrateToFile()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_setTableNamingStrategy" class="">setTableNamingStrategy()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_setColumnNamingStrategy" class="">setColumnNamingStrategy()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_setup" class="">setup()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_prepareModel" class="">prepareModel()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_generateClasses" class="">generateClasses()</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#method_checkValidationError" class="">checkValidationError()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_validationLogger" class="">$validationLogger</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_directoryScanner" class="">$directoryScanner</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_dataModel" class="">$dataModel</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_genericConfigLoader" class="">$genericConfigLoader</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_validator" class="">$validator</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_mainGenerator" class="">$mainGenerator</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_migrator" class="">$migrator</a><br />
+                                                                    <a href="../classes/Siesta.Main.Siesta.html#property_connection" class="">$connection</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Main.Siesta.html"><div class="path-wrapper">Main/Siesta.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Siesta\Main\Siesta</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href=""><div class="namespace-wrapper"></div></a></dd>
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                    <p>Gregor Müller</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_validationLogger" name="property_validationLogger" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$validationLogger</h3>
+                <pre class="signature">$validationLogger : \Siesta\Model\ValidationLogger</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Model.ValidationLogger.html">\Siesta\Model\ValidationLogger</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_directoryScanner" name="property_directoryScanner" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$directoryScanner</h3>
+                <pre class="signature">$directoryScanner : \Siesta\XML\XMLDirectoryScanner</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.XML.XMLDirectoryScanner.html">\Siesta\XML\XMLDirectoryScanner</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_dataModel" name="property_dataModel" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$dataModel</h3>
+                <pre class="signature">$dataModel : \Siesta\Model\DataModel</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Model.DataModel.html">\Siesta\Model\DataModel</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_genericConfigLoader" name="property_genericConfigLoader" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$genericConfigLoader</h3>
+                <pre class="signature">$genericConfigLoader : \Siesta\Config\GenericConfigLoader</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Config.GenericConfigLoader.html">\Siesta\Config\GenericConfigLoader</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_validator" name="property_validator" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$validator</h3>
+                <pre class="signature">$validator : \Siesta\Validator\Validator</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Validator.Validator.html">\Siesta\Validator\Validator</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mainGenerator" name="property_mainGenerator" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$mainGenerator</h3>
+                <pre class="signature">$mainGenerator : \Siesta\Generator\MainGenerator</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Generator.MainGenerator.html">\Siesta\Generator\MainGenerator</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_migrator" name="property_migrator" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$migrator</h3>
+                <pre class="signature">$migrator : \Siesta\Migration\Migrator</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Migration.Migrator.html">\Siesta\Migration\Migrator</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_connection" name="property_connection" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$connection</h3>
+                <pre class="signature">$connection : \Siesta\Database\Connection</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Siesta.Database.Connection.html">\Siesta\Database\Connection</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em>Siesta constructor.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLogger" name="method_setLogger" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLogger()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLogger(\Psr\Log\LoggerInterface  <span class="argument">$logger</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Psr\Log\LoggerInterface</td>
+                                <td>$logger </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addFile" name="method_addFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addFile(\Siesta\Util\File  <span class="argument">$file</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Siesta.Util.File.html">\Siesta\Util\File</a></td>
+                                <td>$file </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addFileType" name="method_addFileType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">addFileType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addFileType(string  <span class="argument">$extension</span>, string|null  <span class="argument">$baseDir = null</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$extension </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$baseDir </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setGenericGeneratorConfig" name="method_setGenericGeneratorConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setGenericGeneratorConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setGenericGeneratorConfig(\Siesta\Util\File  <span class="argument">$file</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Siesta.Util.File.html">\Siesta\Util\File</a></td>
+                                <td>$file </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConnection" name="method_getConnection" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConnection()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConnection() : \Siesta\Database\Connection</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Siesta.Database.Connection.html">\Siesta\Database\Connection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setConnection" name="method_setConnection" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setConnection()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setConnection(\Siesta\Database\Connection  <span class="argument">$connection</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Siesta.Database.Connection.html">\Siesta\Database\Connection</a></td>
+                                <td>$connection </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_migrateDirect" name="method_migrateDirect" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">migrateDirect()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">migrateDirect(string  <span class="argument">$baseDir</span>, boolean  <span class="argument">$dropUnusedTables = true</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$baseDir </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$dropUnusedTables </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Siesta\Exception\InvalidConfigurationException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_migrateToFile" name="method_migrateToFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">migrateToFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">migrateToFile(string  <span class="argument">$baseDir</span>, \Siesta\Util\File  <span class="argument">$targetFile</span>, boolean  <span class="argument">$dropUnusedTables = true</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$baseDir </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Siesta.Util.File.html">\Siesta\Util\File</a></td>
+                                <td>$targetFile </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$dropUnusedTables </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Siesta\Exception\InvalidConfigurationException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setTableNamingStrategy" name="method_setTableNamingStrategy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setTableNamingStrategy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setTableNamingStrategy(\Siesta\NamingStrategy\NamingStrategy  <span class="argument">$strategy</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Siesta.NamingStrategy.NamingStrategy.html">\Siesta\NamingStrategy\NamingStrategy</a></td>
+                                <td>$strategy </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setColumnNamingStrategy" name="method_setColumnNamingStrategy" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setColumnNamingStrategy()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setColumnNamingStrategy(\Siesta\NamingStrategy\NamingStrategy  <span class="argument">$strategy</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Siesta.NamingStrategy.NamingStrategy.html">\Siesta\NamingStrategy\NamingStrategy</a></td>
+                                <td>$strategy </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setup" name="method_setup" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setup()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setup() </pre>
+                <p><em></em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Siesta\Exception\InvalidConfigurationException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prepareModel" name="method_prepareModel" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">prepareModel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prepareModel() </pre>
+                <p><em></em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Siesta\Exception\InvalidConfigurationException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateClasses" name="method_generateClasses" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">generateClasses()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateClasses(string  <span class="argument">$baseDir</span>, boolean  <span class="argument">$dropUnusedTables = true</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$baseDir </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$dropUnusedTables </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Siesta\Exception\InvalidConfigurationException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_checkValidationError" name="method_checkValidationError" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">checkValidationError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">checkValidationError() </pre>
+                <p><em></em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Siesta\Exception\InvalidConfigurationException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Siesta.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Main/Siesta.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Siesta.html">\Siesta</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on July 24th, 2016 at 15:08.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

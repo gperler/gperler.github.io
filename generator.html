@@ -105,6 +105,7 @@
                         <a class="toc" href="#generator">Generator</a><br/>
                         <a class="toc" href="#plugin">Plugins</a><br/>
                         <a class="toc" href="#change">Changing default behaviour</a><br/>
+                        <a class="toc" href="#model">The datamodel</a><br/>
                         <a class="toc" href="#validator">Adding validators for your plugins</a><br/>
                     </p>
                 </div>
@@ -250,7 +251,100 @@
         public function generate(Entity $entity, CodeGenerator $codeGenerator);
 
     }</pre>
+                    <p>
+                        The following example shows a plugin that transforms the entity data to xml. You can use the <code>BasePlugin</code> Class,
+                        it has already implementation of getUseClassNameList, getDependantPluginList and getInterfaceList. You
+                        can simply overwrite them if you need custom behaviour. The given example is supposed to show the idea
+                        of a plugin. In reality you would want references, collections etc. also serialized into XML.<br><br>
 
+                        First command is to create a method. This is done by invoking <code>$codeGenerator->newPublicMethod("toXML")</code>
+                        with the method name (toXML). The code generator will return a method object, to which you can add
+                        Parameters (\DOMElement) and their names in the method (element). <br><br>
+
+                        The entity allows you to iterate over all attributes. (see datamodel below for details). First some
+                        base information is retrieved (type, name and memberName of the attribute). <br><br>
+
+                        Depending on the attributes type different coding is needed in the toXML method. If the php type
+                        is bool, int, float or string, we add an if statement to the generated method (<code>$method->addIfStart</code>)
+                        You just pass the if condition. In this case we check if the member attribute is null. <code>$memberName . ' !== null'</code>
+                        This is important in strict_types environment, because \DOMElement->setAttribute will not accept a null
+                        value. The if statement is closed with <code>$method->addIfEnd();</code><br><br>
+
+                        If the php type is SiestaDateTime (extends from \DateTime) then we need the null check as well. If
+                        the datetime attribute is not null, we can invoke the method getSQLDateTime(). This is done in this line:
+                        <code>$method->addLine('$element->setAttribute("' . $name . '", ' . $memberName . '->getSQLDateTime());');</code>
+                        The addLine method allows you to write php code. The element variable is defined as a method parameter and we
+                        invoke the setAttribute method on it. We pass as key the name of the attribute and as value the result of
+                        getSQLDateTime.<br/><br/>
+                    </p>
+                     <pre class="prettyprint">
+    &lt;?php
+
+    declare(strict_types = 1);
+
+    namespace Siesta\GeneratorPlugin\Entity;
+
+    use Siesta\CodeGenerator\CodeGenerator;
+    use Siesta\GeneratorPlugin\BasePlugin;
+    use Siesta\Model\Entity;
+    use Siesta\Model\PHPType;
+
+    class ToXMLPlugin extends BasePlugin
+    {
+
+        public function generate(Entity $entity, CodeGenerator $codeGenerator)
+        {
+
+            // create a new method and add a parameter
+            $method = $codeGenerator->newPublicMethod("toXML");
+            $method->addParameter('\DOMElement', 'element');
+
+            // iterate all attributes
+            foreach ($entity->getAttributeList() as $attribute) {
+                $phpType = $attribute->getPhpType();
+                $name =  $attribute->getPhpName();
+                $memberName = '$this->' . $name;
+
+                // primitive types can be set directly
+                if ($phpType === PHPType::BOOL || $phpType === PHPType::INT || $phpType === PHPType::FLOAT || $phpType === PHPType::STRING) {
+
+                    $method->addIfStart($memberName . ' !== null');
+                    $method->addLine('$element->setAttribute("' . $name . '", ' . $memberName . ');');
+                    $method->addIfEnd();
+                    continue;
+                }
+
+                // datetime need method call
+                if ($phpType === PHPType::SIESTA_DATE_TIME) {
+                    $method->addIfStart($memberName . ' !== null');
+                    $method->addLine('$element->setAttribute("' . $name . '", ' . $memberName . '->getSQLDateTime());');
+                    $method->addIfEnd();
+                }
+            }
+
+            // really important !!!
+            $method->end();
+        }
+
+    }</pre>         <p>
+                        To activate your personal plugin you just have to follow the instructions in the next paragraph (Changing default behaviour).
+                        You have to add the name of the plugin to the generator in which you want to have the toXML() Method.
+
+                    </p>
+                    <pre class="prettyprint">
+    {
+          "name": "Entity Generator",
+          "className": "Siesta\\Generator\\EntityGenerator",
+          "pluginList": [
+            ... ,
+            "Siesta\\GeneratorPlugin\\Entity\\ToXMLPlugin"
+          ],
+          "config": {
+          },
+          "validatorList": [
+            ...,
+          ]
+    }</pre>
                     </div>
                 </div>
             </div>
@@ -296,6 +390,64 @@
 
     }</pre>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="model">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>The datamodel</h1>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="chapter">
+                        <p>
+                           Both Generator and Plugin interface will get the Entity object passed, that is subject to generation. The Entity
+                           class represents a generated class respectively a table in the database. It has 1..n Attributes which in term
+                            represent a member in the generated entity as well as a column in the corresponding table. An Index consists
+                            of 1..n IndexPart which in term reference an attribute. An attribute/column can be part of serveral indexes.
+                            A reference (foreign key) always refers a foreign entity and has 1..n ReferenceMapping. A referenceMapping
+                            maps a local attribute (in the entity in which it is defined) and a foreign Attribute in the foreign entity.
+                            <br/><br/>
+                            The Entity has methods like
+                            <ul>
+                                <li>Entity->getAttributeList()</li>
+                                <li>Entity->getReferenceList()</li>
+                                <li>Entity->getIndexList()</li>
+                            </ul>
+                            to access the corresponding objects. The source code has all the phpdoc annotations to give you code
+                            completion in a development environment like PhpStorm, Zend Studio etc.
+                        </p>
+                            <img src="img/datamodel/SiestaBasic.png"/>
+                        <p>
+                            A little bit more complex are Collections and Many 2 Many Collections. An entity can have 0..n collections.
+                            A collection always refers to a foreign entity and a foreign reference. So for example if you have the CartItem
+                            object which references a Cart. (CartItem has a foreign key/ references to the cart object) A collection allows
+                            you to collect all CartItems which refer the the given Cart. Therefore a collection needs to know the foreign entity
+                            and the foreign reference.
+                            <br><br>
+                            An entity can also 0..n Collection Many. As an example you find in the tests the relationship between students
+                            and exams. A student can participate in 0..n exams. and every exam can have 0..n students participating. This
+                            is typically realized with a mapping table. Therefore a collection Many has a foreignEntity and a mapping entity.
+                            Furthermore to foreignReference is the reference between the mapping table and the foreign entity. The mappingReference
+                            is the reference between the entity and the mapping entity.<br><br>
+                            Also here you will find all needed methods to access these objects.
+                            <ul>
+                                <li>Entity->getCollectionList()</li>
+                                <li>Entity->getCollectionManyList()</li>
+                                <li>Collection->getForeignEntity()</li>
+                                <li>Collection->getForeignReference()</li>
+                                <li>CollectionMany->getMappingEntity()</li>
+                            </ul>
+                        </p>
+                            <img src="img/datamodel/siestaCollection.png"/>
                     </div>
                 </div>
             </div>
